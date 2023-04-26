@@ -1,0 +1,42 @@
+@font-face {
+  font-family: 'Poppins';
+  src: url('/public/fuentes/Poppins-Light.ttf') format('truetype');
+}
+
+
+.title-container{
+    color: rgb(246, 237, 246);
+    font-size: 30px;
+    text-align:center;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-right: 280px;
+}
+.title-label h3 {
+    
+    font-size: 50px; /* Cambia el tamaño según sea necesario */
+    
+    
+    padding-top: 100px; /* Elimina el margen superior e inferior predeterminado */
+    
+    font-family: 'Poppins';
+    font-style: normal;
+    text-transform: uppercase;
+    color: #E9F2FD;
+
+  }
+  
+  .title-label h1 {
+    font-size: 100px; /* Cambia el tamaño según sea necesario */
+    margin: 0; /* Elimina el margen superior e inferior predeterminado */
+    padding-top: 0px; /* Ajusta el espaciado superior según sea necesario */
+    font-family: 'Poppins';
+    font-style: normal;
+    
+    color: #E9F2FD;
+
+  }
+ 
+  

@@ -1,0 +1,38 @@
+.login-container {
+  display: flex;
+  justify-content: flex-end; /* Alinea los elementos a la derecha */
+}
+
+.half-box {
+  background: #1E1E1E;
+  width: 40%;
+  float: left;
+  box-sizing: border-box;
+}
+
+.botton {
+  margin-top: 30px;
+  
+}
+
+.botton button {
+  background: #42D976;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  padding-right: 20px;
+}
+
+.botton button:hover {
+  background-color: #0069d9;
+}
+
+.botton a {
+  
+  text-decoration: none;
+  color: #575757;
+
+  margin-left: -300px;
+}

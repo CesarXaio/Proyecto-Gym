@@ -1,0 +1,75 @@
+.card-container {
+    margin-left: 100px; /* aumentamos el margen izquierdo */
+    display: flex;
+    flex-wrap: nowrap; /* evitamos que las tarjetas se envuelvan en varias líneas */
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .card {
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    margin-left: 40px; 
+    
+    text-align: center;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    height: 250px;
+    width: 180px;
+    border-radius: 20px;
+    background-color: #373B43;
+  }
+  
+  
+  
+  
+  .card-name {
+    color: #E9F2FD;
+    font-size: 1.2rem;
+    padding-top: 10px;
+    padding-left: 0px;
+    height: 36px;
+    width: 190px; /* ajustamos el ancho para que coincida con el ancho de la tarjeta */
+    border-radius: nullpx;
+    line-height: 37.5px;
+  }
+  
+  .card-modalidad {
+    padding-left: 50px;
+    font-size: 1rem;
+    margin: 0;
+    color: #666;
+    width: 77px;
+    height: 27px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 0px;
+    color: #42D976;
+  }
+  .card-img {
+    border-radius: 30px;
+    padding: 0px;
+    height: 220px;
+    width: 180px;
+    margin-bottom: -10px; /* Agrega un margen inferior negativo */
+  }
+  .botton button {
+    background: #42D976;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left:48% /* Empuja el botón a la derecha */
+  }
+  .boton-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 10px;
+  }
+  

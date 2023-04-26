@@ -1,0 +1,112 @@
+.tienda {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    
+  }
+.tarjetas {
+    margin-top: 60px;
+    display: flex;
+    width: 150px;
+    height: 200px;
+    background: #373B43;
+    border-radius: 20px;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px;
+    border: 0px solid #ccc;
+    border-radius: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease-in-out;
+    cursor: pointer;
+    margin-bottom: 0px;
+  }
+  .main{
+    background-color: rgb(12, 12, 12);
+  }
+  .tarjetas:hover {
+    transform: translateY(-5px);
+  }
+  
+  .tarjetas img {
+    width: 70%;
+    height: 200px;
+    object-fit: cover;
+    margin-bottom: 10px;
+    
+  }
+  
+  .tarjetas h3 {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+  }
+  
+  .tarjetas p {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .tarjetas button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .tarjetas button:hover {
+    background-color: #0062cc;
+  }
+  .tarjetas__etiqueta {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 5px;
+    background-color: black;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 5px 0 0 0;
+  }
+  .Bebidas-text {
+    /*
+    position: absolute;
+    top: 0;
+    left: 30;
+    padding: 5px;
+    background-color: #E9F2FD;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 5px 0 0 0;
+    */
+    position: absolute;
+    top: 0px;
+    padding-top: 30px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 25px;
+    line-height: 45px;
+    color: #E9F2FD;
+
+  }
+  
+  .Proteicos-text{
+    position: absolute;
+    top: 0px;
+    padding-top: 370px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 25px;
+    line-height: 45px;
+
+    color: #E9F2FD;
+
+  }
+  
