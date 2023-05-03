@@ -1,0 +1,149 @@
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    width: 1000px;
+    height: 500px;
+    background: #42D976;
+    border: 4px solid #42D976;
+    border-radius: 15px;
+  }
+  
+  .modal-header {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .modal-body {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .modal-label {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .modal-input {
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+  }
+  
+  .modal-buttons {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: auto;
+    gap: 10px;
+  }
+  
+  .modal-button {
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background-color: #008CBA;
+    cursor: pointer;
+  }
+  
+  .modal-button:hover {
+    background-color: #00688B;
+  }
+  
+  .Input-container{
+    margin-left: 450px;
+    width: 50%;   
+    box-sizing: border-box;
+    height: 50px;
+    background: #42D976;
+    border: 4px solid #EEEEEE;
+    border-radius: 15px;
+}
+#modalidad{
+  box-sizing: border-box;
+  margin-left: 450px;
+  width: 50%; 
+  height: 50px;
+  background: #42D976;
+  border: 4px solid #EEEEEE;
+  border-radius: 15px;
+}
+
+#cedula{
+  box-sizing: border-box;
+  display: inline-block;
+  margin-left: 450px;
+  width: 20%;
+  height: 50px;
+  background: #42D976;
+  border: 4px solid #EEEEEE;
+  border-radius: 15px;
+  margin-right: 100px;
+}
+
+#telefono{
+  margin-right: 50px;
+  box-sizing: border-box;
+  width: 20%;
+  height: 50px;
+  background: #42D976;
+  border: 4px solid #EEEEEE;
+  border-radius: 15px;
+  margin-top: -300px; /* Opcional: agregar margen para separar los elementos */
+  
+}
+
+#boton-ok{
+  background: #E9F2FD;
+  border: 4px solid #EEEEEE;
+  border-radius: 15px;
+  width: 150px;
+  height: 50px;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 38px;
+}
+
+#boton-off{
+  padding-right: 20px;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 38px;
+  color: #575757;
+}
+.button-container{
+  margin-top: 50px;
+  padding-left: 685px;
+}
+.modal-header{
+  margin-left: 530px;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 25px;
+  line-height: 50px;
+  color: #E9F2FD;
+}
+#Cerrar{
+  margin-left: 380px;
+  box-sizing: border-box;
+  width: 10%;
+  height: 40px;
+  background-color: transparent;
+  outline: none;
+  padding: 0;
+  cursor: pointer;
+  color:#f50505;
+  border: 0;
+}

@@ -1,27 +1,25 @@
 .card-container {
-    margin-left: 100px; /* aumentamos el margen izquierdo */
-    display: flex;
-    flex-wrap: nowrap; /* evitamos que las tarjetas se envuelvan en varias líneas */
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start; /* Cambiamos space-between por flex-start */
+  align-items: center;
   }
   
   .card {
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
-    padding: 30px;
-    margin-left: 40px; 
-    
-    text-align: center;
-    margin-right: 10px;
-    margin-bottom: 10px;
-    height: 250px;
-    width: 180px;
-    border-radius: 20px;
-    background-color: #373B43;
+  position: relative;
+  display: inline;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  margin-left: 0; /* Eliminamos margin-left */
+  margin-right: 10px;
+  margin-bottom: 10px;
+  height: 250px;
+  width: auto; /* Cambiamos width: 200px por width: auto */
+  border-radius: 20px;
+  background-color: #373B43;
   }
-  
+
   
   
   
@@ -72,4 +70,107 @@
     right: 0;
     margin: 10px;
   }
+  /*Parte de soperposicion*/
   
+  .card-container:hover .card-overlay {
+    background: #373B43;
+    border-radius: 20px;
+    opacity: 10; /* hacemos visible la superposición cuando se pasa el cursor por encima del contenedor de la tarjeta */
+  }
+  
+  .card-overlay {
+    position: absolute; /* establecemos la posición de la superposición en "absolute" */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* establecemos un color de fondo semitransparente para la superposición */
+    opacity: 0; /* hacemos invisible la superposición por defecto */
+    transition: opacity 0.3s ease-in-out; /* agregamos una transición suave al cambiar la opacidad */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .card-info {
+    display:inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    position: absolute; /* establecemos la posición de la información en "absolute" */
+    top: 50%; /* la ubicamos en el centro verticalmente */
+    left: 50%; /* la ubicamos en el centro horizontalmente */
+    transform: translate(-50%, -50%); /* la desplazamos hacia arriba y hacia la izquierda para que esté centrada */
+    white-space: nowrap; /* evitamos que el contenido se divida en varias líneas */
+    overflow: hidden; /* ocultamos el contenido que no quepa dentro del contenedor */
+  }
+  
+  
+  .card-info h2 {
+    margin-top: 0;
+    font-size: 1.5rem;
+  }
+  
+  .card-info h5{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 30px;
+    
+    color: #42D976;
+  }
+  .card-info p {
+    
+  }
+  .DiaHora {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .Hora{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 30px;
+    color: #42D976;
+  }
+  .Dia{
+    justify-content:end;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 30px;
+    color: #E9F2FD;
+    margin-right: 30px;
+   
+
+  }
+  .hora-izquierda {
+    align-self: flex-start;
+  }
+  
+  .hora-derecha {
+    align-self: flex-end;
+  }
+  
+  .linea-horizontal {
+    position: absolute;
+    top: calc(25% - 1px); 
+    width: 100%;
+    height: 2px;
+    background-color: #E9F2FD;
+    border: 0px solid ;
+  }
+
+  .linea-horizontal2 {
+    position: absolute;
+    top: calc(99% - 1px); 
+    width: 100%;
+    height: 2px;
+    
+    border: 2px solid #E9F2FD;
+  }

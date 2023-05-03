@@ -2,7 +2,7 @@ import React,{useState} from "react";
 
 import "./Boton.css"
 
-const Boton = (props) =>{
+const Boton = ({ palabra, onClick })=>{
     const [user, setUser] = useState('');
     const [password, setPassword] = useState('');
 
@@ -23,8 +23,8 @@ const Boton = (props) =>{
       };
     return(
         <div className="botton">
-            <button onClick={handleSubmit}>
-                {props.palabra}
+            <button className="boton" onClick={onClick}>
+                {palabra}
             </button>
         </div>
     );
