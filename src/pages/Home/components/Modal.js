@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import React, {  useState } from "react";
 import "./Modal.css";
-import Input from "../../Login/components/input/Input";
+import ConfirmationMessage from "../../../confirmacion/confirmacion";
 
-
-const Modal = ({ onClose, onAddTrainer }) => {
+const Modal = ({ onClose, onAddTrainer}) => {
   const [name, setName] = useState("");
   const [modalidad, setModalidad] = useState("");
   const [cedula, setCedula] = useState("");
   const [telefono, setTelefono] = useState("");
+  const [showConfirmation, setShowConfirmation] = useState(false);
 
   const handleNameChange = (event) => {
     setName(event.target.value);
@@ -25,15 +25,15 @@ const Modal = ({ onClose, onAddTrainer }) => {
     setTelefono(event.target.value);
   };
 
-//Me agrega el entrenador
+ 
   const handleAddTrainer = () => {
-    if (typeof onAddTrainer === 'function') {
+    if (typeof onAddTrainer === "function") {
       const newTrainer = { name, modalidad, cedula, telefono };
       onAddTrainer(newTrainer);
       onClose();
+      setShowConfirmation(true);
     }
   };
-  
 
   return (
     <>
@@ -41,47 +41,65 @@ const Modal = ({ onClose, onAddTrainer }) => {
         <div className="modal">
           <div className="modal-header">
             <h2>Nuevo Entrenador</h2>
-            <button id="Cerrar" onClick={onClose}>X</button>
           </div>
           <div className="modal-body">
             <div className="form-group">
-              
-            <input className ="Input-container" 
-                id='name'
-                name='name'
-                type='text'
-                placeholder='Ingrese el nuevo entrenador'
-            />
-
-        
+              <input
+                className="Input-container"
+                id="name"
+                name="name"
+                type="text"
+                placeholder="Ingrese el nuevo entrenador"
+                value={name}
+                onChange={handleNameChange}
+              />
             </div>
             <div className="form-group">
-                
-                <select id="modalidad" value={modalidad} onChange={handleModalidadChange}>
-                    <option value="">Seleccionar modalidad</option>
-                    <option value="Crossfit">Crossfit</option>
-                    <option value="Pilates">Pilates</option>
-                    <option value="Funcional">Funcional</option>
-                    <option value="Pesas">Pesas</option>
-                </select>
+              <select
+                id="modalidad"
+                value={modalidad}
+                onChange={handleModalidadChange}
+              >
+                <option value="">Seleccionar modalidad</option>
+                <option value="Crossfit">Crossfit</option>
+                <option value="Pilates">Pilates</option>
+                <option value="Funcional">Funcional</option>
+                <option value="Pesas">Pesas</option>
+              </select>
             </div>
 
             <div className="form-group">
-             
-              <input type="text" id="cedula" placeholder='Cedula de Identidad'
-              value={cedula} onChange={handleCedulaChange}/>
-              
-              <input type="text" id="telefono" placeholder='Numero de Telefono' value={telefono} onChange={handleTelefonoChange} />
+              <input
+                type="text"
+                id="cedula"
+                placeholder="Cedula de Identidad"
+                value={cedula}
+                onChange={handleCedulaChange}
+              />
+
+              <input
+                type="text"
+                id="telefono"
+                placeholder="Numero de Telefono"
+                value={telefono}
+                onChange={handleTelefonoChange}
+              />
             </div>
-            
+
             <div className="button-container">
-            <a id="boton-off" onClick={onClose}>Cancelar</a>
-              <button id="boton-ok" onClick={handleAddTrainer}>Aceptar</button>
-              
+              <a id="boton-off" onClick={onClose}>
+                Cancelar
+              </a>
+              <button id="boton-ok" onClick={handleAddTrainer}>
+                Aceptar
+              </button>     
+              {showConfirmation && <ConfirmationMessage />}
             </div>
           </div>
         </div>
       </div>
+
+      
     </>
   );
 };

@@ -1,0 +1,54 @@
+.confirmation-message {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  display: none;
+  background-color: #fff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.confirmation-message.show {
+  display: block;
+}
+
+.checkmark {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 20px auto;
+  border-radius: 50%;
+  display: block;
+  position: relative;
+}
+
+.checkmark_stem {
+  width: 4px;
+  height: 50px;
+  background-color: #00c853;
+  display: block;
+  position: absolute;
+  top: 34px;
+  left: 29px;
+  transform: rotate(45deg);
+}
+
+.checkmark_kick {
+  width: 4px;
+  height: 100px;
+  background-color: #00c853;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 23px;
+  transform: rotate(130deg);
+}
+
+.confirmation-text {
+  font-size: 20px;
+  font-weight: bold;
+  color: #00c853;
+}

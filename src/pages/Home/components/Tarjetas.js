@@ -1,20 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import "./Tarjetas.css"
+
 const Tarjetas = (props) => {
   const { bebida, precio, imagen } = props; // Desestructuramos las props recibidas
+  const [cantidad, setCantidad] = useState(0); // Agregamos un estado para la cantidad
+  const [mostrarBotones, setMostrarBotones] = useState(false); // Estado local para mostrar/ocultar los botones
+
+  const aumentarCantidad = () => {
+    setCantidad(cantidad + 1);
+  };
+
+  const disminuirCantidad = () => {
+    if (cantidad > 0) {
+      setCantidad(cantidad - 1);
+    }
+  };
 
   return (
     <div className="tarjetas">
-      
-      <img src={imagen} className="tarjetas__imagen" />
-      {/*
-      <h3>{bebida}</h3>
-      <p>{precio} Gs</p>
-      <button>Añadir al carrito</button>
-      */}
+      <img className='tarjetas__imagen' src={imagen} alt="Producto" />
+      <div className="Botones">
+        <button className="Boton-Disminuir" onClick={disminuirCantidad}>-</button>
+        <div className="Cantidad">{cantidad}</div>
+        <button className="Boton-Aumentar" onClick={aumentarCantidad}>+</button>
+      </div>
+      <button className="Agregar">Agregar</button>
     </div>
   );
 };
-
 
 export default Tarjetas;

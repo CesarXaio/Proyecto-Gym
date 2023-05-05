@@ -7,9 +7,7 @@ import "./components/Boton";
 const Coach = () => {
   const [showModal, setShowModal] = useState(false);
   const [entrenadores, setEntrenadores] = useState([
-    { photo: "./images/Entrenador3.jpg", name: "Rodrigo Ibarra", modalidad: "Crossfit" },
-    { photo: "./images/Entrenador3.jpg", name: "Daniel Ferreira", modalidad: "Pilates" },
-    { photo: "./images/Entrenador3.jpg", name: "German Aquino", modalidad: "Funcional" },
+    
   ]);
 
   const handleAgregarClick = () => {

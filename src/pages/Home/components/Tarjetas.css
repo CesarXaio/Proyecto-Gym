@@ -24,10 +24,28 @@
   .main{
     background-color: rgb(12, 12, 12);
   }
-  .tarjetas:hover {
-    transform: translateY(-5px);
+  .tarjetas:hover,
+  .tarjetas__imagen:hover
+  {
+    transform: scale(2.05);
+    transform: translateY(-10px);
+  }
+  .tarjetas__imagen:hover {
+    transform: scale(1.6);
   }
   
+  .tarjetas:hover .Botones{
+    display: flex;
+    
+  }
+  
+  .Botones {
+    display: none;
+  }
+  
+
+
+
   .tarjetas img {
     width: 70%;
     height: 200px;
@@ -47,17 +65,7 @@
     margin-bottom: 10px;
   }
   
-  .tarjetas button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    font-size: 1.1rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.2s ease-in-out;
-  }
+
   
   .tarjetas button:hover {
     background-color: #0062cc;
@@ -110,3 +118,63 @@
 
   }
   
+
+
+
+.Botones {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.Boton-Disminuir,
+.Boton-Aumentar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  border: none;
+  font-size: 30px;
+  color: #42D976;
+  font-family: 'Poppins';
+  cursor: pointer;
+}
+
+.Boton-Disminuir:hover,
+.Boton-Aumentar:hover {
+  color: #2BA458;
+}
+
+.Cantidad {
+  display: flex;
+  font-family: 'Poppins';
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  background-color: #42D976;
+  color: #fff;
+  font-size: 20px;
+  border-radius: 10px;
+}
+
+.Agregar {
+  width: 100%;
+  font-family: 'Poppins';
+  height: 50px;
+  margin-top: 10px;
+  background-color: #42D976;
+  color: #fff;
+  font-size: 20px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.Agregar:hover {
+  background-color: #2BA458;
+}
