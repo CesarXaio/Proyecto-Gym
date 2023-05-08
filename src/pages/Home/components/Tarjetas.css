@@ -34,14 +34,9 @@
     transform: scale(1.6);
   }
   
-  .tarjetas:hover .Botones{
-    display: flex;
-    
-  }
+ 
   
-  .Botones {
-    display: none;
-  }
+
   
 
 
@@ -67,9 +62,7 @@
   
 
   
-  .tarjetas button:hover {
-    background-color: #0062cc;
-  }
+  
   .tarjetas__etiqueta {
     position: absolute;
     top: 0;

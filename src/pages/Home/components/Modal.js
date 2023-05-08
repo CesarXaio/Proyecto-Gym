@@ -1,13 +1,14 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
+import Mensaje from "../../../Confirmacion/Mensaje";
 import "./Modal.css";
-import ConfirmationMessage from "../../../confirmacion/confirmacion";
 
-const Modal = ({ onClose, onAddTrainer}) => {
+const Modal = ({ onClose, onAddTrainer }) => {
   const [name, setName] = useState("");
   const [modalidad, setModalidad] = useState("");
   const [cedula, setCedula] = useState("");
   const [telefono, setTelefono] = useState("");
-  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [mostrarMensaje, setMostrarMensaje] = useState(false);
+  const [mensaje, setMensaje] = useState("");
 
   const handleNameChange = (event) => {
     setName(event.target.value);
@@ -25,18 +26,24 @@ const Modal = ({ onClose, onAddTrainer}) => {
     setTelefono(event.target.value);
   };
 
- 
   const handleAddTrainer = () => {
     if (typeof onAddTrainer === "function") {
       const newTrainer = { name, modalidad, cedula, telefono };
-      onAddTrainer(newTrainer);
-      onClose();
-      setShowConfirmation(true);
+      
+      setMensaje("Entrenador agregado con Exito!");
+      setMostrarMensaje(true);
+      setTimeout(() => {
+        onAddTrainer(newTrainer);
+        onClose();
+        setMostrarMensaje(false);
+      }, 1000);
+      
     }
   };
 
   return (
     <>
+    
       <div className="modal-overlay">
         <div className="modal">
           <div className="modal-header">
@@ -92,14 +99,12 @@ const Modal = ({ onClose, onAddTrainer}) => {
               </a>
               <button id="boton-ok" onClick={handleAddTrainer}>
                 Aceptar
-              </button>     
-              {showConfirmation && <ConfirmationMessage />}
+              </button>
             </div>
           </div>
         </div>
       </div>
-
-      
+      <Mensaje mensaje={mensaje} mostrar={mostrarMensaje} />
     </>
   );
 };
