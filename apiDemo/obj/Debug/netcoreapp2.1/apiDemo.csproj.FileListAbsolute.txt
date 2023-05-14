@@ -1,0 +1,14 @@
+C:\Users\Dell Gaming\source\repos\apiDemo\apiDemo\bin\Debug\netcoreapp2.1\apiDemo.deps.json
+C:\Users\Dell Gaming\source\repos\apiDemo\apiDemo\bin\Debug\netcoreapp2.1\apiDemo.runtimeconfig.json
+C:\Users\Dell Gaming\source\repos\apiDemo\apiDemo\bin\Debug\netcoreapp2.1\apiDemo.runtimeconfig.dev.json
+C:\Users\Dell Gaming\source\repos\apiDemo\apiDemo\bin\Debug\netcoreapp2.1\apiDemo.dll
+C:\Users\Dell Gaming\source\repos\apiDemo\apiDemo\obj\Debug\netcoreapp2.1\apiDemo.csprojAssemblyReference.cache
+C:\Users\Dell Gaming\source\repos\apiDemo\apiDemo\obj\Debug\netcoreapp2.1\apiDemo.csproj.CoreCompileInputs.cache
+C:\Users\Dell Gaming\source\repos\apiDemo\apiDemo\obj\Debug\netcoreapp2.1\apiDemo.RazorAssemblyInfo.cache
+C:\Users\Dell Gaming\source\repos\apiDemo\apiDemo\obj\Debug\netcoreapp2.1\apiDemo.RazorAssemblyInfo.cs
+C:\Users\Dell Gaming\source\repos\apiDemo\apiDemo\obj\Debug\netcoreapp2.1\apiDemo.AssemblyInfoInputs.cache
+C:\Users\Dell Gaming\source\repos\apiDemo\apiDemo\obj\Debug\netcoreapp2.1\apiDemo.AssemblyInfo.cs
+C:\Users\Dell Gaming\source\repos\apiDemo\apiDemo\obj\Debug\netcoreapp2.1\apiDemo.RazorTargetAssemblyInfo.cache
+C:\Users\Dell Gaming\source\repos\apiDemo\apiDemo\bin\Debug\netcoreapp2.1\apiDemo.pdb
+C:\Users\Dell Gaming\source\repos\apiDemo\apiDemo\obj\Debug\netcoreapp2.1\apiDemo.dll
+C:\Users\Dell Gaming\source\repos\apiDemo\apiDemo\obj\Debug\netcoreapp2.1\apiDemo.pdb
