@@ -39,6 +39,7 @@ const Tarjetas = (props) => {
   };
 
   return (
+    
     <div className="tarjetas" onMouseEnter={mostrarBotonesHandler} onMouseLeave={ocultarBotonesHandler}>
       <img className='tarjetas__imagen' src={imagen} alt="Producto" />
       {mostrarBotones && (
@@ -53,6 +54,7 @@ const Tarjetas = (props) => {
       )}
       <Mensaje mensaje={mensaje} mostrar={mostrarMensaje} />
     </div>
+    
   );
 };
 

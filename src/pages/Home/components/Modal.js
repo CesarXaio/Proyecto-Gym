@@ -29,7 +29,6 @@ const Modal = ({ onClose, onAddTrainer }) => {
   const handleAddTrainer = () => {
     if (typeof onAddTrainer === "function") {
       const newTrainer = { name, modalidad, cedula, telefono };
-      
       setMensaje("Entrenador agregado con Exito!");
       setMostrarMensaje(true);
       setTimeout(() => {
@@ -39,7 +38,8 @@ const Modal = ({ onClose, onAddTrainer }) => {
       }, 1000);
       
     }
-  };
+  }; 
+
 
   return (
     <>
@@ -77,6 +77,7 @@ const Modal = ({ onClose, onAddTrainer }) => {
 
             <div className="form-group">
               <input
+              
                 type="text"
                 id="cedula"
                 placeholder="Cedula de Identidad"
@@ -104,6 +105,7 @@ const Modal = ({ onClose, onAddTrainer }) => {
           </div>
         </div>
       </div>
+    
       <Mensaje mensaje={mensaje} mostrar={mostrarMensaje} />
     </>
   );
