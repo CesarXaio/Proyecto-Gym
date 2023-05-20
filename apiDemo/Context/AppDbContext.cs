@@ -18,6 +18,7 @@ namespace apiDemo.Context
         public DbSet<Producto> productos { get; set; }
         public DbSet<Entrenador> entrenadores { get; set; }
         public DbSet<Especialidad> especialidades { get; set; }
+        public DbSet<Proveedor> proveedores { get; set; }
 
     }
 }

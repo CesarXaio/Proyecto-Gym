@@ -6,20 +6,20 @@ using System.Threading.Tasks;
 
 namespace apiDemo.Models
 {
-    public class Entrenador
+    public class Proveedor
     {
         [Key]
 
-        public int id_entrenador { get; set; }
-
-        public int id_especialidad { get; set; }
+        public int id_proveedor { get; set; }
 
         public string nombre { get; set; }
 
-        public string ci { get; set; }
+        public string codigo { get; set; }
 
-        public string telefono { get; set; }
+        public string direccion { get; set; }
 
+        public string correo { get; set; }
 
+        public string numero { get; set; }
     }
 }

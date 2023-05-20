@@ -1,17 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace apiDemo.Models
+namespace apiDemo.DTO
 {
-    public class Producto
+    public class ProductoDTO
     {
-        [Key]
-
-        public int id_producto { get; set; }
-
         public int cantidad { get; set; }
 
         public int precio { get; set; }
@@ -21,8 +16,7 @@ namespace apiDemo.Models
         public string codigo { get; set; }
 
         public int? iva10 { get; set; }
-        
-        public int? iva5 { get; set; }
 
+        public int? iva5 { get; set; }
     }
 }

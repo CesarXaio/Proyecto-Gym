@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using apiDemo.Context;
 using apiDemo.Models;
+using apiDemo.DTO;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -26,7 +27,18 @@ namespace apiDemo.Controllers
         {
             try
             {
-                return Ok(context.productos.ToList());
+                var productos = context.productos.ToList();
+                var result = from p in productos
+                             select new ProductoDTO
+                             {
+                                 cantidad = p.cantidad,
+                                 precio = p.precio,
+                                 descripcion = p.descripcion,
+                                 codigo = p.codigo,
+                                 iva10 = p.iva10,
+                                 iva5 = p.iva5
+                             };
+                return Ok(result);
             }
             catch (Exception ex)
             {
@@ -35,13 +47,24 @@ namespace apiDemo.Controllers
         }
 
         // GET api/<controller>/5
-        [HttpGet("{id}", Name = "GetProducto")]
-        public ActionResult Get(int id)
+        [HttpGet("{codigo}", Name = "GetProducto")]
+        public ActionResult Get(string codigo)
         {
             try
             {
-                var producto = context.productos.FirstOrDefault(p => p.id_producto == id);
-                return Ok(producto);
+                var productos = context.productos.ToList();
+                var result = from p in productos
+                             select new ProductoDTO
+                             {
+                                 cantidad = p.cantidad,
+                                 precio = p.precio,
+                                 descripcion = p.descripcion,
+                                 codigo = p.codigo,
+                                 iva10 = p.iva10,
+                                 iva5 = p.iva5
+                             };
+                var cliente = result.FirstOrDefault(p => p.codigo.Equals(codigo));
+                return Ok(cliente);
             }
             catch (Exception ex)
             {
@@ -51,13 +74,31 @@ namespace apiDemo.Controllers
 
         // POST api/<controller>
         [HttpPost]
-        public ActionResult Post([FromBody]Producto producto)
+        public ActionResult Post([FromBody]ProductoDTO producto)
         {
             try
             {
-                context.productos.Add(producto);
-                context.SaveChanges();
-                return CreatedAtRoute("GetProducto", new { id = producto.id_producto}, producto);
+                var productos = context.productos.ToList();
+                var hayProducto = productos.Exists(p => p.codigo.Equals(producto.codigo));
+                if (!hayProducto)
+                {
+                    var neoProducto = new Producto
+                    {
+                        cantidad = producto.cantidad,
+                        precio = producto.precio,
+                        descripcion = producto.descripcion,
+                        codigo = producto.codigo,
+                        iva10 = producto.iva10,
+                        iva5 = producto.iva5
+                    };
+                    context.productos.Add(neoProducto);
+                    context.SaveChanges();
+                    return CreatedAtRoute("GetProducto", new { producto.codigo }, producto);
+                }
+                else
+                {
+                    return BadRequest();
+                }
             }
             catch (Exception ex)
             {
@@ -66,16 +107,31 @@ namespace apiDemo.Controllers
         }
 
         // PUT api/<controller>/5
-        [HttpPut("{id}")]
-        public ActionResult Put(int id, [FromBody]Producto producto)
+        [HttpPut("{codigo}")]
+        public ActionResult Put(string codigo, [FromBody]ProductoDTO producto)
         {
             try
             {
-                if (producto.id_producto == id)
+
+                var productos = context.productos.ToList();
+                var localProducto = productos.FirstOrDefault(p => p.codigo.Equals(codigo));
+
+                if (localProducto != null)
                 {
-                    context.Entry(producto).State = EntityState.Modified;
+                    var neoDataProducto = new Producto
+                    {
+                        id_producto = localProducto.id_producto,
+                        cantidad = producto.cantidad,
+                        precio = producto.precio,
+                        descripcion = producto.descripcion,
+                        codigo = producto.codigo,
+                        iva10 = producto.iva10,
+                        iva5 = producto.iva5
+                    };
+                    context.Entry(localProducto).State = EntityState.Detached;
+                    context.Entry(neoDataProducto).State = EntityState.Modified;
                     context.SaveChanges();
-                    return CreatedAtRoute("GetCliente", new { id = producto.id_producto }, producto);
+                    return CreatedAtRoute("GetProducto", new { producto.codigo }, producto);
                 }
                 else
                 {
@@ -89,17 +145,17 @@ namespace apiDemo.Controllers
         }
 
         // DELETE api/<controller>/5
-        [HttpDelete("{id}")]
-        public ActionResult Delete(int id)
+        [HttpDelete("{codigo}")]
+        public ActionResult Delete(string codigo)
         {
             try
             {
-                var producto = context.productos.FirstOrDefault(p => p.id_producto == id);
+                var producto = context.productos.FirstOrDefault(p => p.codigo.Equals(codigo));
                 if (producto != null)
                 {
                     context.productos.Remove(producto);
                     context.SaveChanges();
-                    return Ok(id);
+                    return Ok(codigo);
                 }
                 else
                 {

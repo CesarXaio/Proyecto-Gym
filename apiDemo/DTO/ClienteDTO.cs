@@ -1,25 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace apiDemo.Models
+namespace apiDemo.DTO
 {
-    public class Entrenador
+    public class ClienteDTO
     {
-        [Key]
-
-        public int id_entrenador { get; set; }
-
-        public int id_especialidad { get; set; }
-
         public string nombre { get; set; }
 
         public string ci { get; set; }
 
         public string telefono { get; set; }
 
+        public string ruc { get; set; }
 
+        public string correo { get; set; }
     }
 }
