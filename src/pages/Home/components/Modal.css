@@ -88,7 +88,7 @@
   color: #E9F2FD;
 }
 
-#modalidad{
+#especialidad{
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 400;
@@ -104,7 +104,7 @@
   color: #E9F2FD;
 }
 
-#cedula{
+#ci{
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 400;
@@ -121,7 +121,7 @@
   margin-right: 100px;
   padding-left: 10px;
 }
-#cedula::placeholder {
+#ci::placeholder {
   color: #E9F2FD;
 }
 

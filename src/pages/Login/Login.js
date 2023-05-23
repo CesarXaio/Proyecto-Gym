@@ -21,7 +21,7 @@ const Login = () => {
   };
 
   function handleSubmit() {
-    if (user === 'cesar' && password === 'gym') {
+    if (user === 'Admin' && password === 'gym') {
       console.log('Logged in!');
       setLoggedIn(true);
     } else {
