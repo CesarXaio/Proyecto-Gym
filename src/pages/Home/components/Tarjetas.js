@@ -1,16 +1,56 @@
-import React, { useState } from 'react';
-import Mensaje from '../../../Confirmacion/Mensaje';
-import "./Tarjetas.css"
+import React, { useState, useEffect } from "react";
+import Mensaje from "../../../Confirmacion/Mensaje";
+import "./Tarjetas.css";
+import axios from "axios";
 
 const Tarjetas = (props) => {
-  const { bebida, precio, imagen } = props; // Desestructuramos las props recibidas
-  const [cantidad, setCantidad] = useState(0); // Agregamos un estado para la cantidad
-  const [mostrarBotones, setMostrarBotones] = useState(false); // Estado local para mostrar/ocultar los botones
-  const [mostrarMensaje, setMostrarMensaje] = useState(false); // Estado local para mostrar/ocultar el mensaje
-  const [mensaje, setMensaje] = useState(''); // Estado local para el mensaje
+  const { descripcion, precio, cantidadDB,
+    codigo_barra, iva_10, iva_5, imagen } = props;
+  const [cantidad, setCantidad] = useState(0);
+  const [mostrarBotones, setMostrarBotones] = useState(false);
+  const [mostrarMensaje, setMostrarMensaje] = useState(false);
+  const [mensaje, setMensaje] = useState("");
+
+  const agregarAlCarrito = async () => {
+    const producto = {
+      descripcion, precio, cantidadDB, cantidad,
+      codigo_barra, iva_10, iva_5, imagen
+    };
+
+    let productosCaja = JSON.parse(localStorage.getItem("productosCaja"));
+
+    if (productosCaja === null) {
+      productosCaja = [];
+      localStorage.setItem("productosCaja", JSON.stringify(productosCaja));
+    }
+
+    const prodI = productosCaja.findIndex((p) => {
+      return p.codigo_barra === codigo_barra
+    })
+
+    console.log(`El indice es ${prodI}`);
+
+    if(prodI === -1){
+      productosCaja.push(producto);
+    } else {
+      const cantidadLS = productosCaja[prodI].cantidad;
+      if(cantidadLS + cantidad <= cantidadDB){
+        productosCaja[prodI].cantidad += cantidad;
+      } else {
+        console.error("Error en la cantidad al agregar: Cantidad insuficiente");
+      }
+    }
+
+    localStorage.setItem("productosCaja", JSON.stringify(productosCaja));
+
+  };
 
   const aumentarCantidad = () => {
-    setCantidad(cantidad + 1);
+    if (cantidadDB > cantidad) {
+      setCantidad(cantidad + 1);
+    } else {
+      console.error("Error en la cantidad al aumentar: Cantidad insuficiente");
+    }
   };
 
   const disminuirCantidad = () => {
@@ -19,17 +59,6 @@ const Tarjetas = (props) => {
     }
   };
 
-  const agregarAlCarrito = () => {
-    
-    setMostrarMensaje(true); // Mostrar el mensaje
-    setMensaje('Producto agregado con Exito!'); // Actualizar el mensaje
-    setTimeout(() => {
-      setMostrarMensaje(false); // Ocultar el mensaje después de 2 segundos
-      setCantidad(0); // Restablecer la cantidad a 0
-    }, 1000);
-  };
-
-  //Se encarga de Mostrar los botones al pasar el mouse
   const mostrarBotonesHandler = () => {
     setMostrarBotones(true);
   };
@@ -39,17 +68,27 @@ const Tarjetas = (props) => {
   };
 
   return (
-    <div className="tarjetas" onMouseEnter={mostrarBotonesHandler} onMouseLeave={ocultarBotonesHandler}>
-      <img className='tarjetas__imagen' src={imagen} alt="Producto" />
+    <div
+      className="tarjetas"
+      onMouseEnter={mostrarBotonesHandler}
+      onMouseLeave={ocultarBotonesHandler}
+    >
+      <img className="tarjetas__imagen" src={imagen} alt="Producto" />
       {mostrarBotones && (
         <div className="Botones">
-          <button className="Boton-Disminuir" onClick={disminuirCantidad}>-</button>
+          <button className="Boton-Disminuir" onClick={disminuirCantidad}>
+            -
+          </button>
           <div className="Cantidad">{cantidad}</div>
-          <button className="Boton-Aumentar" onClick={aumentarCantidad}>+</button>
+          <button className="Boton-Aumentar" onClick={aumentarCantidad}>
+            +
+          </button>
         </div>
       )}
       {mostrarBotones && (
-        <button className="Agregar" onClick={agregarAlCarrito}>Agregar</button>
+        <button className="Agregar" onClick={agregarAlCarrito}>
+          Agregar
+        </button>
       )}
       <Mensaje mensaje={mensaje} mostrar={mostrarMensaje} />
     </div>
