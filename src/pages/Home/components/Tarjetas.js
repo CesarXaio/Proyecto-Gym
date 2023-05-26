@@ -4,68 +4,53 @@ import "./Tarjetas.css";
 import axios from "axios";
 
 const Tarjetas = (props) => {
-  const { bebida, precio, imagen } = props;
+  const { descripcion, precio, cantidadDB,
+    codigo_barra, iva_10, iva_5, imagen } = props;
   const [cantidad, setCantidad] = useState(0);
   const [mostrarBotones, setMostrarBotones] = useState(false);
   const [mostrarMensaje, setMostrarMensaje] = useState(false);
   const [mensaje, setMensaje] = useState("");
-  const [productos, setProductos] = useState([]);
-
-  useEffect(() => {
-    const fetchProductos = async () => {
-      try {
-        const response = await axios.get("https://localhost:7072/api/Producto");
-        setProductos(response.data);
-        console.log(response.data);
-      } catch (error) {
-        console.error("Error al obtener los Productos:", error);
-      }
-    };
-
-    fetchProductos();
-  }, []);
-
-  const obtenerProductoPorId = (id) => {
-    return productos.find((producto) => producto.id === id);
-  };
 
   const agregarAlCarrito = async () => {
-    try {
-      const producto = obtenerProductoPorId(props.id);
+    const producto = {
+      descripcion, precio, cantidadDB, cantidad,
+      codigo_barra, iva_10, iva_5, imagen
+    };
 
-      if (producto) {
-        const nuevaCantidad = producto.cantidad - cantidad;
+    let productosCaja = JSON.parse(localStorage.getItem("productosCaja"));
 
-        if (nuevaCantidad >= 0) {
-          const nuevoProducto = { ...producto, cantidad: nuevaCantidad };
-
-          const response = await axios.put(
-            `https://localhost:7072/api/Producto/${props.id}`,
-            nuevoProducto
-          );
-          console.log(response.data);
-
-          setMostrarMensaje(true);
-          setMensaje("Producto agregado con éxito");
-
-          setTimeout(() => {
-            setMostrarMensaje(false);
-            setCantidad(0);
-          }, 1000);
-        } else {
-          console.error("La cantidad seleccionada es mayor que la disponible");
-        }
-      } else {
-        console.error("No se encontró el producto en la API");
-      }
-    } catch (error) {
-      console.error("Error al agregar el producto:", error.response);
-      // Manejo de errores
+    if (productosCaja === null) {
+      productosCaja = [];
+      localStorage.setItem("productosCaja", JSON.stringify(productosCaja));
     }
+
+    const prodI = productosCaja.findIndex((p) => {
+      return p.codigo_barra === codigo_barra
+    })
+
+    console.log(`El indice es ${prodI}`);
+
+    if(prodI === -1){
+      productosCaja.push(producto);
+    } else {
+      const cantidadLS = productosCaja[prodI].cantidad;
+      if(cantidadLS + cantidad <= cantidadDB){
+        productosCaja[prodI].cantidad += cantidad;
+      } else {
+        console.error("Error en la cantidad al agregar: Cantidad insuficiente");
+      }
+    }
+
+    localStorage.setItem("productosCaja", JSON.stringify(productosCaja));
+
   };
 
   const aumentarCantidad = () => {
-    setCantidad(cantidad + 1);
+    if (cantidadDB > cantidad) {
+      setCantidad(cantidad + 1);
+    } else {
+      console.error("Error en la cantidad al aumentar: Cantidad insuficiente");
+    }
   };
 
   const disminuirCantidad = () => {
