@@ -2,14 +2,15 @@ import React, { useState, useEffect } from "react";
 import "./Entrenadores.css";
 import axios from "axios";
 
-const Entrenadores = () => {
-  const [esPrimerEntrenador, setEsPrimerEntrenador] = useState(true);
+const Entrenadores = (props) => {
+  const { nombre, ci, telefono, especialidad } = props;
+      const [esPrimerEntrenador, setEsPrimerEntrenador] = useState(true);
   const [entrenadores, setEntrenadores] = useState([]);
 
   useEffect(() => {
     const fetchEntrenadores = async () => {
       try {
-        const response = await axios.get("https://localhost:7072/api/Entrenador");
+        const response = await axios.get("https://localhost:44373/api/Entrenador");
         setEntrenadores(response.data);
         console.log(response.data) 
       } catch (error) {
@@ -23,13 +24,13 @@ const Entrenadores = () => {
   const renderEntrenadores = () => {
     return (
       <div>
-        {entrenadores.map((entrenador) => (
-          <div className={cardContainerClassName} key={entrenador.id}>
+        
+          <div className={cardContainerClassName} key={ci}>
             <div className={cardClassName}>
               <div className={cardOverlayClassName}>
                 <div className={cardInfoClassName}>
-                  <h3>{entrenador.nombre}</h3>
-                  <h5>{entrenador.especialidad}</h5>
+                  <h3>{nombre}</h3>
+                  <h5>{especialidad}</h5>
                   <div className="DiaHora">
                     <div className="Dia">
                       <p>Lunes</p>
@@ -50,12 +51,12 @@ const Entrenadores = () => {
                   <hr className="linea-horizontal2" />
                 </div>
               </div>
-              <img src={entrenador.photo} alt="foto del usuario" className={cardImgClassName} />
-              <h2 className={cardNameClassName}>{entrenador.nombre}</h2>
-              <p className={cardEspecialidadClassName}>{entrenador.especialidad}</p>
+              <img src={`./images/Entrenador3.png`} alt="foto del usuario" className={cardImgClassName} />
+              <h2 className={cardNameClassName}>{nombre}</h2>
+              <p className={cardEspecialidadClassName}>{especialidad}</p>
             </div>
           </div>
-        ))}
+
       </div>
     );
   };
@@ -88,7 +89,9 @@ const Entrenadores = () => {
     ? "card-especialidad card-especialidad-primer-entrenador"
     : "card-especialidad";
 
-  return <div>{entrenadores.length > 0 && renderEntrenadores()}</div>;
+    
+
+  return <div>{renderEntrenadores()}</div>;
 };
 
 export default Entrenadores;
