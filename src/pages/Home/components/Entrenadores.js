@@ -88,7 +88,7 @@ const Entrenadores = () => {
     ? "card-especialidad card-especialidad-primer-entrenador"
     : "card-especialidad";
 
-  return <div>{entrenadores.length > 0 && renderEntrenadores()}</div>;
+  return renderEntrenadores();
 };
 
 export default Entrenadores;

@@ -1,9 +1,30 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import Store from "./Store";
+import Tarjetas from "./components/Tarjetas";
+const Pay = (props) =>{
+    const [producto, setProducto] = useState([]);
+    const [productosCaja, setProductosCaja] = useState([]);
 
-const pay = () =>{
-    return(
-        <h1>Caja</h1>
-    );
+    useEffect(() => {
+        const productosGuardados = JSON.parse(localStorage.getItem("productosCaja"));
+        if (productosGuardados) {
+          setProductosCaja(productosGuardados);
+        }
+      }, []);
+      
+      return (
+        <div>
+          {productosCaja.map((productoCaja, index) => (
+            <div key={index}>
+             
+              <p>{productoCaja.descripcion}</p>
+              <p>{productoCaja.precio}</p>
+              <p>{productoCaja.cantidad}</p>
+            </div>
+          ))}
+        </div>
+      );
+      
 }
 
-export default pay;
+export default Pay;
