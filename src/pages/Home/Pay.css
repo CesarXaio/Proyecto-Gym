@@ -1,0 +1,61 @@
+
+.Prod-Caja{
+    background: #373B43;
+    border-radius: 30px;
+    width: 500px;
+    height: 150px;
+    margin-bottom: 20px; /* Ajusta este valor según el espacio deseado */
+}
+.Nombre-Producto{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 45px;
+    color: #FFFFFF;
+    padding-left: 200px;
+}
+
+.Precio-Producto{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 45px;
+    padding-left: 200px;
+    
+    color: #42D976;
+    
+}
+.Cantidad-Producto{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 45px;
+    padding-left: 400px;
+    color: #979797;
+    
+}
+.Producto-Img {
+    margin-left: -50px;
+    width: 250px;
+    height: 150px;
+    border-radius: 30px;
+    margin-top: -30%;
+}
+.Suma-Total{
+    text-align: center;
+    
+    background: #373B43;
+    border-radius: 30px;
+    width: 500px;
+    height: 150px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 45px;
+    color: #FFFFFF;
+    margin-left: 700px;
+}

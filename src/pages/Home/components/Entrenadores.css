@@ -10,11 +10,12 @@
   width: auto;
   border-radius: 20px;
   background-color: #373B43;
+  margin-bottom: 10px; /* Ajusta este valor según el espacio deseado */
 }
 
 
 .card-name {
-  
+  margin-top: 10px; /* Ajusta este valor según el espacio deseado */
   color: #E9F2FD;
   font-size: 1.2rem;
   padding-top: 10px;
@@ -27,6 +28,7 @@
 }
 
 .card-especialidad {
+  
   padding-left: 50px;
   font-size: 1rem;
   margin: 0;
@@ -170,3 +172,13 @@
     
     border: 2px solid #E9F2FD;
   }
+.botones-acciones{
+  padding-top: 250px;
+
+}
+.btn-editar{
+  margin-right: 50px;
+}
+.btn-eliminar{
+
+}

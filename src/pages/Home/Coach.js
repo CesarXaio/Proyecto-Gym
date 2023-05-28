@@ -13,7 +13,7 @@ const Coach = () => {
     const obtenerEntrenadores = async () => {
       try {
         // Realizar la petición a la API o a la base de datos para obtener los entrenadores
-        const response = await fetch("https://localhost:44373/api/Entrenador");
+        const response = await fetch("https://localhost:7072/api/Entrenador");
         const data = await response.json();
         setEntrenadores(data); // Asignar los entrenadores al estado
       } catch (error) {
