@@ -178,7 +178,11 @@
 }
 .btn-editar{
   margin-right: 50px;
+  height: 2em;
+  width: 3rem;
 }
 .btn-eliminar{
-
+  height: 2em;
+  width: 3rem;
+  
 }

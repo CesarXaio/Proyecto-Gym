@@ -3,28 +3,15 @@ import "./Entrenadores.css";
 import axios from "axios";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
-
+import Modal from "./Modal";
 
 const Entrenadores = (props) => {
   const { nombre, ci, telefono, especialidad } = props;
   const [esPrimerEntrenador, setEsPrimerEntrenador] = useState(true);
   const [entrenadores, setEntrenadores] = useState([]);
   const [entrenadorSeleccionado, setEntrenadorSeleccionado] = useState(null);
-
-const handleEditarEntrenador = (entrenador) => {
-  setEntrenadorSeleccionado(entrenador);
-  // Realizar las acciones necesarias para la edición del entrenador
-};
-
-const handleEliminarEntrenador = async (entrenador) => {
-  try {
-    await axios.delete(`https://localhost:7072/api/Entrenador/${entrenador.id}`);
-    // Realizar las acciones necesarias después de eliminar el entrenador
-  } catch (error) {
-    console.error("Error al eliminar el entrenador:", error);
-  }
-};
-
+  const [modalVisible, setModalVisible] = useState(false);
+  const [entrenadorEditando, setEntrenadorEditando] = useState(null);
 
   useEffect(() => {
     const fetchEntrenadores = async () => {
@@ -39,6 +26,35 @@ const handleEliminarEntrenador = async (entrenador) => {
 
     fetchEntrenadores();
   }, []);
+  const handleEditarEntrenador = (entrenador) => {
+    setEntrenadorSeleccionado(entrenador);
+    
+    axios.put(`https://localhost:7072/api/Entrenador/${entrenador.ci}`, entrenador)
+      .then((response) => {
+        console.log(JSON.stringify(response.data));
+        // Realizar las acciones necesarias después de la edición del entrenador
+      })
+      .catch((error) => {
+        console.log(error);
+        console.error("Error al editar el entrenador:", error);
+      });
+  };
+  
+
+const handleEliminarEntrenador = async (entrenador) => {
+  try {
+    await axios.delete(`https://localhost:7072/api/Entrenador/${entrenador.ci}`);
+    
+    // Eliminar el entrenador del estado "entrenadores"
+    setEntrenadores(entrenadores.filter(e => e.ci !== entrenador.ci));
+    
+  } catch (error) {
+    console.error("Error al eliminar el entrenador:", error);
+  }
+};
+
+
+ 
 
   const renderEntrenadores = () => {
     return (
@@ -68,13 +84,13 @@ const handleEliminarEntrenador = async (entrenador) => {
               <hr className="linea-horizontal2" />
             </div>
             <div className="botones-acciones">
-                <button className="btn-editar" onClick={() => handleEditarEntrenador(entrenadores)}>
-                  Editar
-                </button>
-                <button className="btn-eliminar" onClick={() => handleEliminarEntrenador(entrenadores)}>
-                  Eliminar
-                </button>
-              </div>
+              <button className="btn-editar" onClick={() => handleEditarEntrenador(props)}>
+                <FontAwesomeIcon icon={faEdit} />
+              </button>
+              <button className="btn-eliminar" onClick={() => handleEliminarEntrenador(props)}>
+                <FontAwesomeIcon icon={faTrash} />
+              </button>
+            </div>
           </div>
           <img src={`./images/Entrenador3.jpg`} alt="foto del usuario" className={cardImgClassName} />
           <h2 className={cardNameClassName}>{nombre}</h2>
