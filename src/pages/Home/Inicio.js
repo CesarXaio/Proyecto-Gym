@@ -14,6 +14,9 @@ function Inicio() {
     <BrowserRouter>
       <Sidebar> 
         <Routes>
+          
+          {/*<Route exac path="/" element={<Home />}/>*/}
+
           <Route path="/Store" element={<Store />}/>
           <Route path="/Coach" element={<Coach />} />
           <Route path="/Pay" element={<Pay />} />
