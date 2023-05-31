@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import './TarjetaUser.css'
-const TarjetaUser = (props) => {
+const Usuarios = (props) => {
     const{nombreUsuario, apellidUsuario, cedula, telefono} = props;
     return (
         <div>
@@ -21,3 +21,4 @@ const TarjetaUser = (props) => {
         </div>
     )
 }
+export default Usuarios;
