@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Mensaje from "../../../../Confirmacion/Mensaje";
 import "./fiscales.css";
 
-const Fiscales = ({ onClose, onAddTrainer }) => {
+const Fiscales = ({usuario, onClickAvance, onClose, onAddTrainer }) => {
   const [name, setName] = useState("");
   const [lastname, setLastname] = useState("");
   const [ruc, setruc] = useState("");
@@ -108,10 +108,10 @@ const Fiscales = ({ onClose, onAddTrainer }) => {
               />
             </div>
             <div className="button-container">
-              <a id="boton-off" onClick={onClose}>
+              <a id="boton-off" onClick={() => {onClickAvance(-1);}}>
                 atras
               </a>
-              <button id="boton-ok" onClick={handleAddTrainer}>
+              <button id="boton-ok" onClick={() => {onClickAvance(1);}}>
                 Siguiente
               </button>
             </div>
