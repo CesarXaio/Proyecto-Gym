@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Mensaje from "../../../../Confirmacion/Mensaje";
 import "./Membresia.css";
 
-const Membresia = ({ onClose, onAddTrainer }) => {
+const Membresia = ({usuario, onClickAvance, onClose, onAddTrainer }) => {
   const [especialidad, setEspecialidad] = useState("");
   const [modalidad, setmodalidad] = useState("");
   const [entrenador, setEntrenador] = useState("");
@@ -77,10 +77,10 @@ const Membresia = ({ onClose, onAddTrainer }) => {
             </select>
           </div>
           <div className="button-container">
-              <a id="boton-off" onClick={onClose}>
-                Cancelar
+              <a id="boton-off" onClick={() => {onClickAvance(-1);}}>
+                Anterior
               </a>
-              <button id="boton-ok" onClick={handleAddTrainer}>
+              <button id="boton-ok" onClick={() => {onClickAvance(1);}}>
                 Siguiente
               </button>
             </div>

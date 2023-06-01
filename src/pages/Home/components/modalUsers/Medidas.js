@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Mensaje from "../../../../Confirmacion/Mensaje";
 import "./Medidas.css";
 
-const Medidas = ({ onClose, onAddTrainer }) => {
+const Medidas = ({usuario, onClickAvance, onClose, onAddTrainer }) => {
   const [altura, setaltura] = useState("");
   const [peso, setpeso] = useState("");
   const [cintura, setcintura] = useState("");
@@ -61,9 +61,9 @@ const Medidas = ({ onClose, onAddTrainer }) => {
           <nav className="contenedorBarra">
             <label>
               <label className="barra notSelec">datos personales</label>
-              <label className="barra selec">datos fiscales</label>
+              <label className="barra notSelec">datos fiscales</label>
               <label className="barra notSelec">membrecia</label>
-              <label className="barra notSelec">medidas iniciales</label>
+              <label className="barra selec">medidas iniciales</label>
             </label>
           </nav>
           <div className="modal-body">
@@ -144,7 +144,7 @@ const Medidas = ({ onClose, onAddTrainer }) => {
               />
             </div>
             <div className="button-container">
-              <a id="boton-off" onClick={onClose}>
+              <a id="boton-off" onClick={() => {onClickAvance(-1);}}>
                 atras
               </a>
               <button id="boton-ok" onClick={handleAddTrainer}>

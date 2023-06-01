@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Mensaje from "../../../../Confirmacion/Mensaje";
 import "././ModalUser.css";
 
-const ModalUser = ({ onClose, onAddTrainer })=> {
+const ModalUser = ({usuario, onClickAvance, onClose, onAddTrainer })=> {
   const [name, setName] = useState("");
   const [lastname, setLastname] = useState("");
   const [modalidad, setModalidad] = useState("");
@@ -100,10 +100,10 @@ const ModalUser = ({ onClose, onAddTrainer })=> {
             </div>
 
             <div className="button-container">
-              <a id="boton-off" onClick={onClose}>
+              <a id="boton-off" onClick={() => {onClickAvance(-1);}}>
                 Cancelar
               </a>
-              <button id="boton-ok" onClick={handleAddTrainer}>
+              <button id="boton-ok" onClick={() => {onClickAvance(1);}}>
                 Siguiente
               </button>
             </div>
