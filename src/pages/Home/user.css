@@ -1,0 +1,15 @@
+.contenedorTitulos {
+    margin-left: 20px;
+    margin-top: 20px;
+}
+.tituloUser {
+    display: inline-block;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 38px;
+    color: #575757;
+    margin-left: 50px;
+    margin-right: 20px;
+}
