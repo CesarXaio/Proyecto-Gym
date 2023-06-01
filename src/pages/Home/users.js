@@ -1,35 +1,53 @@
-import React, { useState } from "react";
-import Entrenadores from "./components/Entrenadores";
+import React, { useState, useEffect } from "react";
+import Usuarios from "./components/Usuarios";
 import Boton from "./components/Boton";
-import Modal from "./components/ModalUser";
 import "./components/Boton";
 
-const Users = () =>{
-  const [showModal, setShowModal] = useState(false);
-  const [entrenadores, setEntrenadores] = useState([
-    
-  ]);
+import Fiscales from "./components/modalUsers/fiscales";
+import Medidas from "./components/modalUsers/Medidas";
+import Membresia from "./components/modalUsers/Membresia";
+import ModalUser from "./components/modalUsers/ModalUser";
 
+const Users = () => {
+  const [showModal, setShowModal] = useState(false);
+  const [usuarios, setUsuarios] = useState([]);
+  const [contadorModal, setContadormodal] = useState(-1);
+  // {
+  //   contadorModal === 1 && (
+  //     <ModalUser usuario={usuario} onClickAvance={actualizador}} />
+  //   )
+  // }
   const handleAgregarClick = () => {
     setShowModal(true);
   };
 
-  const handleAddTrainer = (trainer) => {
-    setEntrenadores([...entrenadores, trainer]);
+  const handleAddUser = (usuario) => {
+    setUsuarios([...usuarios, usuario]);
   };
-    return(
-      <>
-        <div className="boton-container">
-          <Boton palabra="Agregar" onClick={handleAgregarClick} />
-        </div>
-        {entrenadores.map((trainer, index) => (
-        <Entrenadores key={index} photo={trainer.photo} name={trainer.name} modalidad={trainer.modalidad} />
+
+  return (
+    <div className="Coach-container">
+      <div className="boton-container">
+        <Boton palabra="Agregar" onClick={handleAgregarClick} />
+      </div>
+      {usuarios.map((usuario, index) => (
+        <Usuarios key={index} photo={usuario.photo} name={usuario.name} lastname={usuario.lastname} />
       ))}
-        {showModal && (
-          <Modal onClose={() => setShowModal(false)} onAddTrainer={handleAddTrainer} />
-        )}
-      </>  
-    );
-}
+      {showModal && (
+        <ModalUser onClose={() => setShowModal(false)} onAddUser={handleAddUser} />
+      )}
+            {showModal && (
+        <Fiscales onClose={() => setShowModal(false)} onAddUser={handleAddUser} />
+      )}
+            {showModal && (
+        <Membresia onClose={() => setShowModal(false)} onAddUser={handleAddUser} />
+      )}
+            {showModal && (
+        <Medidas onClose={() => setShowModal(false)} onAddUser={handleAddUser} />
+      )}
+    </div>
+  );
+};
+
 
 export default Users;
