@@ -48,20 +48,20 @@ const Fiscales = ({ onClose, onAddTrainer }) => {
   return (
     <>
       <div className="modal-overlay">
-        <div className="modal">
+        <div className="modalUser">
           <nav className="contenedorBarra">
-            <ul>
-              <li className="barra"><a href="">datos personales</a></li>
-              <li className="barra"><a href="">datos fiscales</a></li>
-              <li className="barra"><a href="">membrecia</a></li>
-              <li className="barra"><a href="">medidas inciales</a></li>
-            </ul>
+            <label>
+              <label className="barra notSelec">datos personales</label>
+              <label className="barra selec">datos fiscales</label>
+              <label className="barra notSelec">membrecia</label>
+              <label className="barra notSelec">medidas iniciales</label>
+            </label>
           </nav>
-          <div className="modal-body">
+          <div className="modal-body-fiscal">
             <div className="form-group">
               <input
-                className="Input-container"
-                id="cedula"
+                className="Input-container-fiscal"
+                // id="cedula"
                 name="name"
                 type="text"
                 placeholder="Nombre del usuario"
@@ -69,8 +69,8 @@ const Fiscales = ({ onClose, onAddTrainer }) => {
                 onChange={handleNameChange}
               />
               <input
-                className="Input-container"
-                id="cedula"
+                className="Input-container-fiscal"
+                // id="cedula"
                 name="name"
                 type="text"
                 placeholder="Apellido del usuario"
@@ -80,32 +80,32 @@ const Fiscales = ({ onClose, onAddTrainer }) => {
             </div>
             <div className="form-group">
               <input
-                className="Input-container"
+                className="Input-container-fiscal"
                 type="text"
-                id="cedula"
+                // id="cedula"
                 placeholder="RUC"
                 value={ruc}
                 onChange={handlerucChange}
               />
               <input
-                className="Input-container"
+                className="Input-container-fiscal"
                 type="text"
-                id="cedula"
+                // id="cedula"
                 placeholder="Numero de telefono"
                 value={telefono}
                 onChange={handletelefonoChange}
               />
+            </div>
             <div className="form-group">
               <input
-                className="Input-container"
-                id="name"
-                name="name"
+                className="Input-container-fiscal entero"
+                // id="name"
+                // name="name"
                 type="text"
                 placeholder="Domicilio del usuario"
                 value={lastname}
                 onChange={handledomicilioChange}
               />
-            </div>
             </div>
             <div className="button-container">
               <a id="boton-off" onClick={onClose}>
