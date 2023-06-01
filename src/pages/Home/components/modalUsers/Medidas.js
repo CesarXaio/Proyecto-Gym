@@ -57,20 +57,21 @@ const Medidas = ({ onClose, onAddTrainer }) => {
   return (
     <>
       <div className="modal-overlay">
-        <div className="modal">
+        <div className="modalUser">
           <nav className="contenedorBarra">
-            <ul>
-              <li className="barra"><a href="">datos personales</a></li>
-              <li className="barra"><a href="">datos fiscales</a></li>
-              <li className="barra"><a href="">membrecia</a></li>
-              <li className="barra"><a href="">medidas inciales</a></li>
-            </ul>
+            <label>
+              <label className="barra notSelec">datos personales</label>
+              <label className="barra selec">datos fiscales</label>
+              <label className="barra notSelec">membrecia</label>
+              <label className="barra notSelec">medidas iniciales</label>
+            </label>
           </nav>
           <div className="modal-body">
             <div className="form-group">
               <input
+                className="Input-container-fiscal"
                 classaltura="Input-container"
-                id="cedula"
+                // id="cedula"
                 altura="altura"
                 type="text"
                 placeholder="Altura"
@@ -78,33 +79,41 @@ const Medidas = ({ onClose, onAddTrainer }) => {
                 onChange={handlealturaChange}
               />
               <input
+                className="Input-container-fiscal"
                 classaltura="Input-container"
-                id="cedula"
+                // id="cedula"
                 altura="altura"
                 type="text"
                 placeholder="Peso"
                 value={peso}
                 onChange={handlepesoChange}
               />
+            </div>
+            <div className="form-group">
               <input
+                className="Input-container-fiscal"
                 classaltura="Input-container"
                 type="text"
-                id="cedula"
+                // id="cedula"
                 placeholder="Cintura"
                 value={cintura}
                 onChange={handlcinturaChange}
               />
               <input
+                className="Input-container-fiscal"
                 classaltura="Input-container"
                 type="text"
-                id="cedula"
+                // id="cedula"
                 placeholder="Pecho"
                 value={pecho}
                 onChange={handlepechoChange}
               />
+            </div>
+            <div className="form-group">
               <input
+                className="Input-container-fiscal"
                 classaltura="Input-container"
-                id="cedula"
+                // id="cedula"
                 altura="altura"
                 type="text"
                 placeholder="cadera"
@@ -112,17 +121,21 @@ const Medidas = ({ onClose, onAddTrainer }) => {
                 onChange={handlecaderaChange}
               />
               <input
+                className="Input-container-fiscal"
                 classaltura="Input-container"
-                id="cedula"
+                // id="cedula"
                 altura="altura"
                 type="text"
                 placeholder="edad"
                 value={edad}
                 onChange={handledadChange}
               />
+            </div>
+            <div className="form-group">
               <input
+                className="Input-container-fiscal entero"
                 classaltura="Input-container"
-                id="cedula"
+                // id="cedula"
                 altura="altura"
                 type="text"
                 placeholder="observaciones"

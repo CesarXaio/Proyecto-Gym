@@ -41,19 +41,19 @@ const Membresia = ({ onClose, onAddTrainer }) => {
   return (
     <>
       <div className="modal-overlay">
-        <div className="modal">
+        <div className="modalUser">
           <nav className="contenedorBarra">
-            <ul>
-              <li className="barra"><a href="">datos personales</a></li>
-              <li className="barra"><a href="">datos fiscales</a></li>
-              <li className="barra"><a href="">membrecia</a></li>
-              <li className="barra"><a href="">medidas inciales</a></li>
-            </ul>
+            <label>
+              <label className="barra notSelec">datos personales</label>
+              <label className="barra notSelec">datos fiscales</label>
+              <label className="barra selec">membrecia</label>
+              <label className="barra notSelec">medidas iniciales</label>
+            </label>
           </nav>
           <div className="modal-body">
             <div className="form-group">
-              <select id="especialidad" value={especialidad} onChange={handleEspecialidadChange}>
-                <option value="">Seleccionar especialidad</option>
+            <select className= "Input-container-fiscal entero" value={especialidad} onChange={handleEspecialidadChange}>
+                <option value="">Seleccionar especialidad de entrenamiento</option>
                 <option value="Fitness">Fitness</option>
                 <option value="Pilates">Pilates</option>
                 <option value="Yoga">Yoga</option>
@@ -61,15 +61,15 @@ const Membresia = ({ onClose, onAddTrainer }) => {
             </div>
           </div>
           <div className="form-group">
-            <select id="especialidad" value={modalidad} onChange={handlemodalidadChange}>
-              <option value="">Seleccionar modalidad</option>
+          <select className= "Input-container-fiscal entero" value={modalidad} onChange={handlemodalidadChange}>
+              <option value="">Seleccionar frecuencia de entrenamiento</option>
               <option value="Fitness">Diario</option>
               <option value="Pilates">Semanal</option>
               <option value="Yoga">Mensual</option>
             </select>
           </div>
           <div className="form-group">
-            <select id="especialidad" value={entrenador} onChange={handlEntrenador}>
+            <select className= "Input-container-fiscal entero" value={entrenador} onChange={handlEntrenador}>
               <option value="">Seleccionar entrenador</option>
               <option value="">entrenador 1</option>
               <option value="">entrenador 2</option>

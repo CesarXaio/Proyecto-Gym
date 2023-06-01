@@ -49,19 +49,19 @@ const ModalUser = ({ onClose, onAddTrainer })=> {
   return (
     <>
       <div className="modal-overlay">
-        <div className="modal">
+        <div className="modalUser">
           <nav className="contenedorBarra">
-            <ul>
-              <li className="barra"><a href="">datos personales</a></li>
-              <li className="barra"><a href="">datos fiscales</a></li>
-              <li className="barra"><a href="">membrecia</a></li>
-              <li className="barra"><a href="">medios inciales</a></li>
-            </ul>
+            <label>
+              <label className="barra selec">datos personales</label>
+              <label className="barra notSelec">datos fiscales</label>
+              <label className="barra notSelec">membrecia</label>
+              <label className="barra notSelec">medidas iniciales</label>
+            </label>
           </nav>
-          <div className="modal-body">
+          <div className="modal-body-User">
             <div className="form-group">
               <input
-                className="Input-container"
+                className="Input-container-User"
                 id="name"
                 name="name"
                 type="text"
@@ -72,7 +72,7 @@ const ModalUser = ({ onClose, onAddTrainer })=> {
             </div>
             <div className="form-group">
               <input
-                className="Input-container"
+                className="Input-container-User"
                 id="name"
                 name="name"
                 type="text"
@@ -84,7 +84,7 @@ const ModalUser = ({ onClose, onAddTrainer })=> {
             <div className="form-group">
               <input
                 type="text"
-                id="cedula"
+                id="ciUser"
                 placeholder="Cedula de Identidad"
                 value={cedula}
                 onChange={handleCedulaChange}
@@ -92,8 +92,8 @@ const ModalUser = ({ onClose, onAddTrainer })=> {
 
               <input
                 type="text"
-                id="telefono"
-                placeholder="Numero de Telefono"
+                id="telefonoUser"
+                placeholder="Número de Telefono"
                 value={telefono}
                 onChange={handleTelefonoChange}
               />

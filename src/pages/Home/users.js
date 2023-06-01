@@ -3,10 +3,10 @@ import Usuarios from "./components/Usuarios";
 import Boton from "./components/Boton";
 import "./components/Boton";
 
-import Fiscales from "./components/modalUsers/fiscales";
+// import Fiscales from "./components/modalUsers/fiscales";
 import Medidas from "./components/modalUsers/Medidas";
-import Membresia from "./components/modalUsers/Membresia";
-import ModalUser from "./components/modalUsers/ModalUser";
+// import Membresia from "./components/modalUsers/Membresia";
+// import ModalUser from "./components/modalUsers/ModalUser";
 
 const Users = () => {
   const [showModal, setShowModal] = useState(false);
@@ -34,9 +34,9 @@ const Users = () => {
         <Usuarios key={index} photo={usuario.photo} name={usuario.name} lastname={usuario.lastname} />
       ))}
       {showModal && (
-        <ModalUser onClose={() => setShowModal(false)} onAddUser={handleAddUser} />
+        <Medidas onClose={() => setShowModal(false)} onAddUser={handleAddUser} />
       )}
-            {showModal && (
+            {/* \\{showModal && (
         <Fiscales onClose={() => setShowModal(false)} onAddUser={handleAddUser} />
       )}
             {showModal && (
@@ -44,7 +44,7 @@ const Users = () => {
       )}
             {showModal && (
         <Medidas onClose={() => setShowModal(false)} onAddUser={handleAddUser} />
-      )}
+      )} */}
     </div>
   );
 };
