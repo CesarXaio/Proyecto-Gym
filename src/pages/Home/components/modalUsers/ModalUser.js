@@ -3,46 +3,42 @@ import Mensaje from "../../../../Confirmacion/Mensaje";
 import "././ModalUser.css";
 
 const ModalUser = ({usuario, onClickAvance, onClose, onAddTrainer })=> {
-  const [name, setName] = useState("");
-  const [lastname, setLastname] = useState("");
-  const [modalidad, setModalidad] = useState("");
-  const [cedula, setCedula] = useState("");
-  const [telefono, setTelefono] = useState("");
+  const [name, setName] = useState(usuario.name);
+  const [lastname, setLastname] = useState(usuario.lastname);
+  const [modalidad, setModalidad] = useState(usuario.modalidad);
+  const [cedula, setCedula] = useState(usuario.cedula);
+  const [telefono, setTelefono] = useState(usuario.telefono);
   const [mostrarMensaje, setMostrarMensaje] = useState(false);
   const [mensaje, setMensaje] = useState("");
-  
+
   const handleNameChange = (event) => {
     setName(event.target.value);
+    usuario.name = event.target.value;
   };
 
   const handleLastnameChange = (event) => {
     setLastname(event.target.value);
+    usuario.lastname = event.target.value;
   };
 
   const handleModalidadChange = (event) => {
     setModalidad(event.target.value);
+    usuario.modalidad = event.target.value;
   };
 
   const handleCedulaChange = (event) => {
     setCedula(event.target.value);
+    usuario.cedula = event.target.value;
   };
 
   const handleTelefonoChange = (event) => {
     setTelefono(event.target.value);
+    usuario.telefono = event.target.value;
   };
 
-  const handleAddTrainer = () => {
-    if (typeof onAddTrainer === "function") {
-      const newTrainer = { name, lastname, modalidad, cedula, telefono };
-      setMensaje("Usuario agregado con Exito!");
-      setMostrarMensaje(true);
-      setTimeout(() => {
-        onAddTrainer(newTrainer);
-        onClose();
-        setMostrarMensaje(false);
-      }, 1000);
-
-    }
+  const cancelar = () => {
+    onClose();
+    onClickAvance(-1);
   };
 
   return (
@@ -93,10 +89,10 @@ const ModalUser = ({usuario, onClickAvance, onClose, onAddTrainer })=> {
               />
             </div>
             <div className="button-container">
-              <a id="boton-off" onClick={() => {onClickAvance(-1);}}>
+              <a id="boton-off" onClick={cancelar}>
                 cancelar
               </a>
-              <button id="boton-ok" onClick={() => {onClickAvance(1);}}>
+              <button id="boton-ok" onClick={() => { onClickAvance(1); }}>
                 siguiente
               </button>
             </div>
