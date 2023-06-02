@@ -3,22 +3,25 @@ import Mensaje from "../../../../Confirmacion/Mensaje";
 import "./Membresia.css";
 
 const Membresia = ({usuario, onClickAvance, onClose, onAddTrainer }) => {
-  const [especialidad, setEspecialidad] = useState("");
-  const [modalidad, setmodalidad] = useState("");
-  const [entrenador, setEntrenador] = useState("");
+  const [especialidad, setEspecialidad] = useState(usuario.especialidad);
+  const [modalidad, setmodalidad] = useState(usuario.modalidad);
+  const [entrenador, setEntrenador] = useState(usuario.entrenador);
   const [mostrarMensaje, setMostrarMensaje] = useState(false);
   const [mensaje, setMensaje] = useState("");
 
   const handleEspecialidadChange = (event) => {
     setEspecialidad(event.target.value);
+    usuario.especialidad = event.target.value;
   };
 
   const handlemodalidadChange = (event) => {
     setmodalidad(event.target.value);
+    usuario.modalidad = event.target.value;
   };
 
-  const handlEntrenador = (event) => {
-    setEntrenador(event.target.value)
+  const handleEntrenador = (event) => {
+    setEntrenador(event.target.value);
+    usuario.entrenador = event.target.value;
   }
 
 
@@ -46,7 +49,7 @@ const Membresia = ({usuario, onClickAvance, onClose, onAddTrainer }) => {
             <label>
               <label className="barra notSelec">datos personales</label>
               <label className="barra notSelec">datos fiscales</label>
-              <label className="barra selec">membrecia</label>
+              <label className="barra selec">membresia</label>
               <label className="barra notSelec">medidas iniciales</label>
             </label>
           </nav>
@@ -62,15 +65,15 @@ const Membresia = ({usuario, onClickAvance, onClose, onAddTrainer }) => {
           </div>
           <select className= "Input-container-fiscal entero" value={modalidad} onChange={handlemodalidadChange}>
               <option value="">Seleccionar frecuencia de entrenamiento</option>
-              <option value="Fitness">Diario</option>
-              <option value="Pilates">Semanal</option>
-              <option value="Yoga">Mensual</option>
+              <option value="Diario">Diario</option>
+              <option value="Semanal">Semanal</option>
+              <option value="Mensual">Mensual</option>
             </select>
-            <select className= "Input-container-fiscal entero" value={entrenador} onChange={handlEntrenador}>
+            <select className= "Input-container-fiscal entero" value={entrenador} onChange={handleEntrenador}>
               <option value="">Seleccionar entrenador</option>
-              <option value="">entrenador 1</option>
-              <option value="">entrenador 2</option>
-              <option value="">entrenador 3</option>
+              <option value="1">entrenador 1</option>
+              <option value="2">entrenador 2</option>
+              <option value="3">entrenador 3</option>
             </select>
           <div className="button-container-membrecia">
               <a id="boton-off" onClick={() => {onClickAvance(-1);}}>

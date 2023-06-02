@@ -1,59 +1,46 @@
 import React, { useState } from "react";
-import Mensaje from "../../../../Confirmacion/Mensaje";
 import "./Medidas.css"
 
 const Medidas = ({usuario, onClickAvance, onClose, onAddUser }) => {
-  const [altura, setaltura] = useState("");
-  const [peso, setpeso] = useState("");
-  const [cintura, setcintura] = useState("");
-  const [pecho, setpecho] = useState("");
-  const [cadera, setcadera] = useState("");
-  const [edad, setedad] = useState("");
-  const [observaciones, setobservaciones] = useState("");
-  const [mostrarMensaje, setMostrarMensaje] = useState(false);
-  const [mensaje, setMensaje] = useState("");
-  const [usuarios, setUsuarios] = useState([]);
+  const [altura, setaltura] = useState(usuario.altura);
+  const [peso, setpeso] = useState(usuario.peso);
+  const [cintura, setcintura] = useState(usuario.cintura);
+  const [pecho, setpecho] = useState(usuario.pecho);
+  const [cadera, setcadera] = useState(usuario.cadera);
+  const [edad, setedad] = useState(usuario.edad);
+  const [observaciones, setobservaciones] = useState(usuario.observaciones);
 
   const handlealturaChange = (event) => {
     setaltura(event.target.value);
+    usuario.altura = event.target.value;
   };
 
   const handlepesoChange = (event) => {
     setpeso(event.target.value);
+    usuario.peso = event.target.value;
   };
 
   const handlcinturaChange = (event) => {
     setcintura(event.target.value);
+    usuario.cintura = event.target.value;
   };
 
   const handlepechoChange = (event) => {
     setpecho(event.target.value);
+    usuario.pecho = event.target.value;
   };
   const handlecaderaChange = (event) => {
     setcadera(event.target.value);
+    usuario.cadera = event.target.value;
   };
   const handledadChange = (event) => {
     setedad(event.target.value);
+    usuario.edad = event.target.value;
   }
   const handlobservacionesChange = (event) => {
     setobservaciones(event.target.value);
+    usuario.observaciones = event.target.value;
   }
-
-
-  const handleAddUser = () => {
-    if (typeof onAddUser === "function") {
-      const newUser = {altura, peso, cintura, pecho, cadera, edad, observaciones };
-      setMensaje("Usuario agregado con Exito!");
-      setMostrarMensaje(true);
-      setTimeout(() => {
-        onAddUser(newUser);
-        onClose();
-        setMostrarMensaje(false);
-      }, 1000);
-
-    }
-  };
-
 
   return (
     <>
@@ -114,7 +101,7 @@ const Medidas = ({usuario, onClickAvance, onClose, onAddUser }) => {
                 altura="altura"
                 type="text"
                 placeholder="cadera"
-                value={peso}
+                value={cadera}
                 onChange={handlecaderaChange}
               />
               <input
@@ -142,20 +129,13 @@ const Medidas = ({usuario, onClickAvance, onClose, onAddUser }) => {
               <a id="boton-off" onClick={() => {onClickAvance(-1);}}>
                 anterior
               </a>
-              <button id="boton-ok" onClick={handleAddUser}>
+              <button id="boton-ok" onClick={() => { onAddUser(); }}>
                 aceptar
               </button>
             </div>
           </div>
         </div>
       </div>
-        {usuarios.map((usuario)=> (
-          <div key={usuario.altura}></div>
-        ))}
-      <div>
-        {}
-      </div>
-      <Mensaje mensaje={mensaje} mostrar={mostrarMensaje} />
     </>
   );
 };

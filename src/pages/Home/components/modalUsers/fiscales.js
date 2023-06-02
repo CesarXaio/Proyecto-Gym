@@ -3,31 +3,36 @@ import Mensaje from "../../../../Confirmacion/Mensaje";
 import "./fiscales.css";
 
 const Fiscales = ({usuario, onClickAvance, onClose, onAddTrainer }) => {
-  const [name, setName] = useState("");
-  const [lastname, setLastname] = useState("");
-  const [ruc, setruc] = useState("");
-  const [telefono, settelefono] = useState("");
-  const [domicilio, setdomicilio] = useState("");  
+  const [name, setName] = useState(usuario.name);
+  const [lastname, setLastname] = useState(usuario.lastname);
+  const [ruc, setruc] = useState(usuario.ruc);
+  const [telefono, settelefono] = useState(usuario.telefono);
+  const [domicilio, setdomicilio] = useState(usuario.domicilio);
   const [mostrarMensaje, setMostrarMensaje] = useState(false);
   const [mensaje, setMensaje] = useState("");
 
   const handleNameChange = (event) => {
     setName(event.target.value);
+    usuario.name = event.target.value;
   };
 
   const handleLastnameChange = (event) => {
     setLastname(event.target.value);
+    usuario.lastname = event.target.value;
   };
 
   const handlerucChange = (event) => {
     setruc(event.target.value);
+    usuario.ruc = event.target.value;
   };
 
   const handletelefonoChange = (event) => {
     settelefono(event.target.value);
+    usuario.telefono = event.target.value;
   };
   const handledomicilioChange = (event) => {
     setdomicilio(event.target.value);
+    usuario.domicilio = event.target.value;
   };
 
   const handleAddTrainer = () => {
@@ -99,7 +104,7 @@ const Fiscales = ({usuario, onClickAvance, onClose, onAddTrainer }) => {
                 // name="name"
                 type="text"
                 placeholder="Domicilio del usuario"
-                value={lastname}
+                value={domicilio}
                 onChange={handledomicilioChange}
               />
             </div>
