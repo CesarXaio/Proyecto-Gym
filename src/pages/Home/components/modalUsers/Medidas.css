@@ -65,6 +65,7 @@
 }
 
 .Input-container-fiscal {
+    margin-top: 10px;
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 400;
@@ -75,7 +76,7 @@
     box-sizing: border-box;
     height: 50px;
     width: 45%;
-    background: #42D976;
+    background: red;
     border: 4px solid #EEEEEE;
     border-radius: 15px;
 }
