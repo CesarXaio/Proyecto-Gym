@@ -60,28 +60,24 @@ const Membresia = ({usuario, onClickAvance, onClose, onAddTrainer }) => {
               </select>
             </div>
           </div>
-          <div className="form-group">
           <select className= "Input-container-fiscal entero" value={modalidad} onChange={handlemodalidadChange}>
               <option value="">Seleccionar frecuencia de entrenamiento</option>
               <option value="Fitness">Diario</option>
               <option value="Pilates">Semanal</option>
               <option value="Yoga">Mensual</option>
             </select>
-          </div>
-          <div className="form-group">
             <select className= "Input-container-fiscal entero" value={entrenador} onChange={handlEntrenador}>
               <option value="">Seleccionar entrenador</option>
               <option value="">entrenador 1</option>
               <option value="">entrenador 2</option>
               <option value="">entrenador 3</option>
             </select>
-          </div>
-          <div className="button-container">
+          <div className="button-container-membrecia">
               <a id="boton-off" onClick={() => {onClickAvance(-1);}}>
-                Anterior
+                anterior
               </a>
               <button id="boton-ok" onClick={() => {onClickAvance(1);}}>
-                Siguiente
+                siguiente
               </button>
             </div>
         </div>

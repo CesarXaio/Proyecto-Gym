@@ -45,11 +45,10 @@ const ModalUser = ({usuario, onClickAvance, onClose, onAddTrainer })=> {
     }
   };
 
-
   return (
     <>
       <div className="modal-overlay">
-        <div className="modalUser">
+        <div className="modalUserSimple">
           <nav className="contenedorBarra">
             <label>
               <label className="barra selec">datos personales</label>
@@ -60,7 +59,7 @@ const ModalUser = ({usuario, onClickAvance, onClose, onAddTrainer })=> {
           </nav>
           <div className="modal-body-User">
             <div className="form-group">
-              <input
+            <input
                 className="Input-container-User"
                 id="name"
                 name="name"
@@ -69,8 +68,6 @@ const ModalUser = ({usuario, onClickAvance, onClose, onAddTrainer })=> {
                 value={name}
                 onChange={handleNameChange}
               />
-            </div>
-            <div className="form-group">
               <input
                 className="Input-container-User"
                 id="name"
@@ -80,8 +77,6 @@ const ModalUser = ({usuario, onClickAvance, onClose, onAddTrainer })=> {
                 value={lastname}
                 onChange={handleLastnameChange}
               />
-            </div>
-            <div className="form-group">
               <input
                 type="text"
                 id="ciUser"
@@ -89,7 +84,6 @@ const ModalUser = ({usuario, onClickAvance, onClose, onAddTrainer })=> {
                 value={cedula}
                 onChange={handleCedulaChange}
               />
-
               <input
                 type="text"
                 id="telefonoUser"
@@ -98,13 +92,12 @@ const ModalUser = ({usuario, onClickAvance, onClose, onAddTrainer })=> {
                 onChange={handleTelefonoChange}
               />
             </div>
-
             <div className="button-container">
               <a id="boton-off" onClick={() => {onClickAvance(-1);}}>
-                Cancelar
+                cancelar
               </a>
               <button id="boton-ok" onClick={() => {onClickAvance(1);}}>
-                Siguiente
+                siguiente
               </button>
             </div>
           </div>

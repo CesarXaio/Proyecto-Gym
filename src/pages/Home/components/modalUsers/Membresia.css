@@ -71,7 +71,7 @@
     margin-left: 3%;
     width: 90%;
     box-sizing: border-box;
-    height: 50px;
+    height: 55px;
     width: 45%;
     background: #42D976;
     border: 4px solid #EEEEEE;
@@ -193,7 +193,7 @@ color: #E9F2FD;
     color: #575757;
 }
 
-.button-container {
+.button-container-membrecia {
     margin-top: 10px;
     padding-left: 685px;
 }

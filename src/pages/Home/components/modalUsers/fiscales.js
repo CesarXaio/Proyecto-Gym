@@ -77,8 +77,6 @@ const Fiscales = ({usuario, onClickAvance, onClose, onAddTrainer }) => {
                 value={lastname}
                 onChange={handleLastnameChange}
               />
-            </div>
-            <div className="form-group">
               <input
                 className="Input-container-fiscal"
                 type="text"
@@ -95,8 +93,6 @@ const Fiscales = ({usuario, onClickAvance, onClose, onAddTrainer }) => {
                 value={telefono}
                 onChange={handletelefonoChange}
               />
-            </div>
-            <div className="form-group">
               <input
                 className="Input-container-fiscal entero"
                 // id="name"
@@ -109,10 +105,10 @@ const Fiscales = ({usuario, onClickAvance, onClose, onAddTrainer }) => {
             </div>
             <div className="button-container">
               <a id="boton-off" onClick={() => {onClickAvance(-1);}}>
-                atras
+                anterior
               </a>
               <button id="boton-ok" onClick={() => {onClickAvance(1);}}>
-                Siguiente
+                siguiente
               </button>
             </div>
           </div>
