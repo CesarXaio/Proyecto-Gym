@@ -1,6 +1,5 @@
 .contenedorTitulos {
-    margin-left: 20px;
-    margin-top: 20px;
+    width: 100%;
 }
 .tituloUser {
     display: inline-block;
@@ -10,6 +9,22 @@
     font-size: 20px;
     line-height: 38px;
     color: #575757;
-    margin-left: 50px;
-    margin-right: 20px;
+
+}
+.otro{
+    margin-right: 5%;
+    margin-left: 6%;
+}
+.cedula{
+    margin-right: 3%;
+    margin-left: 6%;
+}
+.categoria{
+    margin-left: 6%;
+}
+.membresia{
+    margin-left: 4.5%;   
+}
+.estado {
+    margin-left: 5%;  
 }

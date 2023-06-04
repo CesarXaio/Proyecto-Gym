@@ -130,7 +130,7 @@ const Medidas = ({usuario, onClickAvance, onClose, onAddUser }) => {
                 anterior
               </a>
               <button id="boton-ok" onClick={() => { onAddUser(); }}>
-                aceptar
+                guardar
               </button>
             </div>
           </div>

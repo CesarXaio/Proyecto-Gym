@@ -14,7 +14,7 @@ const Users = () => {
   const [showModal, setShowModal] = useState(false);
   const [usuarios, setUsuarios] = useState([]);
   const [contadorModal, setContadorModal] = useState(0);
-  const [usuario, setUsuario] = useState({});
+  const [usuario, setUsuario] = useState({estadoMembresia: 0});
   const [mostrarMensaje, setMostrarMensaje] = useState(false);
   const [mensaje, setMensaje] = useState("");
 
@@ -25,7 +25,8 @@ const Users = () => {
   const handleAddUser = () => {
     setUsuarios([...usuarios, usuario]);
     setMensaje("Usuario agregado con Exito!");
-    setUsuario({});
+    console.log(usuario);
+    setUsuario({estadoMembresia: 0});
     setMostrarMensaje(true);
     setTimeout(() => {
       setContadorModal(0);
@@ -42,14 +43,14 @@ const Users = () => {
         <Boton palabra="Agregar" onClick={() => {actualizador(1);}} />
       </div>
       <div className="contenedorTitulos">
-        <h3 className="tituloUser">nombre y apellido</h3>
-        <h3 className="tituloUser">C.I</h3>
-        <h3 className="tituloUser">categoria</h3>
-        <h3 className="tituloUser">membresia</h3>
-        <h3 className="tituloUser">estado de membresia</h3>
+        <h3 className="tituloUser otro">nombre y apellido</h3>
+        <h3 className="tituloUser cedula">C.I</h3>
+        <h3 className="tituloUser categoria">categoria</h3>
+        <h3 className="tituloUser membresia">membresia</h3>
+        <h3 className="tituloUser estado">estado</h3>
       </div>
-      {usuarios.map((usuario, index) => (
-        <Usuarios key={index} name={usuario.name} lastname={usuario.lastname} />
+      {usuarios.map((u, index) => (
+        <Usuarios usuario ={u} key={index}/>
       ))}
       {contadorModal === 1 && (
         <ModalUser usuario={usuario} onClickAvance={actualizador} onClose={() => { setUsuario({}); }}/>
