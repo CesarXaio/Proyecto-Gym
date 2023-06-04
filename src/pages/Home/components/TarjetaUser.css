@@ -1,0 +1,67 @@
+.tarjetas{
+    background-color: #373B43;
+    color: #FFFF;
+    width: 90%;
+    height: 10%;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    margin-top: 2%;
+    padding: 1%;
+    display: inline-block;
+    text-align: left;
+}
+.elementoTarjeta{
+    display: inline-block;
+    text-align: left;
+    margin-left: 10px;
+    text-align: center;
+}
+.nombreApellido {
+    display: inline-block;
+    width: 30%;
+    text-align: center;
+}
+.separacion {
+    width: 15%;
+}
+.botonPagado {
+    background-color: #373B43;
+    border-bottom-width: thick;
+    border: solid;
+    border-color: #42D976;
+    color: #42D976;
+    font-family: 'Poppins';
+    padding: 5% 10% 5% 10%;
+    border-radius: 5px;
+    font-weight: 400;
+    font-size: 20px;
+    border: none;
+}
+.botonPendiente {
+    background-color: #373B43;
+    border-bottom-width: thick;
+    border: solid;
+    border-color: #D9B842;
+    color: #D9B842;
+    width: 100%;
+    font-family: 'Poppins';
+    padding: 5% 10%;
+    border-radius: 5px;
+    font-weight: 400;
+    font-size: 20px;
+}
+.botonVencido {
+    background-color: #373B43;
+    border-bottom-width: thick;
+    border: solid;
+    border-color: #D94242;
+    color: #D94242;
+    width: 100%;
+    font-family: 'Poppins';
+    padding: 5% 10%;
+    border-radius: 5px;
+    font-weight: 400;
+    font-size: 20px;
+}
