@@ -14,9 +14,10 @@ const Pay = (props) =>{
       }, []);
      // Calcular el total de los productos
     const total = productosCaja.reduce((sum, producto) => sum + producto.precio * producto.cantidad, 0);
-
+    const iva_10 = total * 0.1;
+    //const subtotal = total - iva_10;
       return (
-        <div>
+        <div >
           {productosCaja.map((productoCaja, index) => (
             <div className="Prod-Caja" key={index}>
              
@@ -28,8 +29,19 @@ const Pay = (props) =>{
             </div>
             
           ))}
+          <div className="Detalles-Pago">Detalles de Pago
+            <div>
+              <p className="SubTotal">Subtotal {total}G$</p>
+              <p className="Iva">IVA (10%) {iva_10} G$</p>
+            </div>
+          </div>
           <div className="Suma-Total">Total: {total} G$</div>
-          
+          <div className="Botones">
+            <button className="Boton Cancelar">Cancelar</button>
+            <button className="Boton Pagar">Pagar</button>
+            
+          </div>
+
         </div>
       );
       
