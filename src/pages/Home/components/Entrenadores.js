@@ -3,7 +3,7 @@ import "./Entrenadores.css";
 import axios from "axios";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
-import Modal from "./Modal";
+import ModalEditar from "./modalEditar/ModalEditar";
 
 const Entrenadores = (props) => {
   const { nombre, ci, telefono, especialidad } = props;
@@ -26,35 +26,33 @@ const Entrenadores = (props) => {
 
     fetchEntrenadores();
   }, []);
+
+
   const handleEditarEntrenador = (entrenador) => {
-    setEntrenadorSeleccionado(entrenador);
-    
-    axios.put(`https://localhost:7072/api/Entrenador/${entrenador.ci}`, entrenador)
-      .then((response) => {
-        console.log(JSON.stringify(response.data));
-        // Realizar las acciones necesarias después de la edición del entrenador
-      })
-      .catch((error) => {
-        console.log(error);
-        console.error("Error al editar el entrenador:", error);
-      });
+    setEntrenadorEditando(entrenador);
+    setModalVisible(true);
   };
-  
 
-const handleEliminarEntrenador = async (entrenador) => {
-  try {
-    await axios.delete(`https://localhost:7072/api/Entrenador/${entrenador.ci}`);
-    
-    // Eliminar el entrenador del estado "entrenadores"
-    setEntrenadores(entrenadores.filter(e => e.ci !== entrenador.ci));
-    
-  } catch (error) {
-    console.error("Error al eliminar el entrenador:", error);
-  }
-};
+  const handleGuardarEdicion = (entrenadorEditado) => {
+    setEntrenadores(entrenadores.map((e) => (e.ci === entrenadorEditado.ci ? entrenadorEditado : e)));
+  };
 
+  const handleCerrarModal = () => {
+    setModalVisible(false);
+    setEntrenadorEditando(null);
+  };
+  const handleEliminarEntrenador = async (entrenador) => {
+    try {
+      await axios.delete(`https://localhost:7072/api/Entrenador/${entrenador.ci}`);
+      
+      // Eliminar el entrenador del estado "entrenadores"
+      setEntrenadores(entrenadores.filter(e => e.ci !== entrenador.ci));
+      
+    } catch (error) {
+      console.error("Error al eliminar el entrenador:", error);
+    }
+  };
 
- 
 
   const renderEntrenadores = () => {
     return (
@@ -128,7 +126,18 @@ const handleEliminarEntrenador = async (entrenador) => {
     ? "card-especialidad card-especialidad-primer-entrenador"
     : "card-especialidad";
 
-  return renderEntrenadores();
-};
+    return (
+      <>
+        {renderEntrenadores()}
+        {modalVisible && (
+        <ModalEditar
+          entrenador={entrenadorEditando}
+          onSave={handleGuardarEdicion}
+          onClose={handleCerrarModal}
+        />
+      )}
+      </>
+    );
+        };    
 
 export default Entrenadores;

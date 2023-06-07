@@ -9,20 +9,18 @@ const Coach = () => {
   const [entrenadores, setEntrenadores] = useState([]);
 
   useEffect(() => {
-    // Función para obtener los entrenadores de la base de datos
     const obtenerEntrenadores = async () => {
       try {
-        // Realizar la petición a la API o a la base de datos para obtener los entrenadores
         const response = await fetch("https://localhost:7072/api/Entrenador");
         const data = await response.json();
-        setEntrenadores(data); // Asignar los entrenadores al estado
+        setEntrenadores(data);
       } catch (error) {
         console.error("Error al obtener los entrenadores:", error);
       }
     };
 
-    obtenerEntrenadores(); // Llamar a la función para obtener los entrenadores al cargar el componente
-  }, []); // El segundo argumento es un arreglo vacío, esto indica que solo se ejecutará una vez al cargar el componente
+    obtenerEntrenadores();
+  }, []);
 
   const handleAgregarClick = () => {
     setShowModal(true);
@@ -32,13 +30,61 @@ const Coach = () => {
     setEntrenadores([...entrenadores, trainer]);
   };
 
+  const handleEditarEntrenador = async (entrenadorEditado) => {
+    try {
+      // Realizar la petición a la API para editar el entrenador
+      await fetch(`https://localhost:7072/api/Entrenador/${entrenadorEditado.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(entrenadorEditado),
+      });
+
+      // Actualizar la lista de entrenadores después de editar
+      const entrenadoresActualizados = entrenadores.map((entrenador) => {
+        if (entrenador.id === entrenadorEditado.id) {
+          return entrenadorEditado;
+        }
+        return entrenador;
+      });
+
+      setEntrenadores(entrenadoresActualizados);
+    } catch (error) {
+      console.error("Error al editar el entrenador:", error);
+    }
+  };
+
+  const handleEliminarEntrenador = async (entrenadorEliminado) => {
+    try {
+      // Realizar la petición a la API para eliminar el entrenador
+      await fetch(`https://localhost:7072/api/Entrenador/${entrenadorEliminado.id}`, {
+        method: "DELETE",
+      });
+
+      // Actualizar la lista de entrenadores después de eliminar
+      const entrenadoresActualizados = entrenadores.filter(
+        (entrenador) => entrenador.id !== entrenadorEliminado.id
+      );
+
+      setEntrenadores(entrenadoresActualizados);
+    } catch (error) {
+      console.error("Error al eliminar el entrenador:", error);
+    }
+  };
+
   return (
     <div className="Coach-container">
       <div className="boton-container">
         <Boton palabra="Agregar" onClick={handleAgregarClick} />
       </div>
       {entrenadores.map((trainer, index) => (
-        <Entrenadores key={index} {...trainer} />
+        <Entrenadores
+          key={index}
+          {...trainer}
+          onEditarEntrenador={handleEditarEntrenador}
+          onEliminarEntrenador={handleEliminarEntrenador}
+        />
       ))}
       {showModal && (
         <Modal onClose={() => setShowModal(false)} onAddTrainer={handleAddTrainer} />
@@ -48,3 +94,4 @@ const Coach = () => {
 };
 
 export default Coach;
+

@@ -8,7 +8,7 @@ const Modal = ({ onClose, onAddTrainer }) => {
   const [especialidad, setEspecialidad] = useState("");
   const [ci, setCI] = useState("");
   const [telefono, setTelefono] = useState("");
-  const [data, setData] = useState("");
+  
   const [mostrarMensaje, setMostrarMensaje] = useState(false);
   const [mensaje, setMensaje] = useState("");
   const [entrenadores, setEntrenadores] = useState([]); // Estado para almacenar los datos de los entrenadores
