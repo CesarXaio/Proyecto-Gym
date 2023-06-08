@@ -7,20 +7,18 @@ import Store from './Store';
 import Coach from './Coach';
 import Pay from './Pay';
 import Users from './users';
-
+import Resumen from './Resumen'; // Importa el componente Resumen
 
 function Inicio() {
   return (
     <BrowserRouter>
       <Sidebar> 
         <Routes>
-          
-          {/*<Route exac path="/" element={<Home />}/>*/}
-
-          <Route path="/Store" element={<Store />}/>
-          <Route path="/Coach" element={<Coach />} />
-          <Route path="/Pay" element={<Pay />} />
-          <Route path="/Users" element={<Users />} />
+          <Route path="/resumen" element={<Resumen />} /> {/* Ruta por defecto */}
+          <Route path="/store" element={<Store />} />
+          <Route path="/coach" element={<Coach />} />
+          <Route path="/pay" element={<Pay />} />
+          <Route path="/users" element={<Users />} />
         </Routes>
       </Sidebar>
     </BrowserRouter>

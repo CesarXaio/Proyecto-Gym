@@ -1,0 +1,144 @@
+.resumen-container {
+    text-align: center;
+  }
+  
+  .row1 {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .row2 {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+  
+  .Informe1 {
+    background: #373B43;
+    border-radius: 20px;    
+    width: 500px;
+    height: 300px;
+   
+    margin-left: 10rem
+    
+  }
+  
+  .Informe2 {
+    background: #373B43;
+    border-radius: 20px;
+    width: 500px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 15rem
+  }
+  .Monto-Caja{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 100px;
+    color: #E9F2FD;
+    background: #373B43;
+    border-radius: 20px;
+    width: 500px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 10px;
+    margin-left: 10rem
+    
+  }
+  .Plata {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 100px;
+    color: #E9F2FD;
+    background: #373B43;
+    border-radius: 20px;
+    width: 500px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 10px;
+    margin-right: 15rem
+    
+  }
+  .divider {
+    width: 90%;
+    height: 1px;
+    background-color: white;
+    margin: 50px 0;
+  }
+  
+  p {
+    margin: 0;
+    padding: 5px;
+  }
+  .Texto-1{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 15px;
+
+    color: #575757;
+  }
+  .Texto-2{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 15px;
+
+    color: #575757;
+  }
+  .Apertura-Caja{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 0px;
+    color: #42D976;
+  }
+  .Cierre-Caja{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 30px;
+    color: #42D976;
+  }
+  .Informe-Semanal{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 50px;
+    text-align: center;
+    color: #E9F2FD;
+
+  }
+  .Informe-Semana2{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 50px;
+    text-align: center;
+    color: #E9F2FD;
+
+  }
+.Inf-1{
+   
+    margin: 0px 0;
+}
+.Inf-2{
+    margin: 0px 0;
+}
