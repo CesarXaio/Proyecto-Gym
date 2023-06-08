@@ -176,13 +176,57 @@
   padding-top: 250px;
 
 }
-.btn-editar{
+.btn-editar {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  box-sizing: border-box;
   margin-right: 50px;
-  height: 2em;
+  height: 3rem;
   width: 3rem;
+  position: relative;
 }
-.btn-eliminar{
-  height: 2em;
+
+.btn-editar::after {
+  content: "Editar";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.75rem;
+  color: #E9F2FD;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.btn-editar:hover::after {
+  opacity: 1;
+}
+
+.btn-eliminar {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  height: 3rem;
   width: 3rem;
-  
+  position: relative;
 }
+
+.btn-eliminar::after {
+  content: "Eliminar";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.75rem;
+  color: #E9F2FD;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.btn-eliminar:hover::after {
+  opacity: 1;
+}
+
