@@ -6,7 +6,7 @@
     justify-content: space-between;
     
   }
-.tarjetas {
+.tarjetasProductos {
     margin-top: 60px;
     display: flex;
     width: 150px;
@@ -30,7 +30,7 @@
   }
 
 
-  .tarjetas img {
+  .tarjetasProductos img {
     width: 70%;
     height: 200px;
     object-fit: cover;
@@ -38,12 +38,12 @@
     
   }
   
-  .tarjetas h3 {
+  .tarjetasProductos h3 {
     font-size: 1.2rem;
     margin-bottom: 5px;
   }
   
-  .tarjetas p {
+  .tarjetasProductos p {
     font-size: 1.1rem;
     font-weight: bold;
     margin-bottom: 10px;
@@ -103,7 +103,7 @@
 
 
 
-.Botones {
+.Botones-Productos {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -131,7 +131,7 @@
   color: #2BA458;
 }
 
-.Cantidad {
+.CantidadProductos {
   display: flex;
   font-family: 'Poppins';
   justify-content: center;
@@ -144,7 +144,7 @@
   border-radius: 10px;
 }
 
-.Agregar {
+.AgregarACaja {
   width: 100%;
   font-family: 'Poppins';
   height: 50px;

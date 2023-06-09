@@ -69,24 +69,24 @@ const Tarjetas = (props) => {
 
   return (
     <div
-      className="tarjetas"
+      className="tarjetasProductos"
       onMouseEnter={mostrarBotonesHandler}
       onMouseLeave={ocultarBotonesHandler}
     >
       <img className="tarjetas__imagen" src={imagen} alt="Producto" />
       {mostrarBotones && (
-        <div className="Botones">
+        <div className="Botones-Productos">
           <button className="Boton-Disminuir" onClick={disminuirCantidad}>
             -
           </button>
-          <div className="Cantidad">{cantidad}</div>
+          <div className="CantidadProductos">{cantidad}</div>
           <button className="Boton-Aumentar" onClick={aumentarCantidad}>
             +
           </button>
         </div>
       )}
       {mostrarBotones && (
-        <button className="Agregar" onClick={agregarAlCarrito}>
+        <button className="AgregarACaja" onClick={agregarAlCarrito}>
           Agregar
         </button>
       )}

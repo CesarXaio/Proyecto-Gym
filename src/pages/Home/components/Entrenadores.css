@@ -119,9 +119,7 @@
     
     color: #42D976;
   }
-  .card-info p {
-    
-  }
+  
   .DiaHora {
     display: flex;
     justify-content: space-between;
@@ -173,7 +171,7 @@
     border: 2px solid #E9F2FD;
   }
 .botones-acciones{
-  padding-top: 250px;
+  padding-top: 280px;
 
 }
 .btn-editar {

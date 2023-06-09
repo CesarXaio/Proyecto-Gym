@@ -37,11 +37,13 @@
     
 }
 .Producto-Img {
+    position: relative; /* Agrega esta línea */
+    top: -165px; /* Ajusta este valor según el espacio deseado */
     margin-left: -50px;
     width: 250px;
     height: 150px;
     border-radius: 30px;
-    margin-top: -30%;
+    
 }
 .Suma-Total {
     position: absolute;
@@ -100,11 +102,13 @@
     line-height: 45px;
     color: #FFFFFF;
   }
-  .Botones {
-    display: flex;
+  .BotonesPagar {
+    position: fixed;
+    top: 40px; /* Ajusta este valor según la posición deseada */
+    left: 170px; /* Ajusta este valor según la posición deseada */
     justify-content: center;
-    margin-top: -5rem;
-    padding-left: 480px;
+    margin-top: 16rem;
+    padding-left: 960px;
   }
   
   .Boton {
@@ -126,8 +130,11 @@
     background: #42D976;
     border: 2px solid #42D976;
     border-radius: 15px;
-    width: 10rem;
-    margin-right: 5rem;
+    width: 12rem;
+    margin-right:5rem;
+    margin-top: 350px;
+    
+    
   }
 
   .Boton.Cancelar {
@@ -137,6 +144,9 @@
     font-family: 'Poppins';
     font-style: normal;
     color: #575757;
+    margin-top: 350px;
+    
+  
   }
   
   
