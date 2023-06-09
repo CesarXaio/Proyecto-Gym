@@ -112,7 +112,7 @@ const Pay = (props) =>{
             </div>
           </div>
           <div className="Suma-Total">Total: {total} G$</div>
-          <div className="Botones">
+          <div className="BotonesPagar">
             <button className="Boton Cancelar">Cancelar</button>
             <button className="Boton Pagar"onClick={handleAgregarClick}>Pagar</button>
             
