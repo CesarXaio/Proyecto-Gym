@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./Medidas.css"
 
-const Medidas = ({usuario, onClickAvance, onClose, onAddUser }) => {
+const DetallesUser = ({usuario, onClickAvance, onClose, onAddUser }) => {
   const [altura, setaltura] = useState(usuario.altura);
   const [peso, setpeso] = useState(usuario.peso);
   const [cintura, setcintura] = useState(usuario.cintura);
   const [pecho, setpecho] = useState(usuario.pecho);
   const [cadera, setcadera] = useState(usuario.cadera);
   const [edad, setedad] = useState(usuario.edad);
-  const [observaciones, setobservaciones] = useState(usuario.observaciones);
 
   const handlealturaChange = (event) => {
     setaltura(parseFloat(event.target.value));
@@ -37,23 +36,11 @@ const Medidas = ({usuario, onClickAvance, onClose, onAddUser }) => {
     setedad(parseFloat(event.target.value));
     usuario.edad = event.target.value;
   }
-  const handlobservacionesChange = (event) => {
-    setobservaciones(event.target.value);
-    usuario.observaciones = event.target.value;
-  }
 
   return (
     <>
       <div className="modal-overlay">
         <div className="modalUser">
-          <nav className="contenedorBarra">
-            <label>
-              <label className="barra notSelec">datos personales</label>
-              <label className="barra notSelec">datos fiscales</label>
-              <label className="barra notSelec">membrecia</label>
-              <label className="barra selec">medidas iniciales</label>
-            </label>
-          </nav>
           <div className="modal-body">
             <div>
               <input
@@ -114,16 +101,6 @@ const Medidas = ({usuario, onClickAvance, onClose, onAddUser }) => {
                 value={edad}
                 onChange={handledadChange}
               />
-              <input
-                className="Input-container-fiscal entero"
-                classaltura="Input-container"
-                // id="cedula"
-                altura="altura"
-                type="text"
-                placeholder="observaciones"
-                value={observaciones}
-                onChange={handlobservacionesChange}
-              />
             </div>
             <div className="button-container">
               <a id="boton-off" onClick={() => {onClickAvance(-1);}}>
@@ -140,4 +117,4 @@ const Medidas = ({usuario, onClickAvance, onClose, onAddUser }) => {
   );
 };
 
-export default Medidas;
+export default DetallesUser;

@@ -10,11 +10,13 @@ import Medidas from "./components/modalUsers/Medidas";
 import Membresia from "./components/modalUsers/Membresia";
 import ModalUser from "./components/modalUsers/ModalUser";
 import Mensaje from "../../Confirmacion/Mensaje";
+import DetallesUser from "./components/modalUsers/DetallesUser";
+
 
 const Users = () => {
-  const [showModal, setShowModal] = useState(false);
   const [usuarios, setUsuarios] = useState([]);
   const [contadorModal, setContadorModal] = useState(0);
+  const [contadorModalDetalle, setContadorModalDetalle] = useState(0);
   const [usuario, setUsuario] = useState({ estadoMembresia: 1 });
   const [mostrarMensaje, setMostrarMensaje] = useState(false);
   const [mensaje, setMensaje] = useState("");
@@ -78,9 +80,9 @@ const Users = () => {
     }
   };
 
-  const handleAgregarClick = () => {
-    setShowModal(true);
-  };
+  // const handleDetallesClick = () => {
+  //   setShowModalDetalle(true);
+  // };
 
   const handleAddUser = () => {
     //console.log("Entramos para agregar");
@@ -159,7 +161,6 @@ const Users = () => {
           });
 
           console.log(JSON.stringify(response.data));
-          hayError = false;
           setUsuarios([...usuarios, usuario]);
           setMensaje("Usuario agregado con Exito!");
           console.log(usuario);
@@ -178,12 +179,22 @@ const Users = () => {
   const actualizador = (i) => {
     setContadorModal(contadorModal + i);
   };
+  const actualizadorDetalles = (b) => {
+    console.log("hola"+contadorModalDetalle)
+    setContadorModalDetalle(contadorModalDetalle + b);
+  };
+  
 
+  
   return (
     <div className="Coach-container">
       <div className="boton-container">
         <Boton palabra="Agregar" onClick={() => { actualizador(1); }} />
       </div>
+      <div className="boton-container">
+        <Boton palabra="detalles" onClick={() => { actualizadorDetalles(1); }} />
+      </div>
+
       <div className="contenedorTitulos">
         <h3 className="tituloUser otro">nombre y apellido</h3>
         <h3 className="tituloUser cedula">C.I</h3>
@@ -191,6 +202,7 @@ const Users = () => {
         <h3 className="tituloUser membresia">membresia</h3>
         <h3 className="tituloUser estado">estado</h3>
       </div>
+
       {usuarios.map((u, index) => (
         <Usuarios usuario={u} key={index} />
       ))}
@@ -207,6 +219,10 @@ const Users = () => {
         <Medidas usuario={usuario} onClickAvance={actualizador} onAddUser={handleAddUser} />
       )}
       <Mensaje mensaje={mensaje} mostrar={mostrarMensaje} />
+
+      {contadorModalDetalle === 1 && (
+        <DetallesUser usuario={usuario} onClickAvance={actualizadorDetalles(1)}/>
+      )}
     </div>
   );
 };
