@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import './Pay.css'
-import Store from "./Store";
-import Tarjetas from "./components/Tarjetas";
+import VentanaClientes from "./components/VentanaClientes"; // Importa el componente VentanaClientes
 import Mensaje from "../../Confirmacion/Mensaje";
 import axios from 'axios';
 
@@ -13,7 +12,10 @@ const Pay = (props) => {
   const [mostrarMensaje, setMostrarMensaje] = useState(false);
   const [membresiaCaja, setMembresiaCaja] = useState([]);
   const [clienteCaja, setClienteCaja] = useState([]);
+  const [mostrarVentanaClientes, setMostrarVentanaClientes] = useState(false);
+  const [clientes, setClientes] = useState([]); // Estado para almacenar los clientes de la base de datos
 
+  
   useEffect(() => {
     const productosGuardados = JSON.parse(localStorage.getItem("productosCaja"));
     if (productosGuardados) {
@@ -36,7 +38,6 @@ const Pay = (props) => {
     (membresiaCaja.precio ? membresiaCaja.precio : 0);
   const iva_10 = total / 11;
   //const subtotal = total - iva_10;
-  
   const handleEliminar = () => {
     localStorage.removeItem("productosCaja");
     localStorage.removeItem("membresiaCaja");
@@ -45,9 +46,30 @@ const Pay = (props) => {
     setMembresiaCaja([]);
     setClienteCaja([]);
   };
+
+
+  const cerrarVentanaClientes = () => {
+    setMostrarVentanaClientes(false);
+  };
+
+  const abrirVentanaClientes = () => {
+    // Realizar solicitud a la API para obtener los clientes de la base de datos
+    axios.get('https://localhost:7072/api/clientedata')
+      .then((response) => {
+        setClientes(response.data);
+        setMostrarVentanaClientes(true);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   
   const handleAgregarClick = () => {
-
+    if (!clienteCaja.ci) {
+      abrirVentanaClientes();
+      return;
+    }
+  
     let numeroFactura = JSON.parse(localStorage.getItem("numeroFactura"));
 
     if (numeroFactura === null) {
@@ -144,6 +166,12 @@ const Pay = (props) => {
         </div>
 
       ))}
+      {mostrarVentanaClientes && (
+        <VentanaClientes
+          clientes={clientes}
+          onClose={cerrarVentanaClientes}
+        />
+      )}
       {
         membresiaCaja.precio &&
         <div className="Prod-Caja" key="membresia">
