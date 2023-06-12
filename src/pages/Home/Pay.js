@@ -11,16 +11,30 @@ const Pay = (props) => {
   const [productosCaja, setProductosCaja] = useState([]);
   const [mensaje, setMensaje] = useState("");
   const [mostrarMensaje, setMostrarMensaje] = useState(false);
+  const [membresiaCaja, setMembresiaCaja] = useState([]);
+  const [clienteCaja, setClienteCaja] = useState([]);
 
   useEffect(() => {
     const productosGuardados = JSON.parse(localStorage.getItem("productosCaja"));
     if (productosGuardados) {
       setProductosCaja(productosGuardados);
     }
+    
+    const membresiaGuardado = JSON.parse(localStorage.getItem("membresiaCaja"));
+    if (membresiaGuardado) {
+      setMembresiaCaja(membresiaGuardado);
+    }
+
+    const clienteGuardado = JSON.parse(localStorage.getItem("clienteCaja"));
+    if (clienteGuardado) {
+      setClienteCaja(clienteGuardado);
+    }
+
   }, []);
   // Calcular el total de los productos
-  const total = productosCaja.reduce((sum, producto) => sum + producto.precio * producto.cantidad, 0);
-  const iva_10 = total * 0.1;
+  const total = productosCaja.reduce((sum, producto) => sum + producto.precio * producto.cantidad, 0) +
+    (membresiaCaja.precio ? membresiaCaja.precio : 0);
+  const iva_10 = total / 11;
   //const subtotal = total - iva_10;
   const handleAgregarClick = () => {
 
@@ -34,7 +48,7 @@ const Pay = (props) => {
     localStorage.setItem("numeroFactura", JSON.stringify(numeroFactura));
 
     let factura = {
-      ci_cliente: "121212", //TO DO Poder elegir el ci del cliente
+      ci_cliente: clienteCaja.ci ? clienteCaja.ci : "121212", //TO DO Poder elegir el ci del cliente
       fecha: "2022-06-09", //TO DO La fecha de hoy
       timbrado: "753951", // Tal vez el timbrado dejar
       numero: numeroFactura,
@@ -49,8 +63,19 @@ const Pay = (props) => {
           iva_10: p.iva_10,
           iva_5: p.iva_5
         }
-      })
+      }),
+      membresia: null
     };
+
+    if (membresiaCaja.precio) {
+      factura.membresia = {
+        descripcion: membresiaCaja.descripcion,
+        modalidad: membresiaCaja.modalidad,
+        precio: membresiaCaja.precio,
+        iva_10: membresiaCaja.iva_10,
+        iva_5: membresiaCaja.iva_5
+      }
+    }
 
     console.log(factura);
 
@@ -83,7 +108,11 @@ const Pay = (props) => {
             }, 3000);
 
             localStorage.setItem("productosCaja", JSON.stringify([]));
+            localStorage.removeItem("membresiaCaja");
+            localStorage.removeItem("clienteCaja");
             setProductosCaja([]);
+            setMembresiaCaja([]);
+            setClienteCaja([]);
           }
         })
         .catch((error) => {
@@ -105,7 +134,18 @@ const Pay = (props) => {
         </div>
 
       ))}
-      <div className="Detalles-Pago">Detalles de Pago
+      {
+        membresiaCaja.precio &&
+        <div className="Prod-Caja" key="membresia">
+
+          <p className="Nombre-Producto">{membresiaCaja.descripcion}</p>
+          <p className="Precio-Producto">{membresiaCaja.precio} G$</p>
+          <p className="Cantidad-Producto">{membresiaCaja.cantidad}x</p>
+          <img className="Producto-Img" src={membresiaCaja.imagen} alt="Producto" />
+
+        </div>
+      }
+      <div className="Detalles-Pago">Detalles de Pago. ci: {clienteCaja.ci}
         <div>
           <p className="SubTotal">Subtotal {total}G$</p>
           <p className="Iva">IVA (10%) {iva_10} G$</p>

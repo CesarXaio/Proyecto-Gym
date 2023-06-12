@@ -11,30 +11,30 @@ const Medidas = ({usuario, onClickAvance, onClose, onAddUser }) => {
   const [observaciones, setobservaciones] = useState(usuario.observaciones);
 
   const handlealturaChange = (event) => {
-    setaltura(event.target.value);
+    setaltura(parseFloat(event.target.value));
     usuario.altura = event.target.value;
   };
 
   const handlepesoChange = (event) => {
-    setpeso(event.target.value);
+    setpeso(parseFloat(event.target.value));
     usuario.peso = event.target.value;
   };
 
   const handlcinturaChange = (event) => {
-    setcintura(event.target.value);
+    setcintura(parseFloat(event.target.value));
     usuario.cintura = event.target.value;
   };
 
   const handlepechoChange = (event) => {
-    setpecho(event.target.value);
+    setpecho(parseFloat(event.target.value));
     usuario.pecho = event.target.value;
   };
   const handlecaderaChange = (event) => {
-    setcadera(event.target.value);
+    setcadera(parseFloat(event.target.value));
     usuario.cadera = event.target.value;
   };
   const handledadChange = (event) => {
-    setedad(event.target.value);
+    setedad(parseFloat(event.target.value));
     usuario.edad = event.target.value;
   }
   const handlobservacionesChange = (event) => {
