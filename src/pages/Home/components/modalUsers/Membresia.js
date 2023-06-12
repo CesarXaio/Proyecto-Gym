@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Mensaje from "../../../../Confirmacion/Mensaje";
 import "./Membresia.css";
+import axios from "axios";
 
 const Membresia = ({usuario, onClickAvance, onClose, onAddTrainer }) => {
   const [especialidad, setEspecialidad] = useState(usuario.especialidad);
@@ -8,6 +9,47 @@ const Membresia = ({usuario, onClickAvance, onClose, onAddTrainer }) => {
   const [entrenador, setEntrenador] = useState(usuario.entrenador);
   const [mostrarMensaje, setMostrarMensaje] = useState(false);
   const [mensaje, setMensaje] = useState("");
+
+  const [especialidades, setEspecialidades] = useState([]);
+  const [modalidades, setModalidades] = useState([]);
+  const [entrenadores, setEntrenadores] = useState([]);
+
+
+  useEffect(() => {
+
+    const obtenerEspecialidades = async () => {
+      try {
+        // Realizar la petición a la API o a la base de datos para obtener los Productos
+        const response = await fetch("https://localhost:7072/api/especialidad");
+        const data = await response.json();
+        setEspecialidades(data);
+      } catch (error) {
+        console.error("Error al obtener los Productos:", error);
+      }
+    }
+
+    const obtenerModalidades = async () => {
+      try {
+        //TODO Usar el API Modalidades
+      } catch (error) {
+        console.error("Error al obtener los Productos:", error);
+      }
+    }
+
+    const obtenerEntrenadores = async () => {
+      try {
+        // Realizar la petición a la API o a la base de datos para obtener los Productos
+        const response = await fetch("https://localhost:7072/api/Entrenador");
+        const data = await response.json();
+        setEntrenadores(data); // Asignar los entrenadores al estado
+      } catch (error) {
+        console.error("Error al obtener los Productos:", error);
+      }
+    }
+
+    obtenerEspecialidades();
+    obtenerEntrenadores();
+  }, []); // El segundo argumento es un arreglo vacío, esto indica que solo se ejecutará una vez al cargar el componente
 
   const handleEspecialidadChange = (event) => {
     setEspecialidad(event.target.value);
@@ -57,9 +99,9 @@ const Membresia = ({usuario, onClickAvance, onClose, onAddTrainer }) => {
             <div className="form-group">
             <select className= "Input-container-fiscal entero" value={especialidad} onChange={handleEspecialidadChange}>
                 <option value="">Seleccionar especialidad de entrenamiento</option>
-                <option value="Fitness">Fitness</option>
-                <option value="Pilates">Pilates</option>
-                <option value="Yoga">Yoga</option>
+                {especialidades.map((e) => (
+                  <option value={e}>{e}</option>
+                ))}
               </select>
             </div>
           </div>
@@ -71,9 +113,9 @@ const Membresia = ({usuario, onClickAvance, onClose, onAddTrainer }) => {
             </select>
             <select className= "Input-container-fiscal entero" value={entrenador} onChange={handleEntrenador}>
               <option value="">Seleccionar entrenador</option>
-              <option value="1">entrenador 1</option>
-              <option value="2">entrenador 2</option>
-              <option value="3">entrenador 3</option>
+              {entrenadores.filter(e => e.especialidad === usuario.especialidad).map(filEnt => (
+              <option value={filEnt.ci}>{filEnt.nombre}</option>
+            ))}
             </select>
           <div className="button-container-membrecia">
               <a id="boton-off" onClick={() => {onClickAvance(-1);}}>
