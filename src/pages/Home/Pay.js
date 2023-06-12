@@ -36,6 +36,16 @@ const Pay = (props) => {
     (membresiaCaja.precio ? membresiaCaja.precio : 0);
   const iva_10 = total / 11;
   //const subtotal = total - iva_10;
+  
+  const handleEliminar = () => {
+    localStorage.removeItem("productosCaja");
+    localStorage.removeItem("membresiaCaja");
+    localStorage.removeItem("clienteCaja");
+    setProductosCaja([]);
+    setMembresiaCaja([]);
+    setClienteCaja([]);
+  };
+  
   const handleAgregarClick = () => {
 
     let numeroFactura = JSON.parse(localStorage.getItem("numeroFactura"));
@@ -153,7 +163,7 @@ const Pay = (props) => {
       </div>
       <div className="Suma-Total">Total: {total} G$</div>
       <div className="BotonesPagar">
-        <button className="Boton Cancelar">Cancelar</button>
+        <button className="Boton Cancelar" onClick={handleEliminar}>Cancelar</button>
         <button className="Boton Pagar" onClick={handleAgregarClick}>Pagar</button>
 
       </div>
