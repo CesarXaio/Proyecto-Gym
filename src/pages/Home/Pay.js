@@ -48,7 +48,7 @@ const Pay = (props) => {
     localStorage.setItem("numeroFactura", JSON.stringify(numeroFactura));
 
     let factura = {
-      ci_cliente: clienteCaja.ci ? clienteCaja.ci : "121212", //TO DO Poder elegir el ci del cliente
+      ci_cliente: clienteCaja.ci ? clienteCaja.ci : "5255", //TO DO Poder elegir el ci del cliente
       fecha: "2022-06-09", //TO DO La fecha de hoy
       timbrado: "753951", // Tal vez el timbrado dejar
       numero: numeroFactura,

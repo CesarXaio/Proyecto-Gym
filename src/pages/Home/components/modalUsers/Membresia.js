@@ -30,7 +30,10 @@ const Membresia = ({usuario, onClickAvance, onClose, onAddTrainer }) => {
 
     const obtenerModalidades = async () => {
       try {
-        // Realizar la petición a la API o a la base de datos para obtener los Especialidades
+        // Realizar la petición a la API o a la base de datos para obtener los Productos
+        const response = await fetch("https://localhost:7072/api/modalidad");
+        const data = await response.json();
+        setModalidades(data);
       } catch (error) {
         console.error("Error al obtener los Especialidades:", error);
       }
