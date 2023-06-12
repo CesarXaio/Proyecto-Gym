@@ -38,7 +38,8 @@ const Users = () => {
               especialidad: c.membresia.entrenador.especialidad,
               entrenador: c.membresia.entrenador.nombre,
               estadoMembresia: conversorEstados(c.membresia.estado),
-              modalidad: c.membresia.modalidad
+              modalidad: c.membresia.modalidad,
+              modalidadPrecio: c.membresia.precio
             }
           });
         console.log(clientesData);
@@ -61,6 +62,7 @@ const Users = () => {
     if (estadoStr === "Vencido") {
       return 2;
     }
+    return 1;
   };
 
   const conversorEstadosInt = (estadoInt) => {
@@ -71,6 +73,8 @@ const Users = () => {
         return "Pendiente";
       case 2:
         return "Vencido";
+      default:
+        return "Pendiente";
     }
   };
 
@@ -102,6 +106,20 @@ const Users = () => {
       }
     };
 
+    let medicion = {
+      cliente_ci: usuario.cedula,
+      entrenador_ci: usuario.entrenador,
+      fecha: "2023-06-09T00:00:00",
+      medidas: {
+        altura: parseFloat(usuario.altura),
+        peso: parseFloat(usuario.peso),
+        cintura: parseFloat(usuario.cintura),
+        pecho: parseFloat(usuario.pecho),
+        cadera: parseFloat(usuario.cadera),
+        edad: parseFloat(usuario.edad)
+      }
+    }
+
     if (true) {     // TODO Verificar
       //console.log("Entramos post true");
       let data = JSON.stringify(cliente);
@@ -118,23 +136,44 @@ const Users = () => {
 
       axios.request(config)
         .then((response) => {
+          console.log("Enviando medidas");
+          let data = JSON.stringify(medicion);
+          
+          let config = {
+            method: 'post',
+            maxBodyLength: Infinity,
+            url: 'https://localhost:7072/api/medicion',
+            headers: { 
+              'Content-Type': 'application/json'
+            },
+            data : data
+          };
+          
+          axios.request(config)
+          .then((response) => {
+            console.log(JSON.stringify(response.data));
+            console.log("Medidas recibidas");
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+
           console.log(JSON.stringify(response.data));
+          hayError = false;
+          setUsuarios([...usuarios, usuario]);
+          setMensaje("Usuario agregado con Exito!");
+          console.log(usuario);
+          setUsuario({ estadoMembresia: 1 });
+          setContadorModal(0);
+          setMostrarMensaje(true);
+          setTimeout(() => {
+            setMostrarMensaje(false);
+          }, 1000);
         })
         .catch((error) => {
-
-          console.log("ERROR------------------");
+          console.log(error);
         });
     }
-
-    setUsuarios([...usuarios, usuario]);
-    setMensaje("Usuario agregado con Exito!");
-    console.log(usuario);
-    setUsuario({ estadoMembresia: 1 });
-    setMostrarMensaje(true);
-    setTimeout(() => {
-      setContadorModal(0);
-      setMostrarMensaje(false);
-    }, 1000);
   };
   const actualizador = (i) => {
     setContadorModal(contadorModal + i);

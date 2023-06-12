@@ -19,34 +19,35 @@ const Membresia = ({usuario, onClickAvance, onClose, onAddTrainer }) => {
 
     const obtenerEspecialidades = async () => {
       try {
-        // Realizar la petición a la API o a la base de datos para obtener los Productos
+        // Realizar la petición a la API o a la base de datos para obtener los Especialidades
         const response = await fetch("https://localhost:7072/api/especialidad");
         const data = await response.json();
         setEspecialidades(data);
       } catch (error) {
-        console.error("Error al obtener los Productos:", error);
+        console.error("Error al obtener los Especialidades:", error);
       }
     }
 
     const obtenerModalidades = async () => {
       try {
-        //TODO Usar el API Modalidades
+        // Realizar la petición a la API o a la base de datos para obtener los Especialidades
       } catch (error) {
-        console.error("Error al obtener los Productos:", error);
+        console.error("Error al obtener los Especialidades:", error);
       }
     }
 
     const obtenerEntrenadores = async () => {
       try {
-        // Realizar la petición a la API o a la base de datos para obtener los Productos
+        // Realizar la petición a la API o a la base de datos para obtener los Entrenadores
         const response = await fetch("https://localhost:7072/api/Entrenador");
         const data = await response.json();
         setEntrenadores(data); // Asignar los entrenadores al estado
       } catch (error) {
-        console.error("Error al obtener los Productos:", error);
+        console.error("Error al obtener los Entrenadores:", error);
       }
     }
 
+    obtenerModalidades();
     obtenerEspecialidades();
     obtenerEntrenadores();
   }, []); // El segundo argumento es un arreglo vacío, esto indica que solo se ejecutará una vez al cargar el componente
@@ -59,6 +60,12 @@ const Membresia = ({usuario, onClickAvance, onClose, onAddTrainer }) => {
   const handlemodalidadChange = (event) => {
     setmodalidad(event.target.value);
     usuario.modalidad = event.target.value;
+    let mod = modalidades.find( m => {
+      return m.nombre === event.target.value
+    });
+    if(mod){
+      usuario.modalidadPrecio = mod.precio;
+    }
   };
 
   const handleEntrenador = (event) => {

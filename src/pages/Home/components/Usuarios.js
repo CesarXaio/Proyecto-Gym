@@ -5,10 +5,25 @@ const Usuarios = ({ usuario, key }) => {
   const enviarCaja = () => {
     console.log("Enviando a Caja"); // EN PROCESO
     console.log(usuario);
-    let a = 11000;
-    let b = a / 11;
-    console.log(b);
-    //setContadorModal(contadorModal + i);
+    let membresiaCaja = {
+      descripcion: `Membresia ${usuario.modalidad}`,
+      modalidad: usuario.modalidad,
+      precio: usuario.modalidadPrecio,
+      cantidad: 1,
+      iva_10: usuario.modalidadPrecio / 11,
+      iva_5: null,
+      imagen: "./images/ilustracion.png"
+    }
+
+    let clienteCaja = {
+      nombre: usuario.name,
+      ci: usuario.cedula,
+      telefono: usuario.telefono,
+      ruc: usuario.ruc,
+    }
+
+    localStorage.setItem("membresiaCaja", JSON.stringify(membresiaCaja));
+    localStorage.setItem("clienteCaja", JSON.stringify(clienteCaja));
   };
   const checkEstadoMembresia = (estado) => {
     if (estado === 0) {
