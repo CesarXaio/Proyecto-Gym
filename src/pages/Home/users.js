@@ -24,7 +24,7 @@ const Users = () => {
     const obtenerClientes = async () => {
       try {
         // Realizar la petición a la API o a la base de datos para obtener los Clientes
-        const response = await fetch("https://localhost:7072/api/cliente");
+        const response = await fetch("https://localhost:7072/api/clientedata");
         const data = await response.json();
         const clientesData =
           data.map((c) => {
@@ -127,7 +127,7 @@ const Users = () => {
       let config = {
         method: 'post',
         maxBodyLength: Infinity,
-        url: 'https://localhost:7072/api/cliente',
+        url: 'https://localhost:7072/api/clientedata',
         headers: {
           'Content-Type': 'application/json'
         },
@@ -159,7 +159,7 @@ const Users = () => {
           });
 
           console.log(JSON.stringify(response.data));
-          hayError = false;
+          
           setUsuarios([...usuarios, usuario]);
           setMensaje("Usuario agregado con Exito!");
           console.log(usuario);

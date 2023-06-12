@@ -6,6 +6,10 @@ const Sidebar = ({ children }) => {
   const toggle = () => setIsOpen(isOpen);
   const menuItem = [
     {
+      path: "/resumen",
+      icon: <img src="./iconos/arqueo.png" alt="Icono de tienda" />,
+    },
+    {
       path: "/store",
       icon: <img src="./iconos/tienda.png" alt="Icono de tienda" />,
     },
@@ -27,9 +31,9 @@ const Sidebar = ({ children }) => {
     <div className="container">
       <div style={{ width: isOpen ? "150px" : "20px" }} className="sidebar">
         <div className="top_section">
-          <NavLink to="/resumen" >
+          
             <img src="/images/Ilustracion.png" alt="Logo de la pagina" style={{ width: '114px', height: '114px' }} />
-          </NavLink>
+          
           <div style={{ marginLeft: isOpen ? "50px" : "0px" }} className="bars"></div>
         </div>
         {menuItem.map((item, index) => (
