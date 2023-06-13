@@ -35,7 +35,28 @@ const Resumen = () => {
       }
     };
 
-    obtenerEstado(); // Llamar a la función para obtener los Productos al cargar el componente
+    const obtenerResumen = async () => {
+      try {
+        const response = await fetch("https://localhost:7072/api/resumen");
+        const data = await response.json();
+        const resumen = data.map(d => {
+          return {
+            nombre: d.nombre_cliente,
+            descripcion: d.descripcion,
+            valorTotal: d.valor_total
+          }
+        })
+
+        console.log(resumen);
+        setTablaDatos(resumen)
+        
+      } catch (error) {
+        console.error("Error al obtener los resumen:", error);
+      }
+    };
+
+    obtenerEstado();
+    obtenerResumen();  // Llamar a la función para obtener los Productos al cargar el componente
   }, []); // El segundo argumento es un arreglo vacío, esto indica que solo se ejecutará una vez al cargar el componente
 
   const abrirCaja = async () => {
@@ -102,12 +123,7 @@ const Resumen = () => {
 
       axios.request(config)
         .then((response) => {
-          setTablaDatos([
-            { nombre: "Producto 1", descripcion: "Descripción 1", valorTotal: 100 },
-            { nombre: "Producto 2", descripcion: "Descripción 2", valorTotal: 200 },
-            { nombre: "Producto 3", descripcion: "Descripción 3", valorTotal: 300 },
-            // Agrega los demás datos de la tabla aquí
-          ]);
+          setTablaDatos([])
           console.log(JSON.stringify(response.data));
           setTimeout(() => {
             setEstadoCaja(false);
