@@ -1,113 +1,51 @@
-import React, { useState, useEffect } from "react";
-import "./Medidas.css"
+import React, { useState } from "react";
+import "././DetallesUser.css";
 
-const DetallesUser = ({usuario, onClickAvance, onClose, onAddUser }) => {
-  const [altura, setaltura] = useState(usuario.altura);
-  const [peso, setpeso] = useState(usuario.peso);
-  const [cintura, setcintura] = useState(usuario.cintura);
-  const [pecho, setpecho] = useState(usuario.pecho);
-  const [cadera, setcadera] = useState(usuario.cadera);
-  const [edad, setedad] = useState(usuario.edad);
-
-  const handlealturaChange = (event) => {
-    setaltura(parseFloat(event.target.value));
-    usuario.altura = event.target.value;
-  };
-
-  const handlepesoChange = (event) => {
-    setpeso(parseFloat(event.target.value));
-    usuario.peso = event.target.value;
-  };
-
-  const handlcinturaChange = (event) => {
-    setcintura(parseFloat(event.target.value));
-    usuario.cintura = event.target.value;
-  };
-
-  const handlepechoChange = (event) => {
-    setpecho(parseFloat(event.target.value));
-    usuario.pecho = event.target.value;
-  };
-  const handlecaderaChange = (event) => {
-    setcadera(parseFloat(event.target.value));
-    usuario.cadera = event.target.value;
-  };
-  const handledadChange = (event) => {
-    setedad(parseFloat(event.target.value));
-    usuario.edad = event.target.value;
-  }
+const DetallesUser = ({usuario, onClickAvance, onClose, onAddTrainer })=> {
 
   return (
     <>
       <div className="modal-overlay">
-        <div className="modalUser">
-          <div className="modal-body">
-            <div>
-              <input
-                className="Input-container-fiscal"
-                classaltura="Input-container"
-                // id="cedula"
-                altura="altura"
-                type="text"
-                placeholder="Altura"
-                value={altura}
-                onChange={handlealturaChange}
-              />
-              <input
-                className="Input-container-fiscal"
-                classaltura="Input-container"
-                // id="cedula"
-                altura="altura"
-                type="text"
-                placeholder="Peso"
-                value={peso}
-                onChange={handlepesoChange}
-              />
-              <input
-                className="Input-container-fiscal"
-                classaltura="Input-container"
-                type="text"
-                // id="cedula"
-                placeholder="Cintura"
-                value={cintura}
-                onChange={handlcinturaChange}
-              />
-              <input
-                className="Input-container-fiscal"
-                classaltura="Input-container"
-                type="text"
-                // id="cedula"
-                placeholder="Pecho"
-                value={pecho}
-                onChange={handlepechoChange}
-              />
-              <input
-                className="Input-container-fiscal"
-                classaltura="Input-container"
-                // id="cedula"
-                altura="altura"
-                type="text"
-                placeholder="cadera"
-                value={cadera}
-                onChange={handlecaderaChange}
-              />
-              <input
-                className="Input-container-fiscal"
-                classaltura="Input-container"
-                // id="cedula"
-                altura="altura"
-                type="text"
-                placeholder="edad"
-                value={edad}
-                onChange={handledadChange}
-              />
-            </div>
-            <div className="button-container">
+        <div className="modalUserSimpleDetalle">
+          <div className="modal-body-User">
+              <div className="contenedorDetalle">
+                <h3 className="tituloDetalle">fecha</h3>
+                <h3 className="tituloDetalle">altura</h3>
+                <h3 className="tituloDetalle">peso</h3>
+                <h3 className="tituloDetalle">cintura</h3>
+                <h3 className="tituloDetalle">pecho</h3>
+                <h3 className="tituloDetalle">cadera</h3>
+              </div>
+              <div className="tarjetasDetalle">
+                <div className="elementosDetalles">{usuario.altura}</div>
+                <div className="elementosDetalles">{usuario.altura}</div>
+                <div className="elementosDetalles">{usuario.peso}</div>
+                <div className="elementosDetalles">{usuario.cintura}</div>
+                <div className="elementosDetalles">{usuario.pecho}</div>
+                <div className="elementosDetalles">{usuario.cadera}</div> 
+              </div>
+              <div className="tarjetasDetalle">
+                <div className="elementosDetalles">{usuario.altura}</div>
+                <div className="elementosDetalles">{usuario.altura}</div>
+                <div className="elementosDetalles">{usuario.peso}</div>
+                <div className="elementosDetalles">{usuario.cintura}</div>
+                <div className="elementosDetalles">{usuario.pecho}</div>
+                <div className="elementosDetalles">{usuario.cadera}</div> 
+              </div>
+              <div className="tarjetasDetalle">
+                <div className="elementosDetalles">{usuario.altura}</div>
+                <div className="elementosDetalles">{usuario.altura}</div>
+                <div className="elementosDetalles">{usuario.peso}</div>
+                <div className="elementosDetalles">{usuario.cintura}</div>
+                <div className="elementosDetalles">{usuario.pecho}</div>
+                <div className="elementosDetalles">{usuario.cadera}</div> 
+              </div>
+              <div className="button-container">
               <a id="boton-off" onClick={() => {onClickAvance(-1);}}>
-                anterior
+                cancelar
               </a>
-              <button id="boton-ok" onClick={() => { onAddUser(); }}>
-                guardar
+              <button id="boton-ok" onClick={() => {}}>
+                nueva 
               </button>
             </div>
           </div>

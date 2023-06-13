@@ -10,13 +10,12 @@ import Medidas from "./components/modalUsers/Medidas";
 import Membresia from "./components/modalUsers/Membresia";
 import ModalUser from "./components/modalUsers/ModalUser";
 import Mensaje from "../../Confirmacion/Mensaje";
-import DetallesUser from "./components/modalUsers/DetallesUser";
+
 
 
 const Users = () => {
   const [usuarios, setUsuarios] = useState([]);
   const [contadorModal, setContadorModal] = useState(0);
-  const [contadorModalDetalle, setContadorModalDetalle] = useState(0);
   const [usuario, setUsuario] = useState({ estadoMembresia: 1 });
   const [mostrarMensaje, setMostrarMensaje] = useState(false);
   const [mensaje, setMensaje] = useState("");
@@ -161,7 +160,13 @@ const Users = () => {
           });
 
           console.log(JSON.stringify(response.data));
-          setUsuarios([...usuarios, usuario]);
+
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+    setUsuarios([...usuarios, usuario]);
           setMensaje("Usuario agregado con Exito!");
           console.log(usuario);
           setUsuario({ estadoMembresia: 1 });
@@ -170,19 +175,11 @@ const Users = () => {
           setTimeout(() => {
             setMostrarMensaje(false);
           }, 1000);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }
   };
   const actualizador = (i) => {
     setContadorModal(contadorModal + i);
   };
-  const actualizadorDetalles = (b) => {
-    console.log("hola"+contadorModalDetalle)
-    setContadorModalDetalle(contadorModalDetalle + b);
-  };
+
   
 
   
@@ -190,9 +187,6 @@ const Users = () => {
     <div className="Coach-container">
       <div className="boton-container">
         <Boton palabra="Agregar" onClick={() => { actualizador(1); }} />
-      </div>
-      <div className="boton-container">
-        <Boton palabra="detalles" onClick={() => { actualizadorDetalles(1); }} />
       </div>
 
       <div className="contenedorTitulos">
@@ -220,9 +214,6 @@ const Users = () => {
       )}
       <Mensaje mensaje={mensaje} mostrar={mostrarMensaje} />
 
-      {contadorModalDetalle === 1 && (
-        <DetallesUser usuario={usuario} onClickAvance={actualizadorDetalles(1)}/>
-      )}
     </div>
   );
 };
