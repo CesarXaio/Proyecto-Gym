@@ -8,6 +8,8 @@ const Resumen = () => {
   const [mostrarArqueo, setMostrarArqueo] = useState(false);
   const [arqueo, setArqueo] = useState({});
   const formattedMontoCaja = montoCaja.toLocaleString();
+  const [tablaDatos, setTablaDatos] = useState([]);
+
 
   useEffect(() => {
     const obtenerEstado = async () => {
@@ -33,7 +35,28 @@ const Resumen = () => {
       }
     };
 
-    obtenerEstado(); // Llamar a la función para obtener los Productos al cargar el componente
+    const obtenerResumen = async () => {
+      try {
+        const response = await fetch("https://localhost:7072/api/resumen");
+        const data = await response.json();
+        const resumen = data.map(d => {
+          return {
+            nombre: d.nombre_cliente,
+            descripcion: d.descripcion,
+            valorTotal: d.valor_total
+          }
+        })
+
+        console.log(resumen);
+        setTablaDatos(resumen)
+        
+      } catch (error) {
+        console.error("Error al obtener los resumen:", error);
+      }
+    };
+
+    obtenerEstado();
+    obtenerResumen();  // Llamar a la función para obtener los Productos al cargar el componente
   }, []); // El segundo argumento es un arreglo vacío, esto indica que solo se ejecutará una vez al cargar el componente
 
   const abrirCaja = async () => {
@@ -100,6 +123,7 @@ const Resumen = () => {
 
       axios.request(config)
         .then((response) => {
+          setTablaDatos([])
           console.log(JSON.stringify(response.data));
           setTimeout(() => {
             setEstadoCaja(false);
@@ -129,7 +153,7 @@ const Resumen = () => {
           }
           <div className="divider"></div>
           {mostrarArqueo &&
-            <div>
+            <div className="Arqueo-Final">
               <h4>Monto Inicial: {arqueo.monto_inicial} G$</h4>
               <h4>Monto Final: {arqueo.monto_actual} G$</h4>
               <p className="Apertura-Caja">Fecha {arqueo.fecha}</p>
@@ -147,6 +171,24 @@ const Resumen = () => {
           </button>
         </div>
       </div>
+      <table className="tabla-datos">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Valor Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          {tablaDatos.map((dato, index) => (
+            <tr key={index}>
+              <td>{dato.nombre}</td>
+              <td>{dato.descripcion}</td>
+              <td>{dato.valorTotal}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };

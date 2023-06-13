@@ -1,69 +1,87 @@
-.ventana-clientes-modal {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-  }
+.ventana-clientes-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+}
+
+.ventana-clientes {
+  width: 500px;
+  padding: 20px;
+  background-color: #ffffff41;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.Select {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  color: #333333;
+  margin-bottom: 20px;
+}
+
+.Clientes-pagar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Clientes-pagar label {
+  display: flex;
+  align-items: center;
+  color: #333333;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.Clientes-pagar input[type="radio"] {
+  margin-right: 10px;
+}
+
+.Boton-Cli {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.Boton-Cli button {
+  flex-basis: 48%;
+  margin: 20px;
+}
+
+.Aceptar {
+  background-color: #42D976;
+  border: 4px solid #42D976;
+  border-radius: 15px;
   
-  .ventana-clientes-overlay {
-    background-color: rgba(0, 0, 0, 0.5);
-  }
+  padding: 10px 20px;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.Cerrar {
   
-  .ventana-clientes-container {
-    width: 500px;
-    height: 300px;
-    padding: 20px;
-    background-color: #ffffff;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  }
-  
-  .Clientes-pagar {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 20px;
-  }
-  
-  .Clientes-pagar label {
-    display: flex;
-    align-items: center;
-    color: #333333;
-    font-size: 18px;
-  }
-  
-  .Clientes-pagar input[type="radio"] {
-    margin-right: 10px;
-  }
-  
-  .Boton-Cli {
-    background: #42D976;
-    border: 4px solid #42D976;
-    border-radius: 15px;
-    padding: 10px 20px;
-    color: #ffffff;
-    font-weight: bold;
-    font-size: 18px;
-    margin-top: 20px;
-    cursor: pointer;
-  }
-  
-  .Select {
+    background-color: transparent;
+    border: none;
+    padding: 0;
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 600;
-    font-size: 50px;
-    line-height: 75px;
-    color: #FFFFFF;
-    margin-bottom: 20px;
-  }
-  
+    font-size: 16px;
+    line-height: 24px;
+    color: #b5a7a7c3;
+}
