@@ -135,7 +135,9 @@ const Users = () => {
         data: data
       };
 
-      axios.request(config)
+      
+ 
+axios.request(config)
         .then((response) => {
           console.log("Enviando medidas");
           let data = JSON.stringify(medicion);
@@ -160,7 +162,7 @@ const Users = () => {
           });
 
           console.log(JSON.stringify(response.data));
-          hayError = false;
+          
           setUsuarios([...usuarios, usuario]);
           setMensaje("Usuario agregado con Exito!");
           console.log(usuario);
@@ -170,6 +172,11 @@ const Users = () => {
           setTimeout(() => {
             setMostrarMensaje(false);
           }, 1000);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   };
   const actualizador = (i) => {
     setContadorModal(contadorModal + i);
