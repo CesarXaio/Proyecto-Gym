@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import './Pay.css'
-import Store from "./Store";
-import Tarjetas from "./components/Tarjetas";
+import VentanaClientes from "./components/VentanaClientes"; // Importa el componente VentanaClientes
 import Mensaje from "../../Confirmacion/Mensaje";
 import axios from 'axios';
 
@@ -13,13 +12,16 @@ const Pay = (props) => {
   const [mostrarMensaje, setMostrarMensaje] = useState(false);
   const [membresiaCaja, setMembresiaCaja] = useState([]);
   const [clienteCaja, setClienteCaja] = useState([]);
+  const [mostrarVentanaClientes, setMostrarVentanaClientes] = useState(false);
+  const [clientes, setClientes] = useState([]); // Estado para almacenar los clientes de la base de datos
+
 
   useEffect(() => {
     const productosGuardados = JSON.parse(localStorage.getItem("productosCaja"));
     if (productosGuardados) {
       setProductosCaja(productosGuardados);
     }
-    
+
     const membresiaGuardado = JSON.parse(localStorage.getItem("membresiaCaja"));
     if (membresiaGuardado) {
       setMembresiaCaja(membresiaGuardado);
@@ -36,7 +38,37 @@ const Pay = (props) => {
     (membresiaCaja.precio ? membresiaCaja.precio : 0);
   const iva_10 = total / 11;
   //const subtotal = total - iva_10;
+  const handleEliminar = () => {
+    localStorage.removeItem("productosCaja");
+    localStorage.removeItem("membresiaCaja");
+    localStorage.removeItem("clienteCaja");
+    setProductosCaja([]);
+    setMembresiaCaja([]);
+    setClienteCaja([]);
+  };
+
+
+  const cerrarVentanaClientes = () => {
+    setMostrarVentanaClientes(false);
+  };
+
+  const abrirVentanaClientes = () => {
+    // Realizar solicitud a la API para obtener los clientes de la base de datos
+    axios.get('https://localhost:7072/api/clientedata')
+      .then((response) => {
+        setClientes(response.data);
+        setMostrarVentanaClientes(true);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   const handleAgregarClick = () => {
+    if (!clienteCaja.ci) {
+      abrirVentanaClientes();
+      return;
+    }
 
     let numeroFactura = JSON.parse(localStorage.getItem("numeroFactura"));
 
@@ -48,7 +80,7 @@ const Pay = (props) => {
     localStorage.setItem("numeroFactura", JSON.stringify(numeroFactura));
 
     let factura = {
-      ci_cliente: clienteCaja.ci ? clienteCaja.ci : "121212", //TO DO Poder elegir el ci del cliente
+      ci_cliente: clienteCaja.ci ? clienteCaja.ci : "5255", //TO DO Poder elegir el ci del cliente
       fecha: "2022-06-09", //TO DO La fecha de hoy
       timbrado: "753951", // Tal vez el timbrado dejar
       numero: numeroFactura,
@@ -97,22 +129,47 @@ const Pay = (props) => {
 
           if (JSON.stringify(respuesta) == JSON.parse(localStorage.getItem("numeroFactura"))) {
 
-            let numeroFactura = JSON.parse(localStorage.getItem("numeroFactura"));
-            console.log(`Venta efectuada - N° Factura: ${numeroFactura} - Total: ${total} `);
-            console.log(JSON.stringify(respuesta));
+            let data = JSON.stringify({
+              "numero_factura": parseInt(JSON.stringify(respuesta)),
+              "fecha": "2023-06-12T00:00:00",
+              "hora": "2023-06-12T16:00:00"
+            });
 
-            setMensaje(`Venta efectuada - N° Factura: ${numeroFactura} - Total: ${total} `);
-            setMostrarMensaje(true);
-            setTimeout(() => {
-              setMostrarMensaje(false);
-            }, 3000);
+            let config = {
+              method: 'post',
+              maxBodyLength: Infinity,
+              url: 'https://localhost:7072/api/movimiento',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              data: data
+            };
 
-            localStorage.setItem("productosCaja", JSON.stringify([]));
-            localStorage.removeItem("membresiaCaja");
-            localStorage.removeItem("clienteCaja");
-            setProductosCaja([]);
-            setMembresiaCaja([]);
-            setClienteCaja([]);
+            axios.request(config)
+              .then((response) => {
+                console.log(JSON.stringify(response.data));
+
+                let numeroFactura = JSON.parse(localStorage.getItem("numeroFactura"));
+                console.log(`Venta efectuada - N° Factura: ${numeroFactura} - Total: ${total} `);
+                console.log(JSON.stringify(respuesta));
+
+                setMensaje(`Venta efectuada - N° Factura: ${numeroFactura} - Total: ${total} `);
+                setMostrarMensaje(true);
+                setTimeout(() => {
+                  setMostrarMensaje(false);
+                }, 3000);
+
+                localStorage.setItem("productosCaja", JSON.stringify([]));
+                localStorage.removeItem("membresiaCaja");
+                localStorage.removeItem("clienteCaja");
+                setProductosCaja([]);
+                setMembresiaCaja([]);
+                setClienteCaja([]);
+
+              })
+              .catch((error) => {
+                console.log(error);
+              });
           }
         })
         .catch((error) => {
@@ -134,6 +191,12 @@ const Pay = (props) => {
         </div>
 
       ))}
+      {mostrarVentanaClientes && (
+        <VentanaClientes
+          clientes={clientes}
+          onClose={cerrarVentanaClientes}
+        />
+      )}
       {
         membresiaCaja.precio &&
         <div className="Prod-Caja" key="membresia">
@@ -153,7 +216,7 @@ const Pay = (props) => {
       </div>
       <div className="Suma-Total">Total: {total} G$</div>
       <div className="BotonesPagar">
-        <button className="Boton Cancelar">Cancelar</button>
+        <button className="Boton Cancelar" onClick={handleEliminar}>Cancelar</button>
         <button className="Boton Pagar" onClick={handleAgregarClick}>Pagar</button>
 
       </div>

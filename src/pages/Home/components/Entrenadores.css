@@ -176,6 +176,7 @@
 }
 .btn-editar {
   background-color: transparent;
+  color:#E9F2FD; 
   border: none;
   outline: none;
   box-sizing: border-box;
@@ -204,6 +205,7 @@
 
 .btn-eliminar {
   background-color: transparent;
+  color:#E9F2FD;
   border: none;
   outline: none;
   height: 3rem;

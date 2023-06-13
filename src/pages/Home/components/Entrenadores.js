@@ -4,6 +4,9 @@ import axios from "axios";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import ModalEditar from "./modalEditar/ModalEditar";
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
+
 
 const Entrenadores = (props) => {
   const { nombre, ci, telefono, especialidad } = props;
@@ -41,16 +44,30 @@ const Entrenadores = (props) => {
     setModalVisible(false);
     setEntrenadorEditando(null);
   };
-  const handleEliminarEntrenador = async (entrenador) => {
-    try {
-      await axios.delete(`https://localhost:7072/api/Entrenador/${entrenador.ci}`);
-      
-      // Eliminar el entrenador del estado "entrenadores"
-      setEntrenadores(entrenadores.filter(e => e.ci !== entrenador.ci));
-      
-    } catch (error) {
-      console.error("Error al eliminar el entrenador:", error);
-    }
+  const handleEliminarEntrenador = (entrenador) => {
+    setEntrenadorSeleccionado(entrenador);
+    confirmAlert({
+      title: 'Confirmar eliminación',
+      message: `¿Estás seguro de que deseas eliminar al entrenador ${entrenador.nombre}?`,
+      buttons: [
+        {
+          label: 'Eliminar',
+          onClick: () => {
+            axios.delete(`https://localhost:7072/api/Entrenador/${entrenador.ci}`)
+              .then(() => {
+                setEntrenadores(entrenadores.filter(e => e.ci !== entrenador.ci));
+              })
+              .catch((error) => {
+                console.error("Error al eliminar el entrenador:", error);
+              });
+          }
+        },
+        {
+          label: 'Cancelar',
+          onClick: () => {}
+        }
+      ]
+    });
   };
 
 
