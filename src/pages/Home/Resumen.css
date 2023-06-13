@@ -110,3 +110,29 @@ p {
   border: 4px solid #42D976;
   border-radius: 15px;
 }
+.tabla-datos {
+  margin: 0 auto;
+  border-collapse:collapse;
+  width: 75%;
+  
+}
+
+.tabla-datos th,
+.tabla-datos td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  background-color: #575757;
+}
+
+.tabla-datos th {
+  background: #575757;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-size: 20px;
+  color: #E9F2FD;
+  
+}
+.Arqueo-Final{
+  margin-top: -50px;
+}

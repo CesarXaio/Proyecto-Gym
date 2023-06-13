@@ -67,7 +67,7 @@ const Pay = (props) => {
   const handleAgregarClick = () => {
     if (!clienteCaja.ci) {
       abrirVentanaClientes();
-      return;
+      return ;
     }
 
     let numeroFactura = JSON.parse(localStorage.getItem("numeroFactura"));
@@ -195,6 +195,7 @@ const Pay = (props) => {
         <VentanaClientes
           clientes={clientes}
           onClose={cerrarVentanaClientes}
+          Cliente={clienteCaja}
         />
       )}
       {
@@ -209,6 +210,8 @@ const Pay = (props) => {
         </div>
       }
       <div className="Detalles-Pago">Detalles de Pago. ci: {clienteCaja.ci}
+          
+          
         <div>
           <p className="SubTotal">Subtotal {total}G$</p>
           <p className="Iva">IVA (10%) {iva_10} G$</p>

@@ -8,6 +8,8 @@ const Resumen = () => {
   const [mostrarArqueo, setMostrarArqueo] = useState(false);
   const [arqueo, setArqueo] = useState({});
   const formattedMontoCaja = montoCaja.toLocaleString();
+  const [tablaDatos, setTablaDatos] = useState([]);
+
 
   useEffect(() => {
     const obtenerEstado = async () => {
@@ -100,6 +102,12 @@ const Resumen = () => {
 
       axios.request(config)
         .then((response) => {
+          setTablaDatos([
+            { nombre: "Producto 1", descripcion: "Descripción 1", valorTotal: 100 },
+            { nombre: "Producto 2", descripcion: "Descripción 2", valorTotal: 200 },
+            { nombre: "Producto 3", descripcion: "Descripción 3", valorTotal: 300 },
+            // Agrega los demás datos de la tabla aquí
+          ]);
           console.log(JSON.stringify(response.data));
           setTimeout(() => {
             setEstadoCaja(false);
@@ -129,7 +137,7 @@ const Resumen = () => {
           }
           <div className="divider"></div>
           {mostrarArqueo &&
-            <div>
+            <div className="Arqueo-Final">
               <h4>Monto Inicial: {arqueo.monto_inicial} G$</h4>
               <h4>Monto Final: {arqueo.monto_actual} G$</h4>
               <p className="Apertura-Caja">Fecha {arqueo.fecha}</p>
@@ -147,6 +155,24 @@ const Resumen = () => {
           </button>
         </div>
       </div>
+      <table className="tabla-datos">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Valor Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          {tablaDatos.map((dato, index) => (
+            <tr key={index}>
+              <td>{dato.nombre}</td>
+              <td>{dato.descripcion}</td>
+              <td>{dato.valorTotal}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };
