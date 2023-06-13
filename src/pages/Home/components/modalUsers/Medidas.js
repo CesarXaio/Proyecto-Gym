@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Medidas.css"
 
 const Medidas = ({usuario, onClickAvance, onClose, onAddUser }) => {

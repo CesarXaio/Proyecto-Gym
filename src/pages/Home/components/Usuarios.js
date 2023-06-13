@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
 import './TarjetaUser.css'
+import DetallesUser from "./modalUsers/DetallesUser"
+
 const Usuarios = ({ usuario, key }) => {
 
   const enviarCaja = () => {
@@ -36,19 +38,27 @@ const Usuarios = ({ usuario, key }) => {
       return "invalida"
     }
   };
-
+  const [contadorModalDetalle, setContadorModalDetalle] = useState(0);
+  const actualizadorDetalles = (b) => {
+    setContadorModalDetalle(contadorModalDetalle + b);
+  };
   return (
     <div>
       <div className="tarjetas">
         <div className="nombreApellido">
-          <div className="elementoTarjeta">{usuario.name}</div>
-          <div className="elementoTarjeta">{usuario.lastname}</div>
+          <button className="elementoTarjeta botonTarjeta" onClick={() => { actualizadorDetalles(1); }}>
+            <div className="elementoTarjeta">{usuario.name}</div>
+            <div className="elementoTarjeta">{usuario.lastname}</div>
+          </button>
         </div>
         <div className="elementoTarjeta separacion">{usuario.cedula}</div>
         <div className="elementoTarjeta separacion">{usuario.especialidad}</div>
         <div className="elementoTarjeta separacion">{usuario.modalidad}</div>
         <div className="elementoTarjeta separacion">{checkEstadoMembresia(usuario.estadoMembresia)}</div>
       </div>
+      {contadorModalDetalle === 1 && (
+      <DetallesUser usuario={usuario} onClickAvance={actualizadorDetalles}/>
+    )}
     </div>
   )
 }
