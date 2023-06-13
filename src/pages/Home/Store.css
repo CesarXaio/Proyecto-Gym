@@ -1,0 +1,23 @@
+.tienda{
+    margin-top: 50px;
+}
+.Bebidas-text{
+    padding-left: 20px;
+}
+.BotonProductosStore{
+    margin-left: 1200px;
+    background: #42D976;
+    color: #E9F2FD;
+    height: 70px;
+    width: 130px;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+
