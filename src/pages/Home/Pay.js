@@ -15,13 +15,13 @@ const Pay = (props) => {
   const [mostrarVentanaClientes, setMostrarVentanaClientes] = useState(false);
   const [clientes, setClientes] = useState([]); // Estado para almacenar los clientes de la base de datos
 
-  
+
   useEffect(() => {
     const productosGuardados = JSON.parse(localStorage.getItem("productosCaja"));
     if (productosGuardados) {
       setProductosCaja(productosGuardados);
     }
-    
+
     const membresiaGuardado = JSON.parse(localStorage.getItem("membresiaCaja"));
     if (membresiaGuardado) {
       setMembresiaCaja(membresiaGuardado);
@@ -63,13 +63,13 @@ const Pay = (props) => {
         console.log(error);
       });
   };
-  
+
   const handleAgregarClick = () => {
     if (!clienteCaja.ci) {
       abrirVentanaClientes();
       return;
     }
-  
+
     let numeroFactura = JSON.parse(localStorage.getItem("numeroFactura"));
 
     if (numeroFactura === null) {
@@ -129,22 +129,47 @@ const Pay = (props) => {
 
           if (JSON.stringify(respuesta) == JSON.parse(localStorage.getItem("numeroFactura"))) {
 
-            let numeroFactura = JSON.parse(localStorage.getItem("numeroFactura"));
-            console.log(`Venta efectuada - N° Factura: ${numeroFactura} - Total: ${total} `);
-            console.log(JSON.stringify(respuesta));
+            let data = JSON.stringify({
+              "numero_factura": parseInt(JSON.stringify(respuesta)),
+              "fecha": "2023-06-12T00:00:00",
+              "hora": "2023-06-12T16:00:00"
+            });
 
-            setMensaje(`Venta efectuada - N° Factura: ${numeroFactura} - Total: ${total} `);
-            setMostrarMensaje(true);
-            setTimeout(() => {
-              setMostrarMensaje(false);
-            }, 3000);
+            let config = {
+              method: 'post',
+              maxBodyLength: Infinity,
+              url: 'https://localhost:7072/api/movimiento',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              data: data
+            };
 
-            localStorage.setItem("productosCaja", JSON.stringify([]));
-            localStorage.removeItem("membresiaCaja");
-            localStorage.removeItem("clienteCaja");
-            setProductosCaja([]);
-            setMembresiaCaja([]);
-            setClienteCaja([]);
+            axios.request(config)
+              .then((response) => {
+                console.log(JSON.stringify(response.data));
+
+                let numeroFactura = JSON.parse(localStorage.getItem("numeroFactura"));
+                console.log(`Venta efectuada - N° Factura: ${numeroFactura} - Total: ${total} `);
+                console.log(JSON.stringify(respuesta));
+
+                setMensaje(`Venta efectuada - N° Factura: ${numeroFactura} - Total: ${total} `);
+                setMostrarMensaje(true);
+                setTimeout(() => {
+                  setMostrarMensaje(false);
+                }, 3000);
+
+                localStorage.setItem("productosCaja", JSON.stringify([]));
+                localStorage.removeItem("membresiaCaja");
+                localStorage.removeItem("clienteCaja");
+                setProductosCaja([]);
+                setMembresiaCaja([]);
+                setClienteCaja([]);
+
+              })
+              .catch((error) => {
+                console.log(error);
+              });
           }
         })
         .catch((error) => {

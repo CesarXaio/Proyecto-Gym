@@ -16,6 +16,10 @@ const VentanaClientes = ({ clientes, onClose }) => {
   const handleSubmit = () => {
     // Aquí puedes realizar las acciones necesarias con el cliente seleccionado
     console.log("Cliente seleccionado:", selectedClient);
+    let clienteCaja = {
+      ci: selectedClient
+    }
+    localStorage.setItem("clienteCaja", JSON.stringify(clienteCaja));
     onClose();
   };
 
@@ -30,12 +34,12 @@ const VentanaClientes = ({ clientes, onClose }) => {
       <h2 className="Select">Seleccionar Cliente</h2>
       <ul>
         {clientes.map((cliente) => (
-          <li key={cliente.id}> {/* Agrega la propiedad key con un valor único */}
+          <li key={cliente.ci}> {/* Agrega la propiedad key con un valor único */}
             <label className="Clientes-pagar">
               <input
                 type="radio"
-                value={cliente.id}
-                checked={selectedClient === cliente.id}
+                value={cliente.ci}
+                checked={selectedClient === cliente.ci}
                 onChange={handleClientSelection}
               />
               {cliente.nombre}
