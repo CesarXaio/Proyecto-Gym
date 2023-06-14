@@ -9,8 +9,8 @@ function App() {
   return (
     <div className="App">
 
-      {/*{isAuthenticated ? <Inicio /> : <Login setIsAuthenticated={setIsAuthenticated} />}*/}
-      <Inicio/>
+      {isAuthenticated ? <Inicio /> : <Login setIsAuthenticated={setIsAuthenticated} />}
+      
     </div>
   );
 }
