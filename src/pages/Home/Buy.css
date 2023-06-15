@@ -1,0 +1,93 @@
+.Boton-Comprar-Producto {
+    background-color: lightgreen;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+  }
+.Boton-Pagar-Producto {
+    background-color: lightgreen;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+  }
+  .mostrar-proveedores button {
+    background-color: lightgreen;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+  }
+  
+
+  .tabla-datos {
+    margin: 0 auto;
+    border-collapse:collapse;
+    width: 75%;
+    
+  }
+  
+  .tabla-datos th,
+  .tabla-datos td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    background-color: #575757;
+  }
+  
+  .tabla-datos th {
+    background: #575757;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-size: 20px;
+    color: #E9F2FD;
+    
+  }
+
+  .lista-proveedores {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    background-color: white;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    font-family: Arial, sans-serif;
+  }
+  
+  .lista-proveedores h5 {
+    color: white;
+    background-color: lightgreen;
+    padding: 10px;
+    margin: 0;
+    border-radius: 10px 10px 0 0;
+    font-size: 18px;
+  }
+  
+  .lista-proveedores ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .lista-proveedores li {
+    margin-bottom: 10px;
+  }
+  

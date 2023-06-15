@@ -25,15 +25,25 @@ const Sidebar = ({ children }) => {
       path: "/pay",
       icon: <img src="./iconos/caja.png" alt="Icono de caja" />,
     },
+    {
+      path: "/product",
+
+      icon: <img src="./iconos/productos.png" alt="Icono de tienda" />
+    },
+    {
+      path: "/buy",
+
+      icon: <img src="./iconos/buy.png" alt="Icono de tienda" />
+    },
   ];
 
   return (
     <div className="container">
       <div style={{ width: isOpen ? "150px" : "20px" }} className="sidebar">
         <div className="top_section">
-          
-            <img src="/images/Ilustracion.png" alt="Logo de la pagina" style={{ width: '114px', height: '114px' }} />
-          
+
+          <img src="/images/Ilustracion.png" alt="Logo de la pagina" style={{ width: '114px', height: '114px' }} />
+
           <div style={{ marginLeft: isOpen ? "50px" : "0px" }} className="bars"></div>
         </div>
         {menuItem.map((item, index) => (
