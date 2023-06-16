@@ -4,6 +4,7 @@ import Boton from "./components/Boton";
 import "./components/Boton";
 import "./user.css"
 import axios from "axios";
+import moment from "moment/moment";
 
 import Fiscales from "./components/modalUsers/fiscales";
 import Medidas from "./components/modalUsers/Medidas";
@@ -38,6 +39,7 @@ const Users = () => {
               domicilio: "",
               especialidad: c.membresia.entrenador.especialidad,
               entrenador: c.membresia.entrenador.nombre,
+              entrenador_ci: c.membresia.entrenador.ci,
               estadoMembresia: conversorEstados(c.membresia.estado),
               modalidad: c.membresia.modalidad,
               modalidadPrecio: c.membresia.precio
@@ -85,6 +87,19 @@ const Users = () => {
 
   const handleAddUser = () => {
     //console.log("Entramos para agregar");
+    let fecha_final;
+
+    if (usuario.modalidad === "Diario") {
+      fecha_final = moment().add(1, "day").format("YYYY-MM-DD");
+    }
+
+    if (usuario.modalidad === "Semanal") {
+      fecha_final = moment().add(7, "days").format("YYYY-MM-DD");
+    }
+
+    if (usuario.modalidad === "Mensual") {
+      fecha_final = moment().add(1, "month").format("YYYY-MM-DD");
+    }
     let cliente = {
 
       nombre: `${usuario.name} ${usuario.lastname}`,
@@ -96,8 +111,8 @@ const Users = () => {
         estado: conversorEstadosInt(usuario.estadoMembresia),
         modalidad: usuario.modalidad,
         precio: 0,
-        fecha_inicio: "2023-06-09T00:00:00",
-        fecha_final: "2023-07-09T00:00:00",
+        fecha_inicio: moment().format("YYYY-MM-DD"),
+        fecha_final: fecha_final,
         entrenador: {
           nombre: "",
           ci: usuario.entrenador,
@@ -110,7 +125,7 @@ const Users = () => {
     let medicion = {
       cliente_ci: usuario.cedula,
       entrenador_ci: usuario.entrenador,
-      fecha: "2023-06-09T00:00:00",
+      fecha: moment().format("YYYY-MM-DD"),
       medidas: {
         altura: parseFloat(usuario.altura),
         peso: parseFloat(usuario.peso),
@@ -135,34 +150,34 @@ const Users = () => {
         data: data
       };
 
-      
- 
-axios.request(config)
+
+
+      axios.request(config)
         .then((response) => {
           console.log("Enviando medidas");
           let data = JSON.stringify(medicion);
-          
+
           let config = {
             method: 'post',
             maxBodyLength: Infinity,
             url: 'https://localhost:7072/api/medicion',
-            headers: { 
+            headers: {
               'Content-Type': 'application/json'
             },
-            data : data
+            data: data
           };
-          
+
           axios.request(config)
-          .then((response) => {
-            console.log(JSON.stringify(response.data));
-            console.log("Medidas recibidas");
-          })
-          .catch((error) => {
-            console.log(error);
-          });
+            .then((response) => {
+              console.log(JSON.stringify(response.data));
+              console.log("Medidas recibidas");
+            })
+            .catch((error) => {
+              console.log(error);
+            });
 
           console.log(JSON.stringify(response.data));
-          
+
           setUsuarios([...usuarios, usuario]);
           setMensaje("Usuario agregado con Exito!");
           console.log(usuario);
@@ -182,9 +197,9 @@ axios.request(config)
     setContadorModal(contadorModal + i);
   };
 
-  
 
-  
+
+
   return (
     <div className="Coach-container">
       <div className="boton-container">

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./Resumen.css";
+import moment from "moment/moment";
 
 const Resumen = () => {
   const [montoCaja, setMontoCaja] = useState(100000);
@@ -64,8 +65,8 @@ const Resumen = () => {
     try {
       let data = JSON.stringify({
         "monto_inicial": 100000,
-        "fecha": "2023-06-12T00:00:00",
-        "hora_inicio": "2023-06-12T17:00:00"
+        "fecha": moment().format("YYYY-MM-DD"),
+        "hora_inicio": moment().format("YYYY-MM-DD[T]hh:mm:[00]")
       });
 
       let config = {
@@ -94,15 +95,15 @@ const Resumen = () => {
 
   const cerrarCaja = async () => {
     try {
-      let hora_final = "2023-06-12T18:00:00"; // verificar hora
+      let hora_final = moment().format("YYYY-MM-DD[T]hh:mm:[00]");
 
       const response = await fetch("https://localhost:7072/api/caja");
       const dataEstado = await response.json();
 
       const estadoArqueo = {
-        fecha: dataEstado.fecha,
-        hora_inicio: dataEstado.hora_inicio,
-        hora_final: hora_final,
+        fecha: new Date(dataEstado.fecha).toLocaleDateString(),
+        hora_inicio: new Date(dataEstado.hora_inicio).toLocaleTimeString(),
+        hora_final: new Date(hora_final).toLocaleTimeString(),
         monto_inicial: dataEstado.monto_inicial,
         monto_actual: dataEstado.monto_actual
       }
@@ -157,9 +158,9 @@ const Resumen = () => {
             <div className="Arqueo-Final">
               <h4>Monto Inicial: {arqueo.monto_inicial} G$</h4>
               <h4>Monto Final: {arqueo.monto_actual} G$</h4>
-              <p className="Apertura-Caja">Fecha {arqueo.fecha}</p>
-              <p className="Apertura-Caja">Hora de apertura de caja {arqueo.hora_inicio}</p>
-              <p className="Apertura-Caja">Hora de cierre de caja {arqueo.hora_final}</p>
+              <p className="Apertura-Caja">Fecha: {arqueo.fecha}</p>
+              <p className="Apertura-Caja">Hora de apertura de caja: {arqueo.hora_inicio}</p>
+              <p className="Apertura-Caja">Hora de cierre de caja: {arqueo.hora_final}</p>
             </div>
           }
         </div>

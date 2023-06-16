@@ -3,6 +3,7 @@ import './Pay.css'
 import VentanaClientes from "./components/VentanaClientes"; // Importa el componente VentanaClientes
 import Mensaje from "../../Confirmacion/Mensaje";
 import axios from 'axios';
+import moment from "moment/moment";
 
 
 const Pay = (props) => {
@@ -80,8 +81,8 @@ const Pay = (props) => {
     localStorage.setItem("numeroFactura", JSON.stringify(numeroFactura));
 
     let factura = {
-      ci_cliente: clienteCaja.ci ? clienteCaja.ci : "5255", //TO DO Poder elegir el ci del cliente
-      fecha: "2022-06-09", //TO DO La fecha de hoy
+      ci_cliente: clienteCaja.ci, //TO DO Poder elegir el ci del cliente
+      fecha: moment().format("YYYY-MM-DD"), //TO DO La fecha de hoy
       timbrado: "753951", // Tal vez el timbrado dejar
       numero: numeroFactura,
       total_pagar: null,
@@ -131,8 +132,8 @@ const Pay = (props) => {
 
             let data = JSON.stringify({
               "numero_factura": parseInt(JSON.stringify(respuesta)),
-              "fecha": "2023-06-12T00:00:00",
-              "hora": "2023-06-12T16:00:00"
+              "fecha": moment().format("YYYY-MM-DD"),
+              "hora": moment().format("YYYY-MM-DD[T]hh:mm:[00]")
             });
 
             let config = {

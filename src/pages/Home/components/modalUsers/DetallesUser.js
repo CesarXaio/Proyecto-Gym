@@ -1,25 +1,22 @@
 import React, { useState, useEffect } from "react";
 import "././DetallesUser.css";
+import Medidas from "./Medidas";
+import moment from "moment";
+import axios from "axios";
 
 const DetallesUser = ({ usuario, onClickAvance, onClose, onAddTrainer }) => {
 
 
   const [medidas, setMedidas] = useState([]);
+  const [mostrarMedida, setMostrarMedida] = useState(false);
   useEffect(() => {
     const getMedidas = async () => {
       try {
-        const response = await fetch("https://localhost:44373/api/caja");
+        const response = await fetch(`https://localhost:7072/api/medicion/${usuario.cedula}`);
         const data = await response.json();
-        const medidas = {
-          fecha: data.fecha,
-          hora_inicio: data.hora_inicio,
-          monto_inicial: data.monto_inicial,
-          monto_actual: data.monto_actual,
-          esAbierta: data.abierta
-        }
         setMedidas(data)
       } catch (error) {
-        console.error("Error al obtener los Productos:", error);
+        console.error("Error al obtener los Medidas:", error);
       }
     };
 
@@ -30,33 +27,94 @@ const DetallesUser = ({ usuario, onClickAvance, onClose, onAddTrainer }) => {
 
   const medidasDiv = ((m) => {
     return (
-      <div>
-        <div className="elementoTarjeta separacion">{m.medidas.altura}</div>
-        <div className="elementoTarjeta separacion">{m.medidas.peso}</div>
-        <div className="elementoTarjeta separacion">{m.medidas.cintura}</div>
-        <div className="elementoTarjeta separacion">{m.medidas.pecho}</div>
-        <div className="elementoTarjeta separacion">{m.medidas.cadera}</div>
+      <div className="tarjetasDetalle">
+        <div className="elementosDetalles">{new Date(m.fecha).toLocaleDateString()}</div>
+        <div className="elementosDetalles">{m.medidas.altura}</div>
+        <div className="elementosDetalles">{m.medidas.peso}</div>
+        <div className="elementosDetalles">{m.medidas.cintura}</div>
+        <div className="elementosDetalles">{m.medidas.pecho}</div>
+        <div className="elementosDetalles">{m.medidas.cadera}</div>
       </div>
     )
   })
+
+  const mostrarMedidas = () => {
+    setMostrarMedida(true);
+  }
+
+  const ocultarMedidas = () => {
+    setMostrarMedida(false);
+  }
+
+  const enviarMedidas = () => {
+    //console.log("Entramos para agregar");
+
+    let medicion = {
+      cliente_ci: usuario.cedula,
+      entrenador_ci: usuario.entrenador_ci,
+      fecha: moment().format("YYYY-MM-DD"),
+      medidas: {
+        altura: parseFloat(usuario.altura),
+        peso: parseFloat(usuario.peso),
+        cintura: parseFloat(usuario.cintura),
+        pecho: parseFloat(usuario.pecho),
+        cadera: parseFloat(usuario.cadera),
+        edad: parseFloat(usuario.edad)
+      }
+    }
+
+    let data = JSON.stringify(medicion);
+
+    let config = {
+      method: 'post',
+      maxBodyLength: Infinity,
+      url: 'https://localhost:44373/api/medicion',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      data: data
+    };
+
+    axios.request(config)
+      .then((response) => {
+        console.log(JSON.stringify(response.data));
+        console.log("Medidas recibidas");
+        setMostrarMedida(false);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+  };
 
   return (
     <>
       <div className="modal-overlay">
         <div className="modalUserSimpleDetalle">
           <div className="modal-body-User">
+            <div className="contenedorDetalle">
+              <h3 className="tituloDetalle">fecha</h3>
+              <h3 className="tituloDetalle">altura</h3>
+              <h3 className="tituloDetalle">peso</h3>
+              <h3 className="tituloDetalle">cintura</h3>
+              <h3 className="tituloDetalle">pecho</h3>
+              <h3 className="tituloDetalle">cadera</h3>
+            </div>
             {medidas.map(m => (
               medidasDiv(m)
             )
             )}
             <div className="button-container">
-              <a id="boton-off" onClick={() => {onClickAvance(-1);}}>
+              <a id="boton-off" onClick={() => { onClickAvance(-1); }}>
                 cancelar
               </a>
-              <button id="boton-ok" onClick={() => {}}>
-                nueva 
+              <button id="boton-ok" onClick={() => { }}>
+                nueva
               </button>
             </div>
+            {mostrarMedida && (
+              <Medidas usuario={usuario} onClickAvance={ocultarMedidas} onAddUser={enviarMedidas} />
+            )}
           </div>
         </div>
       </div>
