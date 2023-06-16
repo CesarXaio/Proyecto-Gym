@@ -1,50 +1,68 @@
 .ventana-productos {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 500px;
-    height: 500px;
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
-    z-index: 9999;
-  }
-  
-  .ventana-productos-contenido {
-    padding: 20px;
-  }
-  
-  .ventana-productos h2 {
-    font-size: 20px;
-    margin-bottom: 10px;
-    padding-left: 150px;
-  }
-  
-  .ventana-productos ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .ventana-productos li {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 10px;
-  }
-  
-  .cerrar-ventana {
-    padding-left: 150px;
-    background-color: #eaeaea;
-    border: none;
-    color: #333;
-    padding: 8px 16px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-  }
-  
-  .cerrar-ventana:hover {
-    background-color: #ccc;
-  }
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: 500px;
+  background-color: #d9d9d9;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  z-index: 9999;
+}
+
+.ventana-productos-contenido {
+  padding: 20px;
+}
+
+.ventana-productos h2 {
+  margin-bottom: 50px;
+  padding-left: 120px;
+  font-family: "Poppins", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 25px;
+}
+
+.ventana-productos ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.ventana-productos li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.ventana-productos table {
+  width: 100%;
+}
+
+.ventana-productos th,
+.ventana-productos td {
+  text-align: center;
+  padding: 8px;
+}
+
+.cerrar-ventana {
+  background-color: #333;
+  border: none;
+  color: #fff;
+  padding: 10px 36px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 100px auto 0;
+  display: block;
+}
+
+.cerrar-ventana:hover {
+  background-color: #070202;
+}
