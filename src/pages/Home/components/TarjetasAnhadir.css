@@ -1,0 +1,52 @@
+.proveedor {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; 
+}
+.tarjetasAnhadir {
+  margin-top: 60px;
+  display: flex;
+  width: 150px;
+  height: 200px;
+  background: #373B43;
+  border-radius: 20px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* Agrega esta propiedad para centrar verticalmente la imagen */
+  padding: 40px;
+  border: 0px solid #ccc;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease-in-out;
+  cursor: pointer;
+  margin-bottom: 0px;
+}
+
+.tarjetasAnhadir h3 {
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+}
+
+.tarjetasAnhadir p {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+
+  
+.tarjetas__imgAnhadir {
+  width: 70%; /* Ajusta el tamaño de la imagen según tus necesidades */
+  height: auto; /* Permite que la imagen mantenga su proporción */
+  object-fit: contain; /* Ajusta el tipo de ajuste de la imagen */
+  transition: transform 0.3s;
+}
+.tarjetasAnhadir:hover .tarjetas__imgAnhadir {
+  transform: scale(1.1);
+}
+  
+  .Boton-AgregarA {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }

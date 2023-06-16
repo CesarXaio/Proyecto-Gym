@@ -8,6 +8,8 @@ import Coach from './Coach';
 import Pay from './Pay';
 import Users from './users';
 import Resumen from './Resumen'; // Importa el componente Resumen
+import Product from './Product';
+import Buy from './Buy';
 
 function Inicio() {
   return (
@@ -19,6 +21,8 @@ function Inicio() {
           <Route path="/coach" element={<Coach />} />
           <Route path="/pay" element={<Pay />} />
           <Route path="/users" element={<Users />} />
+          <Route path="/Product" element={<Product />} />
+          <Route path="/Buy" element={<Buy />} />
         </Routes>
       </Sidebar>
     </BrowserRouter>

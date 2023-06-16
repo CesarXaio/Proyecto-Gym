@@ -25,6 +25,16 @@ const Sidebar = ({ children }) => {
       path: "/pay",
       icon: <img src="./iconos/caja.png" alt="Icono de caja" />,
     },
+    {
+      path: "/product",
+
+      icon: <img src="./iconos/productos.png" alt="Icono de tienda" />
+    },
+    {
+      path: "/buy",
+
+      icon: <img src="./iconos/buy.png" alt="Icono de tienda" />
+    },
   ];
 
   return (

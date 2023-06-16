@@ -1,0 +1,86 @@
+.tarjetasProductos2 {
+  position: relative;
+  margin-top: 60px;
+  display: flex;
+  width: 150px;
+  height: 200px;
+  background: #373B43;
+  border-radius: 20px;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+  border: 0px solid #ccc;
+  border-radius: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease-in-out;
+  cursor: pointer;
+  margin-bottom: 0px;
+}
+
+
+.tarjetasAnhadir__imagen {
+  width: 70%;
+  height: 200px;
+  object-fit: cover;
+  margin-bottom: 10px;
+
+}
+
+.tarjetasProductos2 h3 {
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+}
+
+.tarjetasProductos2 p {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+
+
+
+.tarjetas__etiqueta {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 5px;
+  background-color: black;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 5px 0 0 0;
+}
+
+.BotonesAnha {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  display: flex;
+  gap: 5px;
+}
+
+.Boton-EliminarA,
+.Boton-EditarA {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: transform 0.2s;
+  display: flex; /* Agrega esta propiedad para que los botones se muestren como elementos en línea */
+  align-items: center; /* Agrega esta propiedad para centrar verticalmente los iconos */
+}
+
+.Boton-EliminarA img,
+.Boton-EditarA img {
+  width: 30px;
+  height: 30px;
+}
+
+.Boton-EliminarA:hover,
+.Boton-EditarA:hover {
+  transform: scale(1.1);
+}
+
+
+
