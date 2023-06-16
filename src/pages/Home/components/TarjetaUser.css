@@ -11,6 +11,36 @@
     padding: 1%;
     display: inline-block;
     text-align: left;
+    transition: width 0.3s ease;
+    border-radius: 15px;
+}
+.botones-hovered{
+    display: inline-block;
+}
+.tarjetas.hovered {
+    width: 99%;
+    display: inline-block;
+}
+.imagenBoton{
+    display: inline-block;
+    cursor: pointer;
+}
+.tarjetas-content {
+    display: inline-block;
+    width: 90%;
+}
+.botonNuevo {
+    /* Estilos del botón */
+    display: inline-block;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    
 }
 .elementoTarjeta{
     display: inline-block;
