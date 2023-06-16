@@ -80,7 +80,7 @@ const Coach = () => {
       </div>
       {entrenadores.map((trainer, index) => (
         <Entrenadores
-          key={index}
+          key={trainer.ci}
           {...trainer}
           onEditarEntrenador={handleEditarEntrenador}
           onEliminarEntrenador={handleEliminarEntrenador}

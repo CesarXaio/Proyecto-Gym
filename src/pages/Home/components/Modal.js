@@ -65,7 +65,7 @@ const Modal = ({ onClose, onAddTrainer }) => {
 
         // Agregar el nuevo entrenador al estado entrenadores
         setEntrenadores(prevEntrenadores => [...prevEntrenadores, newTrainer]);
-      }, 1000);
+      }, 2000);
     }
   };
 

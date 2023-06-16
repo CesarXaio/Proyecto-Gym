@@ -33,6 +33,7 @@ const Resumen = () => {
       } catch (error) {
         console.error("Error al obtener los Estado:", error);
       }
+      obtenerResumen();
     };
 
     const obtenerResumen = async () => {
@@ -171,24 +172,26 @@ const Resumen = () => {
           </button>
         </div>
       </div>
-      <table className="tabla-datos">
-        <thead>
-          <tr>
-            <th>Nombre</th>
-            <th>Descripción</th>
-            <th>Valor Total</th>
-          </tr>
-        </thead>
-        <tbody>
-          {tablaDatos.map((dato, index) => (
-            <tr key={index}>
-              <td>{dato.nombre}</td>
-              <td>{dato.descripcion}</td>
-              <td>{dato.valorTotal}</td>
+      {estadoCaja && (
+        <table className="tabla-datos">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Descripción</th>
+              <th>Valor Total</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {tablaDatos.map((dato, index) => (
+              <tr key={index}>
+                <td>{dato.nombre}</td>
+                <td>{dato.descripcion}</td>
+                <td>{dato.valorTotal}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
     </div>
   );
 };
