@@ -20,6 +20,8 @@ const Users = () => {
   const [usuario, setUsuario] = useState({ estadoMembresia: 1 });
   const [mostrarMensaje, setMostrarMensaje] = useState(false);
   const [mensaje, setMensaje] = useState("");
+  const [contador, setContador] = useState(-1);
+  const [fechaDemo, setFechaDemo] = useState("Actualizar");
 
   useEffect(() => {
     // Función para obtener los Clientes de la base de datos
@@ -198,7 +200,62 @@ const Users = () => {
   };
 
 
+  const avanzarContador = () => {
+    const neoContador = contador + 1;
+    if (neoContador >= 0) {
+      setFechaDemo(moment().add(neoContador, 'days').format("DD-MM-YY"));
+    }
+    let data = JSON.stringify(moment().add(neoContador, 'days').format("YYYY-MM-DD"));
 
+    let config = {
+      method: 'post',
+      maxBodyLength: Infinity,
+      url: 'https://localhost:7072/api/actualizarEstado',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      data: data
+    };
+
+    axios.request(config)
+      .then((response) => {
+        console.log(JSON.stringify(response.data));
+        setContador(neoContador);
+        const obtenerClientes = async () => {
+          try {
+            // Realizar la petición a la API o a la base de datos para obtener los Clientes
+            const response = await fetch("https://localhost:7072/api/clientedata");
+            const data = await response.json();
+            const clientesData =
+              data.map((c) => {
+                return {
+                  name: c.nombre, // Se guarda el nombre completo
+                  lastname: "", // TODO Mirar luego
+                  cedula: c.ci,
+                  telefono: c.telefono,
+                  ruc: c.ruc,
+                  domicilio: "",
+                  especialidad: c.membresia.entrenador.especialidad,
+                  entrenador: c.membresia.entrenador.nombre,
+                  entrenador_ci: c.membresia.entrenador.ci,
+                  estadoMembresia: conversorEstados(c.membresia.estado),
+                  modalidad: c.membresia.modalidad,
+                  modalidadPrecio: c.membresia.precio
+                }
+              });
+            console.log(clientesData);
+            setUsuarios(clientesData);
+          } catch (error) {
+            console.error("Error al obtener los Clientes:", error);
+          }
+        };
+
+        obtenerClientes();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 
   return (
     <div className="Coach-container">
@@ -217,6 +274,9 @@ const Users = () => {
       {usuarios.map((u, index) => (
         <Usuarios usuario={u} key={index} />
       ))}
+      <div className="boton-container">
+        <Boton palabra={fechaDemo} onClick={() => { avanzarContador(); }} />
+      </div>
       {contadorModal === 1 && (
         <ModalUser usuario={usuario} onClickAvance={actualizador} onClose={() => { setUsuario({}); }} />
       )}
