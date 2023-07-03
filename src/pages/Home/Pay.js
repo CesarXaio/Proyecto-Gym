@@ -12,9 +12,13 @@ const Pay = (props) => {
   const [mensaje, setMensaje] = useState("");
   const [mostrarMensaje, setMostrarMensaje] = useState(false);
   const [membresiaCaja, setMembresiaCaja] = useState([]);
-  const [clienteCaja, setClienteCaja] = useState([]);
+  const [clienteCaja, setClienteCaja] = useState({
+    ci: "",
+    nombre: ""
+  });
   const [mostrarVentanaClientes, setMostrarVentanaClientes] = useState(false);
   const [clientes, setClientes] = useState([]); // Estado para almacenar los clientes de la base de datos
+  const [busquedaCliente, setBusquedaCliente] = useState(""); // Estado para almacenar la búsqueda del cliente
 
 
   useEffect(() => {
@@ -48,7 +52,7 @@ const Pay = (props) => {
     setClienteCaja([]);
   };
 
-
+ 
   const cerrarVentanaClientes = () => {
     setMostrarVentanaClientes(false);
   };
@@ -70,7 +74,7 @@ const Pay = (props) => {
       abrirVentanaClientes();
       return ;
     }
-
+    
     let numeroFactura = JSON.parse(localStorage.getItem("numeroFactura"));
 
     if (numeroFactura === null) {
@@ -180,17 +184,14 @@ const Pay = (props) => {
   };
 
   return (
-    <div >
+    <div>
       {productosCaja.map((productoCaja, index) => (
         <div className="Prod-Caja" key={index}>
-
           <p className="Nombre-Producto">{productoCaja.descripcion}</p>
           <p className="Precio-Producto">{productoCaja.precio} G$</p>
           <p className="Cantidad-Producto">{productoCaja.cantidad}x</p>
           <img className="Producto-Img" src={productoCaja.imagen} alt="Producto" />
-
         </div>
-
       ))}
       {mostrarVentanaClientes && (
         <VentanaClientes
@@ -199,35 +200,33 @@ const Pay = (props) => {
           Cliente={clienteCaja}
         />
       )}
-      {
-        membresiaCaja.precio &&
+      {membresiaCaja.precio && (
         <div className="Prod-Caja" key="membresia">
-
           <p className="Nombre-Producto">{membresiaCaja.descripcion}</p>
           <p className="Precio-Producto">{membresiaCaja.precio} G$</p>
           <p className="Cantidad-Producto">{membresiaCaja.cantidad}x</p>
           <img className="Producto-Img" src={membresiaCaja.imagen} alt="Producto" />
+        </div>
+      )}
+      <div className="Detalles-Pago">
+        Detalles de Pago <br></br>
+        Nombre: {clienteCaja.nombre}<br></br>
+        CI: {clienteCaja.ci}
+  <div>
+    <p className="SubTotal">Subtotal {total} G$</p>
+    <p className="Iva">IVA (10%) {iva_10} G$</p>
+  </div>
+</div>
 
-        </div>
-      }
-      <div className="Detalles-Pago">Detalles de Pago. ci: {clienteCaja.ci}
-          
-          
-        <div>
-          <p className="SubTotal">Subtotal {total}G$</p>
-          <p className="Iva">IVA (10%) {iva_10} G$</p>
-        </div>
-      </div>
       <div className="Suma-Total">Total: {total} G$</div>
+      
       <div className="BotonesPagar">
         <button className="Boton Cancelar" onClick={handleEliminar}>Cancelar</button>
         <button className="Boton Pagar" onClick={handleAgregarClick}>Pagar</button>
-
       </div>
       <Mensaje mensaje={mensaje} mostrar={mostrarMensaje} />
     </div>
   );
-
-}
-
-export default Pay;
+      }
+  export default Pay;
+  

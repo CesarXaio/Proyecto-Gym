@@ -14,7 +14,7 @@
 .ventana-clientes {
   width: 500px;
   padding: 20px;
-  background-color: #ffffff41;
+  background-color: #f6f2f2f7;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -46,7 +46,7 @@
   margin-bottom: 10px;
 }
 
-.Clientes-pagar input[type="radio"] {
+.Clientes-pagar input[type="checkbox"] {
   margin-right: 10px;
 }
 
@@ -84,4 +84,13 @@
     font-size: 16px;
     line-height: 24px;
     color: #b5a7a7c3;
+}
+.Buscador-Clientes{
+  width: 100%;
+  height: 25px;
+  padding-left: 10px;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  border-radius: 5px;
 }
