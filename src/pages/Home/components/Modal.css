@@ -139,7 +139,17 @@
 #ci::placeholder {
   color: #E9F2FD;
 }
-
+.modal-producto-titulo{
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 35px;
+  line-height: 38px;
+  margin-top: 40px;
+  margin-left: 40px;
+  color: #EEEEEE;
+  box-sizing: border-box;
+}
 #telefono{
   font-family: 'Poppins';
   font-style: normal;

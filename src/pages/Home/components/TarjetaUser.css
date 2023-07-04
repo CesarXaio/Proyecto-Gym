@@ -81,6 +81,11 @@
     border-radius: 5px;
     font-weight: 400;
     font-size: 20px;
+    cursor: pointer;
+}
+.botonPendiente:hover{
+    background-color: #D9B842;
+    color: white;
 }
 .botonVencido {
     background-color: #373B43;
@@ -94,4 +99,9 @@
     border-radius: 5px;
     font-weight: 400;
     font-size: 20px;
+    cursor: pointer;
+}
+.botonVencido:hover{
+    background-color: #D94242;
+    color: white
 }

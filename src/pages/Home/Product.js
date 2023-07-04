@@ -66,7 +66,7 @@ const ProveedorForm = () => {
   return (
 
     <div className="tienda">
-      <h5 className='Bebidas-text'>Productos</h5>
+      <h5 className='Bebidas-text'>Productos stock</h5>
       {productos.map((producto) => (
         <TarjetasProducto key={producto.codigo_barra} {...producto} actualizar={actualizar} />
       ))}

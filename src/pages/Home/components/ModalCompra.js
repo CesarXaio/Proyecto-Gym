@@ -79,6 +79,7 @@ const ModalCompra = ({ onClose, onAddProducto }) => {
         });
 
         onAddProducto(data);
+        onClose();
         {/*let data = JSON.stringify({
             "codigo_proveedor": proveedorSeleccionado,
             "total": precio * cantidad,
@@ -119,7 +120,7 @@ const ModalCompra = ({ onClose, onAddProducto }) => {
             <div className="modal-overlay">
                 <div className="modalUser">
                     <div className="modal-body-fiscal">
-                        <h2>Producto</h2>
+                        <h2 className="modal-producto-titulo">Comprar Producto</h2>
                         <div className="form-group">
                             {/*<select className="Input-container-fiscal entero" value={proveedorSeleccionado} onChange={handleProveedorSeleccionado}>
                                 <option value="">Seleccione un proveedor</option>

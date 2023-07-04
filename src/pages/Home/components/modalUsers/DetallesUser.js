@@ -108,7 +108,7 @@ const DetallesUser = ({ usuario, onClickAvance, onClose, onAddTrainer }) => {
               <a id="boton-off" onClick={() => { onClickAvance(-1); }}>
                 cancelar
               </a>
-              <button id="boton-ok" onClick={() => { }}>
+              <button id="boton-ok" onClick={() => { mostrarMedidas() }}>
                 nueva
               </button>
             </div>

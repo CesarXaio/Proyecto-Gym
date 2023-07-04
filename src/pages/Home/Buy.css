@@ -1,35 +1,53 @@
 .Boton-Comprar-Producto {
-    background-color: lightgreen;
-    color: white;
+  background: #42D976;
+  color: #E9F2FD;
+  width: 200px; /* El tama del boton*/
+  border: none;
+  height: 47px;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    font-family: Arial, sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
     position: fixed;
     top: 20px;
     right: 20px;
+    margin-top: 30px;
+    margin-left: 80px;
   }
 .Boton-Pagar-Producto {
-    background-color: lightgreen;
+  background-color: #42D976;
     color: white;
     padding: 10px 20px;
+    width: 200px; 
     border: none;
     border-radius: 5px;
+    font-family: Arial, sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
     cursor: pointer;
     position: fixed;
     bottom: 20px;
     right: 20px;
   }
   .mostrar-proveedores button {
-    background-color: lightgreen;
+    background-color: #42D976;
     color: white;
     border: none;
+    width: 200px; 
     padding: 10px 20px;
     border-radius: 5px;
     position: fixed;
     bottom: 80px;
     right: 20px;
     font-family: Arial, sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
     font-size: 16px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     transition: background-color 0.3s ease;
@@ -37,7 +55,7 @@
   
 
   .tabla-datos {
-    margin: 0 auto;
+    margin: 0 5ch;
     border-collapse:collapse;
     width: 75%;
     
@@ -74,11 +92,14 @@
   
   .lista-proveedores h5 {
     color: white;
-    background-color: lightgreen;
+    background-color: #42D976;
     padding: 10px;
     margin: 0;
     border-radius: 10px 10px 0 0;
     font-size: 18px;
+  }
+  .proveedor {
+    margin-top: 30px;
   }
   
   .lista-proveedores ul {

@@ -80,7 +80,7 @@ const ModalProductos = ({ onClose, onAddProducto, actualizar}) => {
     <div className="modal-overlay">
       <div className="modalUser">
         <div className="modal-body-fiscal">
-            <h2>Producto</h2>
+            <h2 className="modal-producto-titulo">Agregar producto</h2>
           <div className="form-group">
             <input
               className="Input-container-fiscal"

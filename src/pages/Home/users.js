@@ -44,7 +44,8 @@ const Users = () => {
               entrenador_ci: c.membresia.entrenador.ci,
               estadoMembresia: conversorEstados(c.membresia.estado),
               modalidad: c.membresia.modalidad,
-              modalidadPrecio: c.membresia.precio
+              modalidadPrecio: c.membresia.precio,
+              fecha_final: c.membresia.fecha_final
             }
           });
         console.log(clientesData);
@@ -265,7 +266,7 @@ const Users = () => {
 
       <div className="contenedorTitulos">
         <h3 className="tituloUser otro">nombre y apellido</h3>
-        <h3 className="tituloUser cedula">C.I</h3>
+        <h3 className="tituloUser cedula">vencimiento</h3>
         <h3 className="tituloUser categoria">categoria</h3>
         <h3 className="tituloUser membresia">membresia</h3>
         <h3 className="tituloUser estado">estado</h3>

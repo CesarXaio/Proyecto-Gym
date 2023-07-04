@@ -76,7 +76,7 @@ const TarjetasProducto = (props) => {
   return (
     <div className="proveedor">
 
-      <button className="Boton-Comprar-Producto" onClick={handleAgregarClick}>Comprar Producto</button>
+      <button className="Boton-Comprar-Producto" onClick={handleAgregarClick}>Comprar producto</button>
       <button className="Boton-Pagar-Producto" onClick={handlePagar}>Pagar</button>
       {showModalProducto && (
         <ModalCompra onClose={() => setShowModalProducto(false)} onAddProducto={handleAddProducto} />
@@ -105,7 +105,7 @@ const TarjetasProducto = (props) => {
         <div className="lista-proveedores">
           <h5>Proveedores:</h5>
           {proveedores.length > 0 ? (
-            <select value={seleccionarProveedor} onChange={handlerSeleccionarProveedor}>
+            <select className="select-proveedores" value={seleccionarProveedor} onChange={handlerSeleccionarProveedor}>
               <option value="">Seleccionar proveedor</option>
               {proveedores.map((proveedor) => (
                 <option value={proveedor.codigo}>
@@ -116,7 +116,7 @@ const TarjetasProducto = (props) => {
           ) : (
             <p>No hay proveedores disponibles.</p>
           )}
-          <button onClick={cerrarListaProveedores}>Cerrar</button>
+          <button className="botonproveedores" onClick={cerrarListaProveedores}>Cerrar</button>
         </div>
       ) : (
         <div className="mostrar-proveedores">
