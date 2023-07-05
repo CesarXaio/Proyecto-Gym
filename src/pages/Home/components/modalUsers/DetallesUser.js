@@ -68,7 +68,7 @@ const DetallesUser = ({ usuario, onClickAvance, onClose, onAddTrainer }) => {
     let config = {
       method: 'post',
       maxBodyLength: Infinity,
-      url: 'https://localhost:44373/api/medicion',
+      url: 'https://localhost:7072/api/medicion',
       headers: {
         'Content-Type': 'application/json'
       },

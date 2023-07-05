@@ -22,6 +22,13 @@ const Users = () => {
   const [mensaje, setMensaje] = useState("");
   const [contador, setContador] = useState(-1);
   const [fechaDemo, setFechaDemo] = useState("Actualizar");
+  const [especialidades, setEspecialidades] = useState([]);
+  const [categoriaFiltro, setCategoriaFiltro] = useState("");
+  const [membresiaFiltro, setMembresiaFiltro] = useState("");
+  const [estadoFiltro, setEstadoFiltro] = useState(-1);
+  const [fechaInicioFiltro, setFechaInicioFiltro] = useState(moment().subtract(1, "month").format("YYYY-MM-DD"));
+  const [fechaFinalFiltro, setFechaFinalFiltro] = useState(moment().add(1, "month").format("YYYY-MM-DD"));
+  const [fechaFiltroCheck, setFechaFiltroCheck] = useState(false);
 
   useEffect(() => {
     // Función para obtener los Clientes de la base de datos
@@ -45,7 +52,18 @@ const Users = () => {
               estadoMembresia: conversorEstados(c.membresia.estado),
               modalidad: c.membresia.modalidad,
               modalidadPrecio: c.membresia.precio,
-              fecha_final: c.membresia.fecha_final
+              fecha_final: c.membresia.fecha_final,
+              fecha_local: new Date(c.membresia.fecha_final).toLocaleDateString(),
+              fecha_getTime: (new Date(c.membresia.fecha_final).getTime() - 
+              (new Date(c.membresia.fecha_final).getTimezoneOffset()*60000))
+            }
+          });
+          const testeo =
+          data.map((c) => {
+            return {
+              fecha_final: c.membresia.fecha_final,
+              fecha_getTime: (new Date(c.membresia.fecha_final).getTime() - 
+              (new Date(c.membresia.fecha_final).getTimezoneOffset()*60000))
             }
           });
         console.log(clientesData);
@@ -54,8 +72,19 @@ const Users = () => {
         console.error("Error al obtener los Clientes:", error);
       }
     };
+    const obtenerEspecialidades = async () => {
+      try {
+        // Realizar la petición a la API o a la base de datos para obtener los Clientes
+        const response = await fetch("https://localhost:7072/api/especialidad");
+        const data = await response.json();
+        setEspecialidades(data);
+      } catch (error) {
+        console.error("Error al obtener los Clientes:", error);
+      }
+    };
 
     obtenerClientes(); // Llamar a la función para obtener los Productos al cargar el componente
+    obtenerEspecialidades();
   }, []); // El segundo argumento es un arreglo vacío, esto indica que solo se ejecutará una vez al cargar el componente
 
   const conversorEstados = (estadoStr) => {
@@ -258,8 +287,69 @@ const Users = () => {
       });
   }
 
+  const handleCategoriaChange = (event) => {
+    setCategoriaFiltro(event.target.value);
+  };
+
+  const handleMembresiaChange = (event) => {
+    setMembresiaFiltro(event.target.value);
+  };
+
+  const handleEstadoChange = (event) => {
+    setEstadoFiltro(event.target.value);
+  };
+
+  const handleFechaInicioChange = (event) => {
+    setFechaInicioFiltro(event.target.value);
+    console.log(event.target.value);
+  };
+
+  const handleFechaFinalChange = (event) => {
+    setFechaFinalFiltro(event.target.value);
+    console.log(event.target.value);
+  };
+  const handleFiltroFechaChange = (event) => {
+    //setFechaFinalFiltro(event.target.value);
+    console.log(!fechaFiltroCheck);
+    setFechaFiltroCheck(!fechaFiltroCheck);
+  };
+  // handleFiltroFechaChange
+  // Para Rodrigo: className="Input-container-fiscal entero" cambiar el nombre de la clase
+  // Hay Label con textos que estan con fuente negra, si puedes darles formato con css
   return (
     <div className="Coach-container">
+      <select className="Input-container-fiscal entero" value={categoriaFiltro} onChange={handleCategoriaChange}>
+        <option value="">Elegir categoria</option>
+        {especialidades.map((e) => (
+          <option value={e}>{e}</option>
+        ))}
+      </select> 
+      <select className="Input-container-fiscal entero" value={membresiaFiltro} onChange={handleMembresiaChange}>
+        <option value="">Elegir membresia</option>
+        <option value="Diario">Diario</option>
+        <option value="Semanal">Semanal</option>
+        <option value="Mensual">Mensual</option>
+      </select>
+      <select className="Input-container-fiscal entero" value={estadoFiltro} onChange={handleEstadoChange}>
+        <option value="-1">Elegir estado</option>
+        <option value="0">Pagado</option>
+        <option value="1">Pendiente</option>
+        <option value="2">Vencido</option>
+      </select>
+
+      <label for="start">Fecha Inicio:</label>
+      <input type="date" id="start" name="trip-start" 
+        value={fechaInicioFiltro} onChange={handleFechaInicioChange}
+        min="2018-01-01" max="2024-12-31"></input>
+
+      <label for="start">Fecha Final:</label>
+      <input type="date" id="final" name="trip-start" 
+        value={fechaFinalFiltro} onChange={handleFechaFinalChange}
+        min="2018-01-01" max="2024-12-31"></input>
+
+      <input type="checkbox" id="filtroFecha" 
+      onChange={handleFiltroFechaChange}></input>
+
       <div className="boton-container">
         <Boton palabra="Agregar" onClick={() => { actualizador(1); }} />
       </div>
@@ -272,7 +362,12 @@ const Users = () => {
         <h3 className="tituloUser estado">estado</h3>
       </div>
 
-      {usuarios.map((u, index) => (
+      {usuarios.filter(u => u.especialidad === categoriaFiltro || categoriaFiltro === "")
+      .filter(u => u.modalidad === membresiaFiltro || membresiaFiltro === "")
+      .filter(u => u.estadoMembresia == estadoFiltro || estadoFiltro == -1)
+      .filter(u => !fechaFiltroCheck || (u.fecha_getTime >= new Date(fechaInicioFiltro).getTime() && 
+      u.fecha_getTime <= new Date(fechaFinalFiltro).getTime()) )
+      .map((u, index) => (
         <Usuarios usuario={u} key={index} />
       ))}
       <div className="boton-container">
