@@ -4,13 +4,6 @@ import DetallesUser from "./modalUsers/DetallesUser"
 
 const Usuarios = ({ usuario, key }) => {
 
-  const [fecha, setFecha] = useState("100000");
-  useEffect(() => {
-    const actuFecha = () => {
-      setFecha(new Date(usuario.fecha_final).toLocaleDateString())
-    }
-    actuFecha(); 
-  }, []); 
 
   const enviarCaja = () => {
     console.log("Enviando a Caja"); // EN PROCESO
@@ -59,7 +52,7 @@ const Usuarios = ({ usuario, key }) => {
             <div className="elementoTarjeta">{usuario.lastname}</div>
           </button>
         </div>
-        <div className="elementoTarjeta separacion">{fecha}</div>
+        <div className="elementoTarjeta separacion">{usuario.fecha_local}</div>
         <div className="elementoTarjeta separacion">{usuario.especialidad}</div>
         <div className="elementoTarjeta separacion">{usuario.modalidad}</div>
         <div className="elementoTarjeta separacion">{checkEstadoMembresia(usuario.estadoMembresia)}</div>
