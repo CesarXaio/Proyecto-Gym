@@ -3,7 +3,7 @@ import Mensaje from "../../../Confirmacion/Mensaje";
 import "./TarjetasProducto.css";
 import ModalEditarProducto from "./ModalEditarProducto";
 import axios from "axios";
-import ModalProductos from "./ModalProductos";
+
 
 const TarjetasProducto = (props, actualizar) => {
   const { descripcion, precio, cantidadDB,
@@ -65,10 +65,10 @@ const TarjetasProducto = (props, actualizar) => {
       <img className="tarjetasAnhadir__imagen" src={imagen} alt="Producto" />
       {mostrarBotones && (
         <div className="BotonesAnha">
-          <button className="Boton-EliminarA" onClick={eliminarProductoHandler}>
+          <button className="Boton-EliminarA" onClick={eliminarProductoHandler} >
             <img className="tarjetasAnhadir__imagen" src="./iconos/trash.png" alt="Eliminar" />
           </button>
-          <button className="Boton-EditarA" onClick={editarProductoHandler}>
+          <button className="Boton-EditarA" onClick={editarProductoHandler} >
             <img className="tarjetasAnhadir__imagen" src="./iconos/edit.png" alt="Editar" />
           </button>
         </div>
@@ -85,7 +85,7 @@ const TarjetasProducto = (props, actualizar) => {
         <ModalProductos onClose={() => setShowModalProducto(false)} onAddProducto={handleAddProducto} actualizar={actualizar}/>
       )}*/}
       {showModalEditarProducto && (
-        <ModalEditarProducto onClose={() => setShowModalEditarProducto(false)} onEditProducto={handleEditProducto} actualizar={actualizar}/>
+        <ModalEditarProducto onClose={() => setShowModalEditarProducto(false)} onEditProducto={handleEditProducto} actualizar={actualizar} codigoBarra={codigo_barra}/>
       )}
       <Mensaje mensaje={mensaje} mostrar={mostrarMensaje} />
     </div>

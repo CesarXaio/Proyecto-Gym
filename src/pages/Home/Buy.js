@@ -87,7 +87,8 @@ const TarjetasProducto = (props) => {
             <th>Descripción</th>
             <th>Código de barra</th>
             <th>Cantidad Total</th>
-            <th>Precio</th>
+            <th>Precio Compra</th>
+            <th>Precio Venta</th>
           </tr>
         </thead>
         <tbody>

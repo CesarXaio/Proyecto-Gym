@@ -8,102 +8,107 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1; /* Asegura que el modal esté en la capa superior */
+  z-index: 1;
+  /* Asegura que el modal esté en la capa superior */
 }
+
 .modal {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-   
-    width: 1000px;
-    height: 500px;
-    background: #42D976;
-    border: 4px solid #42D976;
-    border-radius: 15px;
-    z-index: 2; /* Establecer un valor mayor para que esté en frente del modal */
-  }
-  .modal::before {
-    content: '';
-    position: absolute;
-    left: 40px;
-    margin-top: 25px;
-    width: 300px;
-    height: 450px;
-    background-color: white;
-    border-radius: 15px;
-  }
-  
-  
-  .modal-header {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 50px;
-    text-align: center;
-  }
-  
-  .modal-body {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-  
-  .modal-label {
-    font-size: 18px;
-    font-weight: bold;
-  }
-  
-  .modal-input {
-    
-    border: none;
-    border-radius: 5px;
-    padding: 10px;
-    font-size: 16px;
-  }
-  
-  .modal-buttons {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: auto;
-    gap: 10px;
-  }
-  
-  .modal-button {
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    font-size: 16px;
-    font-weight: bold;
-    color: white;
-    background-color: #008CBA;
-    cursor: pointer;
-  }
-  
-  .modal-button:hover {
-    background-color: #00688B;
-  }
-  
-  .Input-container{
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 38px;
-    padding-left: 10px;
-    color: #E9F2FD;
-    margin-left: 450px;
-    width: 50%;   
-    box-sizing: border-box;
-    height: 50px;
-    background: #42D976;
-    border: 4px solid #EEEEEE;
-    border-radius: 15px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 1000px;
+  height: 500px;
+  background: #42D976;
+  border: 4px solid #42D976;
+  border-radius: 15px;
+  z-index: 2;
+  /* Establecer un valor mayor para que esté en frente del modal */
 }
+
+.modal::before {
+  content: '';
+  position: absolute;
+  left: 40px;
+  margin-top: 25px;
+  width: 300px;
+  height: 450px;
+  background-color: white;
+  border-radius: 15px;
+}
+
+
+.modal-header {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.modal-label {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.modal-input {
+
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: auto;
+  gap: 10px;
+}
+
+.modal-button {
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  background-color: #008CBA;
+  cursor: pointer;
+}
+
+.modal-button:hover {
+  background-color: #00688B;
+}
+
+.Input-container {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 38px;
+  padding-left: 10px;
+  color: #E9F2FD;
+  margin-left: 450px;
+  width: 50%;
+  box-sizing: border-box;
+  height: 50px;
+  background: #42D976;
+  border: 4px solid #EEEEEE;
+  border-radius: 15px;
+}
+
 .Input-container::placeholder {
   color: #E9F2FD;
 }
 
-#especialidad{
+#especialidad {
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 400;
@@ -111,7 +116,7 @@
   line-height: 38px;
   box-sizing: border-box;
   margin-left: 450px;
-  width: 50%; 
+  width: 50%;
   height: 50px;
   background: #42D976;
   border: 4px solid #EEEEEE;
@@ -119,7 +124,7 @@
   color: #E9F2FD;
 }
 
-#ci{
+#ci {
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 400;
@@ -136,10 +141,12 @@
   margin-right: 100px;
   padding-left: 10px;
 }
+
 #ci::placeholder {
   color: #E9F2FD;
 }
-.modal-producto-titulo{
+
+.modal-producto-titulo {
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 400;
@@ -150,7 +157,8 @@
   color: #EEEEEE;
   box-sizing: border-box;
 }
-#telefono{
+
+#telefono {
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 400;
@@ -163,14 +171,16 @@
   background: #42D976;
   border: 4px solid #EEEEEE;
   border-radius: 15px;
-  margin-top: -300px; /* Opcional: agregar margen para separar los elementos */
+  margin-top: -300px;
+  /* Opcional: agregar margen para separar los elementos */
   padding-left: 10px;
 }
+
 #telefono::placeholder {
   color: #E9F2FD;
 }
 
-#boton-ok{
+#boton-ok {
   background: #E9F2FD;
   border: 4px solid #EEEEEE;
   border-radius: 15px;
@@ -183,7 +193,7 @@
   line-height: 38px;
 }
 
-#boton-off{
+#boton-off {
   padding-right: 20px;
   font-family: 'Poppins';
   font-style: normal;
@@ -192,11 +202,13 @@
   line-height: 38px;
   color: #575757;
 }
-.button-container{
+
+.button-container {
   margin-top: 50px;
   padding-left: 685px;
 }
-.modal-header{
+
+.modal-header {
   margin-left: 530px;
   font-family: 'Poppins';
   font-style: normal;
@@ -205,7 +217,8 @@
   line-height: 50px;
   color: #E9F2FD;
 }
-#Cerrar{
+
+#Cerrar {
   margin-left: 380px;
   box-sizing: border-box;
   width: 10%;
@@ -214,6 +227,30 @@
   outline: none;
   padding: 0;
   cursor: pointer;
-  color:#f50505;
+  color: #f50505;
   border: 0;
+}
+
+.tituloseditarproducto {
+  font-family: 'Poppins', Arial, sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  color: #333333;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.form-group2 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.form-group2 p {
+  width: 20%;
+  margin-bottom: 10px;
+}
+
+.form-group2 input {
+  width: 76%;
 }
