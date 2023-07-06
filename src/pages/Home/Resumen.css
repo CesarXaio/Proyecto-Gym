@@ -136,3 +136,34 @@ p {
 .Arqueo-Final{
   margin-top: -50px;
 }
+.ventana-emergente {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 60%;
+  height: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #E9F2FD;
+  padding: 25px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.Boton-C{
+  margin: 300px;
+}
+
+.mostrarVentas{
+  position: absolute;
+  top: 20px; /* Ajusta el valor según sea necesario */
+  right: 20px; /* Ajusta el valor según sea necesario */
+  font-family: 'Poppins';
+  font-style: normal;
+ 
+  font-size: 20px;
+  line-height: 60px;
+  color: #E9F2FD;
+  background: #42D976;
+  border: 4px solid #42D976;
+  border-radius: 15px;
+}

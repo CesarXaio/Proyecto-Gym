@@ -210,7 +210,7 @@ const Pay = (props) => {
       )}
       <div className="Detalles-Pago">
         Detalles de Pago <br></br>
-        Nombre: {clienteCaja.nombre}<br></br>
+        Nombre: {clienteCaja.nombre}<br></br> 
         CI: {clienteCaja.ci}
   <div>
     <p className="SubTotal">Subtotal {total} G$</p>
