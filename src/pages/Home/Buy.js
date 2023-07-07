@@ -13,6 +13,7 @@ const TarjetasProducto = (props) => {
   const [showModalProducto, setShowModalProducto] = useState(false);
   const [mostrarProveedores, setMostrarProveedores] = useState(false);
   const [mensaje, setMensaje] = useState("");
+  const [busquedaProveedor, setBusquedaProveedor] = useState("");
 
   useEffect(() => {
     const obtenerProveedores = async () => {
@@ -25,7 +26,10 @@ const TarjetasProducto = (props) => {
     };
     obtenerProveedores();
   }, []);
-
+  const handlerSeleccionarProveedor = (event) => {
+    setSeleccionarProveedor(event.target.value);
+  };
+  
   const handleAgregarClick = () => {
     setShowModalProducto(true);
   };
@@ -40,9 +44,10 @@ const TarjetasProducto = (props) => {
   const cerrarListaProveedores = () => {
     setMostrarProveedores(false);
   };
-  const handlerSeleccionarProveedor = (event) => {
-    setSeleccionarProveedor(event.target.value);
+  const filtrarProveedores = (proveedor) => {
+    return proveedor.nombre.toLowerCase().includes(busquedaProveedor.toLowerCase());
   };
+  
 
   const handlePagar = (event) => {
     let data = JSON.stringify({
@@ -87,8 +92,7 @@ const TarjetasProducto = (props) => {
             <th>Descripción</th>
             <th>Código de barra</th>
             <th>Cantidad Total</th>
-            <th>Precio Compra</th>
-            <th>Precio Venta</th>
+            <th>Precio</th>
           </tr>
         </thead>
         <tbody>
