@@ -3,6 +3,7 @@ import axios from "axios";
 import "./Buy.css";
 import ModalCompra from "./components/ModalCompra";
 import moment from "moment/moment";
+import Mensaje from "../../Confirmacion/Mensaje";
 
 const TarjetasProducto = (props) => {
   const { descripcion, precio, cantidadDB,
@@ -14,6 +15,8 @@ const TarjetasProducto = (props) => {
   const [mostrarProveedores, setMostrarProveedores] = useState(false);
   const [mensaje, setMensaje] = useState("");
   const [busquedaProveedor, setBusquedaProveedor] = useState("");
+  const [mostrarMensaje, setMostrarMensaje] = useState(false);
+
 
   useEffect(() => {
     const obtenerProveedores = async () => {
@@ -24,12 +27,13 @@ const TarjetasProducto = (props) => {
         console.error(error);
       }
     };
+
     obtenerProveedores();
   }, []);
   const handlerSeleccionarProveedor = (event) => {
     setSeleccionarProveedor(event.target.value);
   };
-  
+
   const handleAgregarClick = () => {
     setShowModalProducto(true);
   };
@@ -47,7 +51,7 @@ const TarjetasProducto = (props) => {
   const filtrarProveedores = (proveedor) => {
     return proveedor.nombre.toLowerCase().includes(busquedaProveedor.toLowerCase());
   };
-  
+
 
   const handlePagar = (event) => {
     let data = JSON.stringify({
@@ -68,10 +72,23 @@ const TarjetasProducto = (props) => {
       },
       data: data
     };
+    if (seleccionarProveedor === ""){
+      alert("No se ha selecionado ningun proveedor");
+      return;
+    }
+    if (producto.length === 0){
+      alert("No se ha selecionado ningun producto");
+      return;
+    }
 
     axios.request(config)
       .then((response) => {
         console.log(JSON.stringify(response.data));
+        setProductos([]);
+        setMostrarMensaje(true);
+        setTimeout(() => {
+          setMostrarMensaje(false);
+        }, 3000);
       })
       .catch((error) => {
         console.log(error);
@@ -92,7 +109,8 @@ const TarjetasProducto = (props) => {
             <th>Descripción</th>
             <th>Código de barra</th>
             <th>Cantidad Total</th>
-            <th>Precio</th>
+            <th>Precio U. compra</th>
+            <th>Precio U. Venta</th>
           </tr>
         </thead>
         <tbody>
@@ -102,6 +120,7 @@ const TarjetasProducto = (props) => {
               <td>{dato.codigo_barra}</td>
               <td>{dato.cantidad}</td>
               <td>{dato.precio}</td>
+              <td>{dato.precioVenta}</td>
             </tr>
           ))}
         </tbody>
@@ -127,7 +146,11 @@ const TarjetasProducto = (props) => {
         <div className="mostrar-proveedores">
           <button onClick={mostrarListaProveedores}>Mostrar Proveedores</button>
         </div>
+
       )}
+
+      <Mensaje mensaje="Se ha realizado la compra correctamente" mostrar={mostrarMensaje} />
+
     </div>
   );
 };

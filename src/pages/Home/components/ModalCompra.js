@@ -5,15 +5,14 @@ import axios from "axios";
 
 const ModalCompra = ({ onClose, onAddProducto }) => {
   const [productoSeleccionado, setProductoSeleccionado] = useState("");
-  const [proveedorSeleccionado, setProveedorSeleccionado] = useState("");
   const [cantidad, setCantidad] = useState("");
   const [proveedores, setProveedores] = useState([]);
   const [precio, setPrecio] = useState("");
-  const [descripcion, setDescripcion] = useState("");
   const [productos, setProductos] = useState([]);
   const [mostrarMensaje, setMostrarMensaje] = useState(false);
   const [mensaje, setMensaje] = useState("");
   const [busquedaProducto, setBusquedaProducto] = useState("");
+  const [precioDetalle, setPrecioDetalle] = useState("Precio");
   
 
   useEffect(() => {
@@ -38,6 +37,7 @@ const ModalCompra = ({ onClose, onAddProducto }) => {
           iva_5: p.iva_5,
         }));
         setProductos(productosData);
+        
       } catch (error) {
         console.error("Error al obtener los Productos:", error);
       }
@@ -48,6 +48,12 @@ const ModalCompra = ({ onClose, onAddProducto }) => {
 
   const handlesetProductoSeleccionadoChange = (event) => {
     setProductoSeleccionado(event.target.value);
+    
+    const productoSeleccionadoData = productos.find(
+      (producto) => producto.codigo_barra === event.target.value
+    );
+    console.log(productoSeleccionadoData);
+    setPrecioDetalle(productoSeleccionadoData.precio);
   };
 
   
@@ -66,6 +72,7 @@ const ModalCompra = ({ onClose, onAddProducto }) => {
     const productoNuevo = {
       descripcion: productoSeleccionadoData.descripcion,
       precio: precio,
+      precioVenta: productoSeleccionadoData.precio,
       cantidad: cantidad,
       codigo_barra: productoSeleccionadoData.codigo_barra,
     };
@@ -114,7 +121,7 @@ const ModalCompra = ({ onClose, onAddProducto }) => {
               <input
                 className="Input-container-fiscal"
                 type="text"
-                placeholder="Precio"
+                placeholder={precioDetalle}
                 value={precio}
                 onChange={handlePrecioChange}
               />

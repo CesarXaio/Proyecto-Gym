@@ -16,6 +16,7 @@ const ModalEditarProducto = ({ onClose, onEditProducto, actualizar, codigoBarra 
   const [canti, setCanti] = useState("");
   const [prec, setPrec] = useState("");
   const [cbarra, setCbarra] = useState("");
+  const [datosGuardados, setDatosGuardados] = useState(false);
 
   useEffect(() => {
     // Realiza una solicitud GET para obtener los datos de los entrenadores desde la API
@@ -28,6 +29,13 @@ const ModalEditarProducto = ({ onClose, onEditProducto, actualizar, codigoBarra 
         setCanti(data.cantidad);
         setPrec(data.precio);
         setCbarra(data.codigo_barra);
+        if (!datosGuardados) {
+          setNombre(data.descripcion);
+          setCantidad(data.cantidad);
+          setPrecio(data.precio);
+          setCodigoBarra(data.codigo_barra);
+          setDatosGuardados(true);
+        }
       } catch (error) {
         console.error("Error al obtener los Productos:", error);
       }
