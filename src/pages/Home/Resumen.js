@@ -13,6 +13,7 @@ const Resumen = () => {
   const [mostrarVentas, setMostrarVentas] = useState(false);
   const [numCajero, setNumCajero] = useState(1);
   const [historialVentas, setHistorialVentas] = useState([]);
+  const [fechaHistorial, setFechaHistorial] = useState(moment().format("YYYY-MM-DD"));
 
 
 
@@ -59,6 +60,7 @@ const Resumen = () => {
       }
     };
 
+    obtenerArqueos();
     obtenerEstado();
     obtenerResumen();
   }, []);
@@ -72,6 +74,55 @@ const Resumen = () => {
   useEffect(() => {
     localStorage.setItem("mostrarVentas", JSON.stringify(mostrarVentas));
   }, [mostrarVentas]);
+
+  const obtenerArqueos = async (fechaIngresada) => {
+    
+    let data;
+    if(fechaIngresada){
+      data = fechaIngresada;
+    } else {
+      data = JSON.stringify(fechaHistorial);
+    }
+
+    let config = {
+      method: 'post',
+      maxBodyLength: Infinity,
+      url: 'https://localhost:7072/api/arqueo',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      data: data
+    };
+
+    axios.request(config)
+      .then((response) => {
+        let numeroCajero = 0;
+        const ventasCajero = tablaDatos.slice(); // Copia de tablaDatos
+        const historial = response.data.map((a) => {
+          return {
+            turno: `Turno: ${++numeroCajero}`,
+            fecha: new Date(a.fecha).toLocaleDateString(),
+            hora_inicio: new Date(a.hora_inicio).toLocaleTimeString(),
+            hora_final: new Date(a.fora_final).toLocaleTimeString(),
+            monto_inicial: a.monto_inicial,
+            monto_final: a.monto_final,
+            ventas: a.ventas.map((v) => {
+              return {
+                nombre: v.nombre_cliente,
+                descripcion: v.descripcion,
+                valorTotal: v.valor_total
+              }
+            })
+          }
+        }); 
+        
+        console.log(historial);
+        setHistorialVentas(historial);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 
 const abrirCaja = async () => {
   try {
@@ -176,7 +227,12 @@ const cerrarCaja = async () => {
   }
 };
 
-  
+  const handleFechaHistorialChange = (event) => {
+  setFechaHistorial(event.target.value);
+  obtenerArqueos(event.target.value);
+  console.log("Cambio filtro");
+  console.log(event.target.value);
+};
   
   const mostrarVentasPopUp = () => {
     setMostrarVentas(true);
@@ -208,9 +264,12 @@ const cerrarCaja = async () => {
         {mostrarVentas && (
           <div className="ventana-emergente">
             <h3>Historial de Ventas</h3>
+            <input type="date" id="start" name="trip-start"
+              value={fechaHistorial} onChange={handleFechaHistorialChange}
+              min="2018-01-01" max="2024-12-31"></input>
             {historialVentas.map((cajero, index) => (
               <div key={index}>
-                <h4>{cajero.cajero}</h4>
+                <h4>{`${cajero.turno} - ${cajero.fecha} - ${cajero.hora_inicio} / ${cajero.hora_final} `}</h4>
                 <table className="tabla-datos">
                   <thead>
                     <tr>

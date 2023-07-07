@@ -6,8 +6,12 @@ const Sidebar = ({ children }) => {
   const toggle = () => setIsOpen(isOpen);
   const menuItem = [
     {
+      path: "/reports",
+      icon: <img src="./iconos/reports.png" alt="Icono de reportes" />,
+    },
+    {
       path: "/resumen",
-      icon: <img src="./iconos/arqueo.png" alt="Icono de tienda" />,
+      icon: <img src="./iconos/arqueo.png" alt="Icono de arqueos" />,
     },
     {
       path: "/store",

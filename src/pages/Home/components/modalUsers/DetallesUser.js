@@ -29,11 +29,11 @@ const DetallesUser = ({ usuario, onClickAvance, onClose, onAddTrainer }) => {
     return (
       <div className="tarjetasDetalle">
         <div className="elementosDetalles">{new Date(m.fecha).toLocaleDateString()}</div>
-        <div className="elementosDetalles">{m.medidas.altura}</div>
-        <div className="elementosDetalles">{m.medidas.peso}</div>
-        <div className="elementosDetalles">{m.medidas.cintura}</div>
-        <div className="elementosDetalles">{m.medidas.pecho}</div>
-        <div className="elementosDetalles">{m.medidas.cadera}</div>
+        <div className="elementosDetalles">{m.medidas.altura}cm</div>
+        <div className="elementosDetalles">{m.medidas.peso}kg</div>
+        <div className="elementosDetalles">{m.medidas.cintura}cm</div>
+        <div className="elementosDetalles">{m.medidas.pecho}cm</div>
+        <div className="elementosDetalles">{m.medidas.cadera}cm</div>
       </div>
     )
   })

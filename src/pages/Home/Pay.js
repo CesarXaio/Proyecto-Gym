@@ -19,6 +19,9 @@ const Pay = (props) => {
   const [mostrarVentanaClientes, setMostrarVentanaClientes] = useState(false);
   const [clientes, setClientes] = useState([]); // Estado para almacenar los clientes de la base de datos
   const [busquedaCliente, setBusquedaCliente] = useState(""); // Estado para almacenar la búsqueda del cliente
+  const [compraFinalizada, setCompraFinalizada] = useState(false);
+  const [numeroNumFactura, setNumeroNumFactura] = useState(0);
+  const [ultimaFactura, setUltimaFactura] = useState({});
 
 
   useEffect(() => {
@@ -37,6 +40,21 @@ const Pay = (props) => {
       setClienteCaja(clienteGuardado);
     }
 
+    const obtenerUltimaFactura = async () => {
+      try {
+        const response = await fetch("https://localhost:7072/api/factura");
+        const data = await response.json();
+        console.log(data+1);
+        if (!compraFinalizada) {
+          setNumeroNumFactura(data+1);
+        }
+      } catch (error) {
+        console.error("Error al obtener la ultima factura:", error);
+      }
+    };
+    if (!compraFinalizada) {
+      obtenerUltimaFactura();
+    }
   }, []);
   // Calcular el total de los productos
   const total = productosCaja.reduce((sum, producto) => sum + producto.precio * producto.cantidad, 0) +
@@ -75,19 +93,12 @@ const Pay = (props) => {
       return ;
     }
     
-    let numeroFactura = JSON.parse(localStorage.getItem("numeroFactura"));
-
-    if (numeroFactura === null) {
-      numeroFactura = Math.floor(Math.random() * 1000) + 10000;
-    } else {
-      numeroFactura++;
-    }
-    localStorage.setItem("numeroFactura", JSON.stringify(numeroFactura));
+    let numeroFactura = numeroNumFactura;
 
     let factura = {
       ci_cliente: clienteCaja.ci, //TO DO Poder elegir el ci del cliente
       fecha: moment().format("YYYY-MM-DD"), //TO DO La fecha de hoy
-      timbrado: "753951", // Tal vez el timbrado dejar
+      timbrado: "215487930", // Tal vez el timbrado dejar
       numero: numeroFactura,
       total_pagar: null,
       total_iva: null,
@@ -131,8 +142,10 @@ const Pay = (props) => {
       axios.request(config)
         .then((response) => {
           let respuesta = response.data;
-
-          if (JSON.stringify(respuesta) == JSON.parse(localStorage.getItem("numeroFactura"))) {
+        
+        console.log(JSON.stringify(respuesta));
+        console.log(JSON.stringify((numeroNumFactura)));
+        if (JSON.stringify(respuesta) == (numeroNumFactura)) {
 
             let data = JSON.stringify({
               "numero_factura": parseInt(JSON.stringify(respuesta)),
@@ -154,22 +167,58 @@ const Pay = (props) => {
               .then((response) => {
                 console.log(JSON.stringify(response.data));
 
-                let numeroFactura = JSON.parse(localStorage.getItem("numeroFactura"));
-                console.log(`Venta efectuada - N° Factura: ${numeroFactura} - Total: ${total} `);
-                console.log(JSON.stringify(respuesta));
+                // Intentamos sacar los datos de la factura 
+                let config = {
+                  method: 'get',
+                  maxBodyLength: Infinity,
+                  url: `https://localhost:7072/api/factura/${JSON.stringify(respuesta)}`,
+                  headers: {},
+                  data: ""
+                };
 
-                setMensaje(`Venta efectuada - N° Factura: ${numeroFactura} - Total: ${total} `);
-                setMostrarMensaje(true);
-                setTimeout(() => {
-                  setMostrarMensaje(false);
-                }, 3000);
+                axios.request(config)
+                  .then((response) => {
+                    let data = response.data;
 
-                localStorage.setItem("productosCaja", JSON.stringify([]));
-                localStorage.removeItem("membresiaCaja");
-                localStorage.removeItem("clienteCaja");
-                setProductosCaja([]);
-                setMembresiaCaja([]);
-                setClienteCaja([]);
+                    let numeroFactura = data.numero;
+                    let largo = numeroFactura.toString().length;
+                    let str = "0";
+                    let zeros = str.repeat(7 - largo);
+
+                    let facturaRecibida = {
+                      timbrado: data.timbrado,
+                      numero: `001-001-${zeros}${numeroFactura}`,
+                      nombre: data.nombre,
+                      ci: data.ci,
+                      fecha: new Date(data.fecha).toLocaleDateString(),
+                      total: `${data.total} G$`,
+                      iva: `${data.iva} G$ `
+                    }
+                    console.log(facturaRecibida);
+
+                    console.log(`Venta efectuada - N° Factura: 001-001-${zeros}${numeroFactura} - Total: ${total} `);
+                    console.log(JSON.stringify(respuesta));
+
+                    setMensaje(`Venta efectuada - N° Factura: 001-001-${zeros}${numeroFactura} - Total: ${total} `);
+                    setUltimaFactura(facturaRecibida);
+                    setMostrarMensaje(true);
+                    setTimeout(() => {
+                      setMostrarMensaje(false);
+                    }, 3000);
+
+
+                    localStorage.setItem("productosCaja", JSON.stringify([]));
+                    localStorage.removeItem("membresiaCaja");
+                    localStorage.removeItem("clienteCaja");
+                    setProductosCaja([]);
+                    setMembresiaCaja([]);
+                    setClienteCaja([]);
+                    setCompraFinalizada(true);
+                  })
+                  .catch((error) => {
+                    console.log(error);
+                  });
+              // Hasta aca
 
               })
               .catch((error) => {
@@ -208,15 +257,29 @@ const Pay = (props) => {
           <img className="Producto-Img" src={membresiaCaja.imagen} alt="Producto" />
         </div>
       )}
-      <div className="Detalles-Pago">
-        Detalles de Pago <br></br>
-        Nombre: {clienteCaja.nombre}<br></br> 
-        CI: {clienteCaja.ci}
-  <div>
-    <p className="SubTotal">Subtotal {total} G$</p>
-    <p className="Iva">IVA (10%) {iva_10} G$</p>
-  </div>
-</div>
+      {!compraFinalizada &&
+        <div className="Detalles-Pago">
+          Detalles de Pago <br></br>
+          Nombre: {clienteCaja.nombre}<br></br>
+          CI: {clienteCaja.ci}
+          <div>
+            <p className="SubTotal">Subtotal {total} G$</p>
+            <p className="Iva">IVA (10%) {iva_10} G$</p>
+          </div>
+        </div>
+      }
+      {compraFinalizada &&
+        <div className="Detalles-Pago">
+          DATOS DE FACTURA <br></br> 
+          Timbrado: {ultimaFactura.timbrado}<br></br>
+          Numero: {ultimaFactura.numero}<br></br>
+          Nombre: {ultimaFactura.nombre}<br></br>
+          CI: {ultimaFactura.ci}<br></br>
+          Fecha: {ultimaFactura.fecha}<br></br>
+          Total: {ultimaFactura.total}<br></br>
+          IVA: {ultimaFactura.iva}
+        </div>
+      }
 
       <div className="Suma-Total">Total: {total} G$</div>
       

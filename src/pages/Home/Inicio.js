@@ -10,12 +10,14 @@ import Users from './users';
 import Resumen from './Resumen'; // Importa el componente Resumen
 import Product from './Product';
 import Buy from './Buy';
+import Reports from './Reports';
 
 function Inicio() {
   return (
     <BrowserRouter>
       <Sidebar> 
         <Routes>
+          <Route path="/reports" element={<Reports />} />
           <Route path="/resumen" element={<Resumen />} /> {/* Ruta por defecto */}
           <Route path="/store" element={<Store />} />
           <Route path="/coach" element={<Coach />} />
