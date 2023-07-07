@@ -31,11 +31,11 @@ const DetallesUser = ({ usuario, onClickAvance, onClose, onAddTrainer }) => {
   const medidasDiv = ((m) => {
     return (
       <div>
-        <div className="elementoTarjeta separacion">{m.medidas.altura}</div>
-        <div className="elementoTarjeta separacion">{m.medidas.peso}</div>
-        <div className="elementoTarjeta separacion">{m.medidas.cintura}</div>
-        <div className="elementoTarjeta separacion">{m.medidas.pecho}</div>
-        <div className="elementoTarjeta separacion">{m.medidas.cadera}</div>
+        <div className="elementoTarjeta separacion">{m.medidas.altura}cm</div>
+        <div className="elementoTarjeta separacion">{m.medidas.peso}kh</div>
+        <div className="elementoTarjeta separacion">{m.medidas.cintura}cm</div>
+        <div className="elementoTarjeta separacion">{m.medidas.pecho}cm</div>
+        <div className="elementoTarjeta separacion">{m.medidas.cadera}cm</div>
       </div>
     )
   })

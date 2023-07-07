@@ -62,7 +62,7 @@ const Medidas = ({usuario, onClickAvance, onClose, onAddUser }) => {
                 // id="cedula"
                 altura="altura"
                 type="text"
-                placeholder="Altura"
+                placeholder="Altura (cm)"
                 value={altura}
                 onChange={handlealturaChange}
               />
@@ -72,7 +72,7 @@ const Medidas = ({usuario, onClickAvance, onClose, onAddUser }) => {
                 // id="cedula"
                 altura="altura"
                 type="text"
-                placeholder="Peso"
+                placeholder="Peso (kg)"
                 value={peso}
                 onChange={handlepesoChange}
               />
@@ -81,7 +81,7 @@ const Medidas = ({usuario, onClickAvance, onClose, onAddUser }) => {
                 classaltura="Input-container"
                 type="text"
                 // id="cedula"
-                placeholder="Cintura"
+                placeholder="Cintura (cm)"
                 value={cintura}
                 onChange={handlcinturaChange}
               />
@@ -90,7 +90,7 @@ const Medidas = ({usuario, onClickAvance, onClose, onAddUser }) => {
                 classaltura="Input-container"
                 type="text"
                 // id="cedula"
-                placeholder="Pecho"
+                placeholder="Pecho (cm)"
                 value={pecho}
                 onChange={handlepechoChange}
               />
@@ -100,7 +100,7 @@ const Medidas = ({usuario, onClickAvance, onClose, onAddUser }) => {
                 // id="cedula"
                 altura="altura"
                 type="text"
-                placeholder="cadera"
+                placeholder="cadera (cm)"
                 value={cadera}
                 onChange={handlecaderaChange}
               />
